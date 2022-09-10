@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '1.7.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'com.hi.dhl'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    maven { setUrl("https://oss.sonatype.org/content/repositories/snapshots") }
+    maven { setUrl("https://maven.aliyun.com/repository/public") }
+    maven { setUrl("https://maven.aliyun.com/repository/google") }
+    google()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'com.google.code.gson:gson:2.9.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version = '2021.1'
+//    localPath = '/Applications/Android Studio.app/Contents'
+    pluginName = "SyncKit"
+    updateSinceUntilBuild = false
+    plugins = ['Kotlin', 'android']
+}
+patchPluginXml {
+    changeNotes = """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
+
+test {
+    useJUnitPlatform()
+}

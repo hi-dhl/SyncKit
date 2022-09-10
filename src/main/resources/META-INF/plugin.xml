@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>com.hi.dhl.SyncKit</id>
+    <name>SyncKit</name>
+    <vendor email="hihuilong@gmail.com" url="http://www.hi-dhl.com">YourCompany</vendor>
+
+    <description><![CDATA[
+    sync local to remote
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>com.intellij.modules.androidstudio</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <consoleFilterProvider implementation="com.hi.dhl.console.SyncConsoleFilterProvider"/>
+
+        <notificationGroup id="SyncKitEventLog"
+                           displayType="NONE"
+                           key="SyncKitEventLog"/>
+        <notificationGroup id="SyncKitBallon"
+                           displayType="BALLOON"
+                           key="SyncKitBallon"/>
+        <notificationGroup id="SyncKitStickBallon"
+                           displayType="STICKY_BALLOON"
+                           key="SyncKitStickBallon"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="SyncKitGroup" text="SyncKit settings">
+            <!--           08af72 ICON https://www.iconfont.cn/search/index?searchType=icon&q=%E5%90%8C%E6%AD%A5&page=1&fromCollection=1&fills=&tag=-->
+            <action id="Sync.Main" class="com.hi.dhl.action.SyncKitMainAction" text="编译/同步工具"
+                    icon="/icons/kit.png"/>
+            <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="after"/>
+        </group>
+
+    </actions>
+</idea-plugin>

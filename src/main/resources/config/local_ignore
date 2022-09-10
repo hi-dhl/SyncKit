@@ -1,0 +1,79 @@
+.lock
+.git/
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Translations
+*.mo
+*.pot
+
+*.idea
+.idea*/
+.idea/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+
+node_modules/
+jspm_packages/
+typings/
+.npm
+.eslintcache
+.node_repl_history
+
+.yarn-integrity
+
+.env
+.vscode
+
+
+#-------android
+# Built application files
+#*.apk
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio
+.navigation/
+captures/
+
+# Intellij
+*.iml
+.idea/
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+*.DS_Store
+.MWebMetaData/
+
