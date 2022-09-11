@@ -1,6 +1,5 @@
 package test
 
-import com.hi.dhl.console.CommandManager
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.toJson
 import java.io.File
@@ -29,7 +28,7 @@ import java.nio.file.StandardCopyOption
 //        }
 //    }
 //}
-fun main(){
+fun main() {
 //    val remoteMachineProjectDir = "~/SyncKit"
 //    val workingDir = "./"
 //    val stringBuilder = StringBuilder()

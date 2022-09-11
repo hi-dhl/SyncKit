@@ -22,12 +22,12 @@ import java.util.jar.JarFile
  */
 object FileUtils {
     public val SHELL_INSTALL_APK = "install-apk.sh"
-    private lateinit var basePath: String
+    private lateinit var baseWorkPath: String
 
     fun copyToTarget(basePath: String) {
         try {
-            this.basePath = basePath
-            val destDir = File(basePath + File.separator + Common.syncConfigRootDir)
+            this.baseWorkPath = basePath
+            val destDir = File(baseWorkPath + File.separator + Common.syncConfigRootDir)
             if (destDir.exists()) {
                 return
             }
@@ -88,12 +88,15 @@ object FileUtils {
     }
 
     fun isExists(fileName: String): Boolean {
-        val file = File(basePath + File.separator + Common.syncConfigRootDir, fileName)
+        val file = File(baseWorkPath + File.separator + Common.syncConfigRootDir, fileName)
         return file.exists()
     }
 
     fun readServiceConfig(configName: String): RemoteMachineInfo {
         val file = File(configName)
+        if (!file.exists()) {
+            return RemoteMachineInfo.createEmptyRemoteMachineInfo()
+        }
         val content = file.readText()
         return content.fromJson()
     }
@@ -103,10 +106,14 @@ object FileUtils {
         file.writeText(json)
     }
 
-    fun getSyncConfigPath(fileName: String) = File(basePath + File.separator +
-            Common.syncConfigRootDir, fileName).absolutePath
+    fun getSyncConfigPath(fileName: String) = File(
+        baseWorkPath + File.separator +
+                Common.syncConfigRootDir, fileName
+    ).absolutePath
 
-    fun getSyncServicePath(fileName: String) = File(basePath + File.separator +
-            Common.syncConfigRootDir + File.separator +
-            Common.syncConfigService, fileName).absolutePath
+    fun getSyncServicePath(fileName: String) = File(
+        baseWorkPath + File.separator +
+                Common.syncConfigRootDir + File.separator +
+                Common.syncConfigService, fileName
+    ).absolutePath
 }

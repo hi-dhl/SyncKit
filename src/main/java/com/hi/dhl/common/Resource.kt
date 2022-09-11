@@ -27,4 +27,6 @@ object Common {
     val syncConfigLocalIgnoreFile = "local_ignore"
     val syncConfigRemoteIncludeFile = "remote_include"
     val syncDefaultConfigJson = "config_linux.json"
+
+    val remoteRootDir: String = "~/SyncKit"
 }

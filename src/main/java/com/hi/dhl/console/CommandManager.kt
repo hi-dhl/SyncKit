@@ -1,8 +1,8 @@
 package com.hi.dhl.console
 
 import com.hi.dhl.Common
+import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.FileUtils
-import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
 
 /**
@@ -14,86 +14,65 @@ import org.jetbrains.kotlin.konan.file.File
  */
 object CommandManager {
 
-    lateinit var machineInfo: RemoteMachineInfo
+    private var machineInfo: RemoteMachineInfo = DataManager.getMachineInfo()
 
-    private lateinit var baseWorkingDir: String
-    private val configName: String = Common.syncDefaultConfigJson
-
-    fun init(project: Project) {
-        baseWorkingDir = project.basePath ?: "./"
-        machineInfo = FileUtils.readServiceConfig(
-            FileUtils.getSyncServicePath(configName)
-        )
-    }
-
-    fun compileAndroid(extraCommand: String = ""): String {
-        val projectName = baseWorkingDir.substring(baseWorkingDir.lastIndexOf(File.separator) + 1)
-        val remoteMachineProjectDir = machineInfo.remoteRootDir + File.separator + projectName
-        val stringBuilder = StringBuilder()
+    fun compileAndroid(build: StringBuilder, extraCommand: String, projectBasePath: String): StringBuilder {
+        val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
+        val remoteProjectPath = machineInfo.remoteRootDir + File.separator + projectName
         // 同步文件到远程
-        syncLocalToRmote(stringBuilder, remoteMachineProjectDir)
-        stringBuilder.append(" && ")
+        syncLocalToRemote(build, remoteProjectPath)
+        build.append(" && ")
         // 执行编译命令
-        execRemoteCommand(stringBuilder, remoteMachineProjectDir, extraCommand)
-        stringBuilder.append(" && ")
+        execRemoteCommand(build, remoteProjectPath, extraCommand)
+        build.append(" && ")
         // 将结果拉回到本地
-        syncRemoteToLocal(stringBuilder, remoteMachineProjectDir)
+        syncRemoteToLocal(build, remoteProjectPath)
         // 执行安装命令
         if (FileUtils.isExists(FileUtils.SHELL_INSTALL_APK)) {
-            stringBuilder.append(" && ")
+            build.append(" && ")
+            val shellInstallApk = FileUtils.getSyncConfigPath(FileUtils.SHELL_INSTALL_APK)
             execLocalCommand(
-                stringBuilder,
-                "chmod 777 ${FileUtils.getSyncConfigPath(FileUtils.SHELL_INSTALL_APK)} && bash ${
-                    FileUtils.getSyncConfigPath(
-                        FileUtils.SHELL_INSTALL_APK
-                    )
-                }"
+                build,
+                "chmod 777 ${shellInstallApk} && bash ${shellInstallApk}"
             )
         }
-        return stringBuilder.toString()
+        return build
     }
 
-    private fun syncLocalToRmote(build: StringBuilder, remoteMachineProjectDir: String) {
+    fun syncLocalToRemote(build: StringBuilder, remoteMachineWorkPath: String) {
 //        /bin/bash -c "rsync -e 'ssh -p 22' --archive --delete  --progress --rsync-path='mkdir -p ~/rsync/demo && rsync'  ./ root@ip:~/rsync/demo"
         build.append("rsync -e 'ssh -p ${machineInfo.remotePort}' --archive --delete ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
-        build.append("--rsync-path='mkdir -p ${remoteMachineProjectDir} && rsync' ")
+        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
         val ignoreFile =
-            File(baseWorkingDir + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
+            File(DataManager.projectBasePath() + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
         if (ignoreFile.exists) {
             build.append("--exclude-from=${ignoreFile}  ")
         }
         build.append("./ ")
-        build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineProjectDir} ")
+        build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineWorkPath} ")
     }
 
-    private fun execRemoteCommand(
-        build: StringBuilder,
-        remoteMachineProjectDir: String,
-        extraCommand: String
-    ) {
+    private fun execRemoteCommand(build: StringBuilder, remoteMachineWorkPath: String, extraCommand: String) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${machineInfo.remotePort} ${machineInfo.remoteUser}@${machineInfo.remoteAddress}  ' source /etc/profile;cd ${remoteMachineProjectDir}  && ${extraCommand}' ")
+        build.append("ssh -p ${machineInfo.remotePort} ${machineInfo.remoteUser}@${machineInfo.remoteAddress}  ' source /etc/profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
-    private fun syncRemoteToLocal(build: StringBuilder, remoteMachineProjectDir: String) {
+    private fun syncRemoteToLocal(build: StringBuilder, remoteMachineWorkPath: String) {
         build.append("rsync -e 'ssh -p ${machineInfo.remotePort}' --archive ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
         val remoteIncludeFile =
-            File(baseWorkingDir + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigRemoteIncludeFile)
+            File(DataManager.projectBasePath() + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigRemoteIncludeFile)
         if (remoteIncludeFile.exists) {
             build.append("--include-from=${remoteIncludeFile}  ")
         }
-        build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineProjectDir} ")
+        build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineWorkPath} ")
         build.append("./ ")
     }
 
-    private fun execLocalCommand(
-        build: StringBuilder,
-        extraCommand: String
-    ) {
+    fun execLocalCommand(build: StringBuilder, extraCommand: String) {
         build.append(extraCommand)
     }
 
