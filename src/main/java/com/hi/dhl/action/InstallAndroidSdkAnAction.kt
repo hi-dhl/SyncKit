@@ -10,10 +10,10 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class InstallJDK11AnAction : ExecShellAction() {
+class InstallAndroidSdkAnAction : ExecShellAction() {
 
     override fun action(project: Project) {
-        execShelLScript(project, R.ShellScript.installJDK11)
+        execShelLScript(project, R.ShellScript.installAndroidSdk)
     }
 
 }
