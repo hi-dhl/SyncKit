@@ -16,7 +16,6 @@ import java.io.File
  */
 object DataManager {
     private val configName: String = Common.syncDefaultConfigJson
-    private lateinit var machineInfo: RemoteMachineInfo
     private lateinit var projectBasePath: String
 
     fun isInit(projectBasePath: String): Boolean {
@@ -30,6 +29,7 @@ object DataManager {
 
     fun init(project: Project) {
         projectBasePath = project.basePath ?: "./"
+        val machineInfo: RemoteMachineInfo
         if (isInit(projectBasePath)) {
             machineInfo = getMachineInfo()
         } else {
@@ -43,10 +43,7 @@ object DataManager {
         if (!isInit(projectBasePath)) {
             LogUtils.logW("DataManager is not initialized")
         }
-        if (!::machineInfo.isInitialized) {
-            machineInfo = FileUtils.readServiceConfig(FileUtils.getSyncServicePath(configName))
-        }
-        return machineInfo
+        return FileUtils.readServiceConfig(FileUtils.getSyncServicePath(projectBasePath, configName))
     }
 
     fun projectBasePath(): String = projectBasePath

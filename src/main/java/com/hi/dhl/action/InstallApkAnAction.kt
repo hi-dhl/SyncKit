@@ -24,13 +24,11 @@ class InstallApkAnAction : AbstractAnAction() {
             LogUtils.logI("click action path = ${projectBasePath}");
 
             val commands = StringBuilder()
-            val shellInstallApkPath =
-                projectBasePath + File.separator + Common.syncConfigRootDir + File.separator + FileUtils.SHELL_INSTALL_APK
+            val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
             if (FileUtils.isExists(shellInstallApkPath)) {
-                val shellInstallApk = FileUtils.getSyncConfigPath(FileUtils.SHELL_INSTALL_APK)
                 CommandManager.execLocalCommand(
                     commands,
-                    "chmod 777 ${shellInstallApk} && bash ${shellInstallApk}"
+                    "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath}"
                 )
 
                 SyncRunnerConsole(
@@ -41,7 +39,7 @@ class InstallApkAnAction : AbstractAnAction() {
                 ).initAndRun()
 
             } else {
-                LogUtils.logE("no find ${FileUtils.getSyncConfigPath(FileUtils.SHELL_INSTALL_APK)}")
+                LogUtils.logE("file is not exists ${FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)}")
             }
 
         } catch (e: Exception) {

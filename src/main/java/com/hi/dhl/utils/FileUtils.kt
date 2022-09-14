@@ -1,6 +1,7 @@
 package com.hi.dhl.utils
 
 import com.hi.dhl.Common
+import com.hi.dhl.R
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.fromJson
 import java.io.File
@@ -21,19 +22,14 @@ import java.util.jar.JarFile
  * </pre>
  */
 object FileUtils {
-    public val SHELL_INSTALL_APK = "install-apk.sh"
-    private lateinit var baseWorkPath: String
 
     fun copyToTarget(basePath: String) {
         try {
-            this.baseWorkPath = basePath
-            val destDir = File(baseWorkPath + File.separator + Common.syncConfigRootDir)
+            val destDir = File(basePath + File.separator + Common.syncConfigRootDir)
             if (destDir.exists()) {
                 return
             }
             destDir.mkdirs()
-            val destFile = File(destDir, Common.syncConfigLocalIgnoreFile)
-            LogUtils.logI("destFile = ${destFile.absolutePath}");
             copyDestDir(destDir)
         } catch (e: Exception) {
             LogUtils.logE("init fail ${e}");
@@ -62,25 +58,39 @@ object FileUtils {
             val entry: JarEntry = jarEntrys.nextElement()
             val name: String = entry.getName()
             if (name.contains(Common.resourceConfigDir)) {
-
-                if (name.contains(Common.syncConfigService)) {
-                    if (entry.isDirectory) {
-                        File(destDir, Common.syncConfigService).mkdirs()
-                    } else {
+                when{
+                    name.contains(Common.syncConfigServiceDir) -> {
+                        if (entry.isDirectory) {
+                            File(destDir, Common.syncConfigServiceDir).mkdirs()
+                        } else {
+                            LogUtils.logI("copyDestDir name = ${name}")
+                            val endName = name.substring(name.lastIndexOf("/") + 1)
+                            copyFile(
+                                classLoader.getResourceAsStream(name),
+                                File(File(destDir, Common.syncConfigServiceDir), endName)
+                            )
+                        }
+                    }
+                    name.contains(Common.syncConfigScriptDir) -> {
+                        if (entry.isDirectory) {
+                            File(destDir, Common.syncConfigScriptDir).mkdirs()
+                        } else {
+                            LogUtils.logI("copyDestDir name = ${name}")
+                            val endName = name.substring(name.lastIndexOf("/") + 1)
+                            copyFile(
+                                classLoader.getResourceAsStream(name),
+                                File(File(destDir, Common.syncConfigScriptDir), endName)
+                            )
+                        }
+                    }
+                    !entry.isDirectory() -> {
                         LogUtils.logI("copyDestDir name = ${name}")
                         val endName = name.substring(name.lastIndexOf("/") + 1)
                         copyFile(
                             classLoader.getResourceAsStream(name),
-                            File(File(destDir, Common.syncConfigService), endName)
+                            File(destDir, endName)
                         )
                     }
-                } else if (!entry.isDirectory()) {
-                    LogUtils.logI("copyDestDir name = ${name}")
-                    val endName = name.substring(name.lastIndexOf("/") + 1)
-                    copyFile(
-                        classLoader.getResourceAsStream(name),
-                        File(destDir, endName)
-                    )
                 }
 
             }
@@ -107,14 +117,17 @@ object FileUtils {
         file.writeText(json)
     }
 
-    fun getSyncConfigPath(fileName: String) = File(
-        baseWorkPath + File.separator +
-                Common.syncConfigRootDir, fileName
-    ).absolutePath
+    fun getSyncConfigPath(basePath: String, fileName: String): String {
+        return basePath + File.separator + Common.syncConfigRootDir + File.separator + fileName
+    }
 
-    fun getSyncServicePath(fileName: String) = File(
-        baseWorkPath + File.separator +
+    fun getSyncServicePath(basePath: String, fileName: String): String {
+        return basePath + File.separator +
                 Common.syncConfigRootDir + File.separator +
-                Common.syncConfigService, fileName
-    ).absolutePath
+                Common.syncConfigServiceDir + File.separator + fileName
+    }
+
+    fun getShellScriptPath(basePath: String, shellName: String): String {
+        return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir + File.separator + shellName
+    }
 }

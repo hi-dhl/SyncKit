@@ -27,10 +27,10 @@ class InstallJDK11AnAction : AbstractAnAction() {
             LogUtils.logI("click action project path = ${projectBasePath}")
 
             val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-            val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
+            val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName + File.separator + Common.syncConfigRootDir
 
             val commands = StringBuilder()
-            val shellScriptPath = projectBasePath + File.separator + Common.syncConfigRootDir + File.separator + R.ShellScript.installJDK11
+            val shellScriptPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installJDK11)
             LogUtils.logI("shellScriptPath path = ${shellScriptPath}")
             if (FileUtils.isExists(shellScriptPath)) {
                 CommandManager.execRemoteSellScript(commands, shellScriptPath, remoteProjectPath)

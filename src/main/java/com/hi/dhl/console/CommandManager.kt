@@ -1,6 +1,7 @@
 package com.hi.dhl.console
 
 import com.hi.dhl.Common
+import com.hi.dhl.R
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.FileUtils
 import org.jetbrains.kotlin.konan.file.File
@@ -27,13 +28,13 @@ object CommandManager {
         build.append(" && ")
         // 将结果拉回到本地
         syncRemoteToLocal(build, remoteProjectPath)
-        // 执行安装命令
-        if (FileUtils.isExists(FileUtils.SHELL_INSTALL_APK)) {
+        // 执行本地安装命令
+        val shellPath = FileUtils.getShellScriptPath(projectBasePath,R.ShellScript.installApk)
+        if (FileUtils.isExists(shellPath)) {
             build.append(" && ")
-            val shellInstallApk = FileUtils.getSyncConfigPath(FileUtils.SHELL_INSTALL_APK)
             execLocalCommand(
                 build,
-                "chmod 777 ${shellInstallApk} && bash ${shellInstallApk}"
+                "chmod 777 ${shellPath} && bash ${shellPath}"
             )
         }
         return build
