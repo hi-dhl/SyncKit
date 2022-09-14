@@ -87,14 +87,15 @@ object FileUtils {
         }
     }
 
-    fun isExists(fileName: String): Boolean {
-        val file = File(baseWorkPath + File.separator + Common.syncConfigRootDir, fileName)
+    fun isExists(filePath: String): Boolean {
+        val file = File(filePath)
         return file.exists()
     }
 
     fun readServiceConfig(configName: String): RemoteMachineInfo {
         val file = File(configName)
         if (!file.exists()) {
+            LogUtils.logW("file not exits ${file.absolutePath}")
             return RemoteMachineInfo.createEmptyRemoteMachineInfo()
         }
         val content = file.readText()

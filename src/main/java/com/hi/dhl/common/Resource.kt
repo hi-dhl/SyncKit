@@ -15,6 +15,12 @@ object R {
         val projectTaskStart = "\n sync start ...... \n"
         val projectVersion = "\n SyncKit v1.0.0 \n"
     }
+
+    object ShellScript {
+        val installJDK11 = "install_jdk_11.sh"
+        val installAndroidSdk = "install_android_sdk.sh"
+        val installApk = "install-apk.sh"
+    }
 }
 
 object Common {
@@ -26,7 +32,7 @@ object Common {
     val syncConfigService = "service"
     val syncConfigLocalIgnoreFile = "local_ignore"
     val syncConfigRemoteIncludeFile = "remote_include"
-    val syncDefaultConfigJson = "config_linux.json"
+    val syncDefaultConfigJson = "config.json"
 
     val remoteRootDir: String = "~/SyncKit"
 }

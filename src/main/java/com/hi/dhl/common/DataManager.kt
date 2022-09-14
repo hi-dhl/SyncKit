@@ -5,6 +5,7 @@ import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
+import java.io.File
 
 /**
  * <pre>
@@ -14,30 +15,39 @@ import com.intellij.openapi.project.Project
  * </pre>
  */
 object DataManager {
-    private var mInit = false
     private val configName: String = Common.syncDefaultConfigJson
     private lateinit var machineInfo: RemoteMachineInfo
     private lateinit var projectBasePath: String
 
-    fun init(project: Project) {
-        if (mInit) {
-            return
+    fun isInit(projectBasePath: String): Boolean {
+        val destDir = File(projectBasePath + File.separator + Common.syncConfigRootDir)
+        if (destDir.exists()) {
+            return true
+        } else {
+            return false
         }
-        mInit = true
+    }
+
+    fun init(project: Project) {
         projectBasePath = project.basePath ?: "./"
-        FileUtils.copyToTarget(projectBasePath)
-        machineInfo = getMachineInfo()
+        if (isInit(projectBasePath)) {
+            machineInfo = getMachineInfo()
+        } else {
+            FileUtils.copyToTarget(projectBasePath)
+            machineInfo = getMachineInfo()
+        }
         LogUtils.logI(machineInfo.toString())
     }
 
     fun getMachineInfo(): RemoteMachineInfo {
+        if (!isInit(projectBasePath)) {
+            LogUtils.logW("DataManager is not initialized")
+        }
         if (!::machineInfo.isInitialized) {
-            machineInfo = FileUtils.readServiceConfig(
-                FileUtils.getSyncServicePath(configName)
-            )
+            machineInfo = FileUtils.readServiceConfig(FileUtils.getSyncServicePath(configName))
         }
         return machineInfo
     }
 
-    fun projectBasePath() = projectBasePath
+    fun projectBasePath(): String = projectBasePath
 }

@@ -54,9 +54,24 @@ object CommandManager {
         build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineWorkPath} ")
     }
 
-    private fun execRemoteCommand(build: StringBuilder, remoteMachineWorkPath: String, extraCommand: String) {
+    fun syncLocalFileToRemote(build: StringBuilder, filePath: String, remoteMachineWorkPath: String) {
+        build.append("rsync -e 'ssh -p ${machineInfo.remotePort}' --archive --delete ")
+        build.append("--progress ")
+        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
+        build.append("${filePath} ")
+        build.append(" ${machineInfo.remoteUser}@${machineInfo.remoteAddress}:${remoteMachineWorkPath} ")
+    }
+
+    fun execRemoteCommand(build: StringBuilder, remoteMachineWorkPath: String, extraCommand: String) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
         build.append("ssh -p ${machineInfo.remotePort} ${machineInfo.remoteUser}@${machineInfo.remoteAddress}  ' source /etc/profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+    }
+
+    fun execRemoteSellScript(build: StringBuilder, filePath: String, remoteMachineWorkPath: String) {
+        syncLocalFileToRemote(build, filePath, remoteMachineWorkPath)
+        build.append(" && ")
+        val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
+        execRemoteCommand(build, remoteMachineWorkPath, "chmod 777 ${fileName} && bash ${fileName}")
     }
 
     private fun syncRemoteToLocal(build: StringBuilder, remoteMachineWorkPath: String) {

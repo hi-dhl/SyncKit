@@ -30,23 +30,26 @@
 
     <actions>
         <!-- Add your actions here -->
-        <group id="SyncKitGroup" icon="/icons/kit.png" popup="true" class="com.hi.dhl.action.SyncActionGroup">
+        <group id="SyncKitGroup" icon="/icons/kit.png" popup="true">
             <!--
                 08af72 ICON https://www.iconfont.cn/search/index?searchType=icon&q=%E5%90%8C%E6%AD%A5&page=1&fromCollection=1&fills=&tag=
             -->
             <action id="SyncKit.CompileAnAction" class="com.hi.dhl.action.CompileAnAction" text="Sync/Compile"
                     icon="/icons/kit.png"/>
+
             <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
                     text="Sync To Service" icon="/icons/kit.png"/>
 
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
-                <action id="SyncKit.AdbInstallAnAction2" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
+                <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                         icon="/icons/kit.png"/>
             </group>
 
             <group id="SyncKitServiceGroup" icon="/icons/kit.png" text="Service" popup="true">
-                <action id="SyncKit.AdbInstallAnAction2" class="com.hi.dhl.action.InstallJDKAnAction"
+                <action id="SyncKit.InstallJDK11AnAction" class="com.hi.dhl.action.InstallJDK11AnAction"
                         text="install JDK 11" icon="/icons/kit.png"/>
+                <action id="SyncKit.InstallJDK11AnAction2" class="com.hi.dhl.action.InstallJDK11AnAction"
+                        text="install Android SDK" icon="/icons/kit.png"/>
             </group>
             <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="after"/>
         </group>
