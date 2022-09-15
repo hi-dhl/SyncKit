@@ -275,3 +275,4 @@ gradle.properties
 
 nohup.out
 cmake-build-debug/
+.sync/

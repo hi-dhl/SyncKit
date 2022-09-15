@@ -1,15 +1,35 @@
 <idea-plugin>
     <id>com.hi.dhl.SyncKit</id>
     <name>SyncKit</name>
-    <vendor email="hihuilong@gmail.com" url="http://www.hi-dhl.com">YourCompany</vendor>
+<!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
+    <idea-version since-build="163"/>
+    <vendor email="hihuilong@gmail.com" url="https://www.hi-dhl.com">hi-dhl</vendor>
 
     <description><![CDATA[
-    sync local to remote
+        The plugin use in AndroidStudio or IntelliJ IDEA.<br>
+        <b>The main features:</b><br>
+        <ul>
+            <li>Sync local file to remote machine</li>
+            <li>Remote compile/build android or java on the remote machine</li>
+            <li>Install apk</li>
+            <li>Install the JDK or Android SDK or NDK on the remote machine</li>
+        </ul>
     ]]></description>
+
+    <change-notes><![CDATA[
+        <b>Version 1.0.0</b>
+        <ul>
+            <li>Sync local file to remote machine</li>
+            <li>Remote compile/build android or java on the remote machine</li>
+            <li>Install apk</li>
+            <li>Install the JDK or Android SDK or NDK on the remote machine</li>
+        </ul>
+    ]]></change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
     <depends>org.jetbrains.android</depends>
     <depends>com.intellij.modules.androidstudio</depends>
 
