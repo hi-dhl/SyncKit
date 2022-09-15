@@ -1,6 +1,8 @@
 package com.hi.dhl.action.base
 
+import com.hi.dhl.R
 import com.hi.dhl.common.DataManager
+import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.MessagesUtils
 import com.intellij.openapi.actionSystem.AnAction
@@ -34,4 +36,14 @@ abstract class AbstractAnAction : AnAction() {
     }
 
     abstract fun action(project: Project)
+
+    fun execSyncRunnerConsole(project: Project, projectBasePath: String, commands: String) {
+        SyncRunnerConsole(
+            project = project,
+            consoleTitle = R.String.projectTitle,
+            workingDir = projectBasePath,
+            command = commands
+        ).initAndRun()
+    }
+
 }

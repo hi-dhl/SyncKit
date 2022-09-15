@@ -28,14 +28,7 @@ class InstallApkAnAction : AbstractAnAction() {
                 commands,
                 "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath}"
             )
-
-            SyncRunnerConsole(
-                project = project,
-                consoleTitle = R.String.projectTitle,
-                workingDir = projectBasePath,
-                command = commands.toString()
-            ).initAndRun()
-
+            execSyncRunnerConsole(project, projectBasePath, commands.toString())
         } else {
             LogUtils.logE("file is not exists ${FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)}")
         }

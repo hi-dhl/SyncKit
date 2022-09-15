@@ -25,13 +25,7 @@ class SyncToServiceAnAction : AbstractAnAction() {
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
         CommandManager.syncLocalToRemote(commands, remoteProjectPath)
-
-        SyncRunnerConsole(
-            project = project,
-            consoleTitle = R.String.projectTitle,
-            workingDir = projectBasePath,
-            command = commands.toString()
-        ).initAndRun()
+        execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }
 
 }

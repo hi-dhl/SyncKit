@@ -31,13 +31,7 @@ abstract class AbstractExecShellAction : AbstractAnAction() {
             LogUtils.logI("localShellScriptPath = ${localShellScriptPath}")
             if (FileUtils.isExists(localShellScriptPath)) {
                 CommandManager.execRemoteSellScript(commands, localShellScriptPath, remoteProjectPath)
-
-                SyncRunnerConsole(
-                    project = project,
-                    consoleTitle = R.String.projectTitle,
-                    workingDir = projectBasePath,
-                    command = commands.toString()
-                ).initAndRun()
+                execSyncRunnerConsole(project, projectBasePath, commands.toString())
             } else {
                 LogUtils.logE("file not exist ${localShellScriptPath}")
             }

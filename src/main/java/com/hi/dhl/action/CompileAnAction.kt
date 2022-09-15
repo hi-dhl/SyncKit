@@ -24,12 +24,7 @@ class CompileAnAction : AbstractAnAction() {
         LogUtils.logI("click action path = ${projectBasePath}");
         val commands = StringBuilder()
         CommandManager.compileAndroid(commands, extraCommand, projectBasePath)
-        SyncRunnerConsole(
-            project = project,
-            consoleTitle = R.String.projectTitle,
-            workingDir = projectBasePath,
-            command = commands.toString()
-        ).initAndRun()
+        execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }
 
 }
