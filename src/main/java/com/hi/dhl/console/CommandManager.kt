@@ -69,6 +69,7 @@ object CommandManager {
     }
 
     fun execRemoteSellScript(build: StringBuilder, filePath: String, remoteMachineWorkPath: String) {
+        machineInfo = DataManager.getMachineInfo()
         syncLocalFileToRemote(build, filePath, remoteMachineWorkPath)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)

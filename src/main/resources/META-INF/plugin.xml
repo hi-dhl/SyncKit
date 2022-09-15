@@ -58,14 +58,19 @@
             -->
             <action id="SyncKit.CompileAnAction" class="com.hi.dhl.action.CompileAnAction" text="Sync/Build"
                     icon="/icons/kit.png"/>
+            <action id="SyncKit.StopAnAction" class="com.hi.dhl.action.StopAnAction"
+                    text="Stop"
+                    icon="/icons/kit.png"/>
 
-            <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
-                    text="Sync To Service" icon="/icons/kit.png"/>
-
+            <separator/>
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                         icon="/icons/kit.png"/>
             </group>
+
+            <separator/>
+            <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
+                    text="Sync Local To Service" icon="/icons/kit.png"/>
 
             <separator/>
 
@@ -79,11 +84,6 @@
                 <action id="SyncKit.InstallAndroidSdkAnAction" class="com.hi.dhl.action.InstallAndroidSdkAnAction"
                         text="install Android SDK" icon="/icons/kit.png"/>
             </group>
-
-            <separator/>
-            <action id="SyncKit.StopAnAction" class="com.hi.dhl.action.StopAnAction"
-                    text="Stop"
-                    icon="/icons/kit.png"/>
 
             <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="after"/>
         </group>
