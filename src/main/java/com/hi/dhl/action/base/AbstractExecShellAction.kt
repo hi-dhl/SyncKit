@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.konan.file.File
  *     desc  :
  * </pre>
  */
-abstract class ExecShellAction : AbstractAnAction() {
+abstract class AbstractExecShellAction : AbstractAnAction() {
 
     fun execShelLScript(project: Project, shellScript: String) {
         try {

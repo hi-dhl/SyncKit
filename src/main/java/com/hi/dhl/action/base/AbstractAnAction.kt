@@ -25,6 +25,7 @@ abstract class AbstractAnAction : AnAction() {
                     )
                     return
                 }
+                DataManager.init(project)
                 action(project)
             }
         } catch (e: Exception) {
