@@ -1,4 +1,4 @@
-package com.hi.dhl.action
+package com.hi.dhl.action.base
 
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.LogUtils

@@ -1,6 +1,7 @@
 package com.hi.dhl.action
 
 import com.hi.dhl.R
+import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.console.CommandManager
 import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils

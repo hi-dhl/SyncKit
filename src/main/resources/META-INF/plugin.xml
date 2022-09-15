@@ -52,9 +52,11 @@
         <!-- Add your actions here -->
         <group id="SyncKitGroup" icon="/icons/kit.png" popup="true">
             <!--
-                08af72 ICON https://www.iconfont.cn/search/index?searchType=icon&q=%E5%90%8C%E6%AD%A5&page=1&fromCollection=1&fills=&tag=
+                ICON
+                地址：https://www.iconfont.cn/search/index?searchType=icon&q=%E5%90%8C%E6%AD%A5&page=1&fromCollection=1&fills=&tag=
+                颜色：08af72
             -->
-            <action id="SyncKit.CompileAnAction" class="com.hi.dhl.action.CompileAnAction" text="Sync/Compile"
+            <action id="SyncKit.CompileAnAction" class="com.hi.dhl.action.CompileAnAction" text="Sync/Build"
                     icon="/icons/kit.png"/>
 
             <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
