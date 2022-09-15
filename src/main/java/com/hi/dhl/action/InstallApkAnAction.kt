@@ -18,31 +18,26 @@ import com.intellij.openapi.project.Project
 class InstallApkAnAction : AbstractAnAction() {
 
     override fun action(project: Project) {
-        try {
-            val projectBasePath = project.basePath ?: "./"
-            LogUtils.logI("click action path = ${projectBasePath}");
+        val projectBasePath = project.basePath ?: "./"
+        LogUtils.logI("click action path = ${projectBasePath}");
 
-            val commands = StringBuilder()
-            val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
-            if (FileUtils.isExists(shellInstallApkPath)) {
-                CommandManager.execLocalCommand(
-                    commands,
-                    "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath}"
-                )
+        val commands = StringBuilder()
+        val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
+        if (FileUtils.isExists(shellInstallApkPath)) {
+            CommandManager.execLocalCommand(
+                commands,
+                "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath}"
+            )
 
-                SyncRunnerConsole(
-                    project = project,
-                    consoleTitle = R.String.projectTitle,
-                    workingDir = projectBasePath,
-                    command = commands.toString()
-                ).initAndRun()
+            SyncRunnerConsole(
+                project = project,
+                consoleTitle = R.String.projectTitle,
+                workingDir = projectBasePath,
+                command = commands.toString()
+            ).initAndRun()
 
-            } else {
-                LogUtils.logE("file is not exists ${FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)}")
-            }
-
-        } catch (e: Exception) {
-            LogUtils.logE("exec action fail ${e}");
+        } else {
+            LogUtils.logE("file is not exists ${FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)}")
         }
     }
 

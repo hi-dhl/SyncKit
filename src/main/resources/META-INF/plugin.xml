@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.hi.dhl.SyncKit</id>
     <name>SyncKit</name>
-<!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
+    <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
     <idea-version since-build="163"/>
     <vendor email="hihuilong@gmail.com" url="https://www.hi-dhl.com">hi-dhl</vendor>
 
@@ -67,12 +67,24 @@
                         icon="/icons/kit.png"/>
             </group>
 
+            <separator/>
+
+            <action id="SyncKit.InitializationAnAction" class="com.hi.dhl.action.InitializationAnAction"
+                    text="Sync Init"
+                    icon="/icons/kit.png"/>
+
             <group id="SyncKitServiceGroup" icon="/icons/kit.png" text="Service" popup="true">
                 <action id="SyncKit.InstallJDK11AnAction" class="com.hi.dhl.action.InstallJDK11AnAction"
                         text="install JDK 11" icon="/icons/kit.png"/>
                 <action id="SyncKit.InstallAndroidSdkAnAction" class="com.hi.dhl.action.InstallAndroidSdkAnAction"
                         text="install Android SDK" icon="/icons/kit.png"/>
             </group>
+
+            <separator/>
+            <action id="SyncKit.StopAnAction" class="com.hi.dhl.action.StopAnAction"
+                    text="Stop"
+                    icon="/icons/kit.png"/>
+
             <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="after"/>
         </group>
 

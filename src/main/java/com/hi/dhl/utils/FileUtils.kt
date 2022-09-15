@@ -5,11 +5,12 @@ import com.hi.dhl.R
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.fromJson
 import java.io.File
+import java.io.IOException
 import java.io.InputStream
 import java.net.JarURLConnection
 import java.net.URL
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
+import java.nio.file.*
+import java.nio.file.attribute.BasicFileAttributes
 import java.util.*
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
@@ -58,7 +59,7 @@ object FileUtils {
             val entry: JarEntry = jarEntrys.nextElement()
             val name: String = entry.getName()
             if (name.contains(Common.resourceConfigDir)) {
-                when{
+                when {
                     name.contains(Common.syncConfigServiceDir) -> {
                         if (entry.isDirectory) {
                             File(destDir, Common.syncConfigServiceDir).mkdirs()
@@ -87,8 +88,7 @@ object FileUtils {
                         LogUtils.logI("copyDestDir name = ${name}")
                         val endName = name.substring(name.lastIndexOf("/") + 1)
                         copyFile(
-                            classLoader.getResourceAsStream(name),
-                            File(destDir, endName)
+                            classLoader.getResourceAsStream(name), File(destDir, endName)
                         )
                     }
                 }
@@ -122,12 +122,26 @@ object FileUtils {
     }
 
     fun getSyncServicePath(basePath: String, fileName: String): String {
-        return basePath + File.separator +
-                Common.syncConfigRootDir + File.separator +
-                Common.syncConfigServiceDir + File.separator + fileName
+        return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigServiceDir + File.separator + fileName
     }
 
     fun getShellScriptPath(basePath: String, shellName: String): String {
         return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir + File.separator + shellName
+    }
+
+    fun deleteDirectory(directory: Path) {
+        if (Files.exists(directory)) {
+            Files.walkFileTree(directory, object : SimpleFileVisitor<Path>() {
+                override fun visitFile(file: Path?, attrs: BasicFileAttributes?): FileVisitResult {
+                    file?.let { Files.delete(it) }
+                    return super.visitFile(file, attrs)
+                }
+
+                override fun postVisitDirectory(dir: Path?, exc: IOException?): FileVisitResult {
+                    dir?.let { Files.delete(it) }
+                    return FileVisitResult.CONTINUE
+                }
+            })
+        }
     }
 }

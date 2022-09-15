@@ -24,7 +24,7 @@ object R {
 }
 
 object Common {
-    val isDebug = false
+    val isDebug = true
     val projectTitle = "SyncKit"
     val resourceConfigDir = "config"
 
