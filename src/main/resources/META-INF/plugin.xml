@@ -56,10 +56,16 @@
                 地址：https://www.iconfont.cn/search/index?searchType=icon&q=%E5%90%8C%E6%AD%A5&page=1&fromCollection=1&fills=&tag=
                 颜色：08af72
             -->
-            <action id="SyncKit.CompileAnAction" class="com.hi.dhl.action.CompileAnAction" text="Sync/Build"
+            <action id="SyncKit.BuildProjectAnAction" class="com.hi.dhl.action.BuildProjectAnAction"
+                    text="Build Project In Service"
                     icon="/icons/kit.png"/>
-            <action id="SyncKit.StopAnAction" class="com.hi.dhl.action.StopAnAction"
-                    text="Stop"
+
+            <action id="SyncKit.StopBuildAnAction" class="com.hi.dhl.action.StopBuildAnAction"
+                    text="Stop Build In Service"
+                    icon="/icons/kit.png"/>
+
+            <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
+                    text="Clean Project In Service"
                     icon="/icons/kit.png"/>
 
             <separator/>
