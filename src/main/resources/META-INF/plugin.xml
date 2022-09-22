@@ -58,17 +58,25 @@
             -->
             <action id="SyncKit.BuildProjectAnAction" class="com.hi.dhl.action.BuildProjectAnAction"
                     text="Build Project In Service"
-                    icon="/icons/kit.png"/>
+                    icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control option 1" keymap="$default"/>
+            </action>
 
             <action id="SyncKit.StopBuildAnAction" class="com.hi.dhl.action.StopBuildAnAction"
                     text="Stop Build In Service"
-                    icon="/icons/kit.png"/>
+                    icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control option 2" keymap="$default"/>
+            </action>
 
             <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
                     text="Clean Project In Service"
                     icon="/icons/kit.png"/>
 
+            <action id="SyncKit.ConfigCommandAnAction" class="com.hi.dhl.action.config.ConfigCommandAnAction"
+                    text="Config Command" icon="/icons/kit.png"/>
+
             <separator/>
+
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                         icon="/icons/kit.png"/>
@@ -91,7 +99,13 @@
                         text="install Android SDK" icon="/icons/kit.png"/>
             </group>
 
-            <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="before"/>
+            <separator/>
+
+            <action id="SyncKit.PluginConfigAnAction" class="com.hi.dhl.action.config.PluginConfigAnAction"
+                    text="插件配置" icon="/icons/kit.png">
+            </action>
+
+            <add-to-group group-id="ToolbarRunGroup" relative-to-action="RunnerActions" anchor="before" />
         </group>
 
     </actions>

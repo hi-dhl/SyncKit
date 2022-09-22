@@ -10,10 +10,11 @@ import com.hi.dhl.Common
  * </pre>
  */
 data class RemoteMachineInfo(
-    val remotePort: String,
-    val remoteAddress: String,
-    val remoteUser: String,
-    val remoteRootDir: String = Common.remoteRootDir
+    var remotePort: String,
+    var remoteAddress: String,
+    var remoteUser: String,
+    var remoteBuildCommand: String? = null,
+    var remoteRootDir: String = Common.remoteRootDir
 ) {
     companion object {
         fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {

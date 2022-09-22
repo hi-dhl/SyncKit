@@ -3,6 +3,7 @@ package com.hi.dhl.action
 import com.hi.dhl.R
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.DataManager
+import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.CommandManager
 import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils
@@ -21,10 +22,12 @@ class SyncToServiceAnAction : AbstractAnAction() {
     override fun action(project: Project) {
         val projectBasePath = project.basePath ?: "./"
         LogUtils.logI("click action path = ${projectBasePath}");
+
+        val remoteMachineInfo = SyncContentProvide.getInstance(project).readSyncServiceConfig()
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
-        CommandManager.syncLocalToRemote(commands, remoteProjectPath)
+        CommandManager.syncLocalToRemote(commands, remoteProjectPath, remoteMachineInfo)
         execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }
 

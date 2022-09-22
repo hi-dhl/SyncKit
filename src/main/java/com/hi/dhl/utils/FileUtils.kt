@@ -1,7 +1,6 @@
 package com.hi.dhl.utils
 
 import com.hi.dhl.Common
-import com.hi.dhl.R
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.fromJson
 import java.io.File
@@ -102,8 +101,8 @@ object FileUtils {
         return file.exists()
     }
 
-    fun readServiceConfig(configName: String): RemoteMachineInfo {
-        val file = File(configName)
+    fun readServiceConfig(configFilePath: String): RemoteMachineInfo {
+        val file = File(configFilePath)
         if (!file.exists()) {
             LogUtils.logW("file not exits ${file.absolutePath}")
             return RemoteMachineInfo.createEmptyRemoteMachineInfo()
@@ -112,8 +111,8 @@ object FileUtils {
         return content.fromJson()
     }
 
-    fun saveServiceConfig(json: String, configName: String) {
-        val file = File(configName)
+    fun saveServiceConfig(json: String, configFilePath: String) {
+        val file = File(configFilePath)
         file.writeText(json)
     }
 
