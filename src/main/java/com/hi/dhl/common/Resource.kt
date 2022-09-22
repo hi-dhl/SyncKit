@@ -12,7 +12,7 @@ object R {
     object String {
         val projectTitle = "SyncKit"
         val projectTaskDone = "\nsync done\n"
-        val projectTaskStart = "\n sync start ...... \n"
+        val projectTaskStart = "\n sync start ...... \n\n"
         val projectVersion = "\n SyncKit v1.0.0 \n"
     }
 

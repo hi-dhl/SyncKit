@@ -2,6 +2,7 @@ package com.hi.dhl.console
 
 import com.hi.dhl.Common
 import com.hi.dhl.R
+import com.hi.dhl.action.BuildProcessListener
 import com.hi.dhl.utils.LogUtils
 import com.intellij.execution.Executor
 import com.intellij.execution.configurations.GeneralCommandLine
@@ -27,7 +28,8 @@ class SyncRunnerConsole(
     project: Project,
     consoleTitle: String,
     workingDir: String,
-    private val command: String
+    private val command: String,
+    val buildProcessListener: BuildProcessListener? = null
 ) : AbstractConsoleRunner<ConsoleView>(project, consoleTitle, workingDir) {
 
     private lateinit var generalCommandLine: GeneralCommandLine
@@ -59,6 +61,9 @@ class SyncRunnerConsole(
                 val processHandler: ProcessHandler = processEvent.getProcessHandler()
                 when (processEvent.exitCode) {
                     0 -> {
+                        if (buildProcessListener != null) {
+                            buildProcessListener.onStart()
+                        }
                         processHandler.notifyTextAvailable(R.String.projectVersion, ProcessOutputTypes.SYSTEM)
                         processHandler.notifyTextAvailable(R.String.projectTaskStart, ProcessOutputTypes.SYSTEM)
 //                        consoleView.print(R.String.projectTaskStart, ConsoleViewContentType.USER_INPUT)
@@ -73,6 +78,9 @@ class SyncRunnerConsole(
                 processHandler.removeProcessListener(this)
                 when (processEvent.exitCode) {
                     0 -> processHandler.notifyTextAvailable(R.String.projectTaskDone, ProcessOutputTypes.SYSTEM)
+                }
+                if (buildProcessListener != null) {
+                    buildProcessListener.onStop()
                 }
                 LogUtils.logI("processTerminated code = ${processEvent.exitCode} text = ${processEvent.text}")
             }

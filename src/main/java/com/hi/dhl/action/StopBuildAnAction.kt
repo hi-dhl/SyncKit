@@ -4,6 +4,7 @@ import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.LogUtils
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
 
@@ -26,4 +27,8 @@ class StopBuildAnAction: AbstractAnAction() {
         execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }
 
+    override fun update(e: AnActionEvent) {
+        super.update(e)
+        e.presentation.isEnabled = DataManager.isBuildProject()
+    }
 }

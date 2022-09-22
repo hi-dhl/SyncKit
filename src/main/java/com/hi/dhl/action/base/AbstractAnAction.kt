@@ -1,6 +1,7 @@
 package com.hi.dhl.action.base
 
 import com.hi.dhl.R
+import com.hi.dhl.action.BuildProcessListener
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils
@@ -37,7 +38,10 @@ abstract class AbstractAnAction : AnAction() {
 
     abstract fun action(project: Project)
 
-    fun execSyncRunnerConsole(project: Project, projectBasePath: String, commands: String) {
+    fun execSyncRunnerConsole(project: Project,
+                              projectBasePath: String,
+                              commands: String,
+                              buildProcessListener: BuildProcessListener? = null) {
         SyncRunnerConsole(
             project = project,
             consoleTitle = R.String.projectTitle,

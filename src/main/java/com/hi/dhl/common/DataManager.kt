@@ -5,15 +5,7 @@ import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
-import java.io.DataOutputStream
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.nio.file.FileVisitResult
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.SimpleFileVisitor
-import java.nio.file.attribute.BasicFileAttributes
 
 /**
  * <pre>
@@ -25,6 +17,7 @@ import java.nio.file.attribute.BasicFileAttributes
 object DataManager {
     private val configName: String = Common.syncDefaultConfigJson
     private lateinit var projectBasePath: String
+    private var buildProject = false
 
     fun isInit(projectBasePath: String): Boolean {
         val destDir = File(projectBasePath + File.separator + Common.syncConfigRootDir)
@@ -61,4 +54,10 @@ object DataManager {
     }
 
     fun projectBasePath(): String = projectBasePath
+
+    fun isBuildProject() = buildProject
+
+    fun setBuildProject(build: Boolean) {
+        this.buildProject = build
+    }
 }
