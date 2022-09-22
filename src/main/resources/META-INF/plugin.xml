@@ -85,7 +85,7 @@
                         text="install Android SDK" icon="/icons/kit.png"/>
             </group>
 
-            <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="after"/>
+            <add-to-group group-id="MainToolBar" relative-to-action="ToolbarRunGroup" anchor="before"/>
         </group>
 
     </actions>
