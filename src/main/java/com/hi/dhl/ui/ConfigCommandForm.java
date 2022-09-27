@@ -5,13 +5,13 @@ import javax.swing.*;
 /**
  * <pre>
  *     author: dhl
- *     date  : 2022/9/22
+ *     date  : 2022/9/26
  *     desc  :
  * </pre>
  */
 public class ConfigCommandForm {
     public JPanel panel;
+    public JTextField inputRemotePort;
     public JTextField inputRemoteAddress;
     public JTextField inputRemoteCommand;
-    public JTextField inputRemotePort;
 }
