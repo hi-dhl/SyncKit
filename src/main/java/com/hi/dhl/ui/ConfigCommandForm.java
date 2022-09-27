@@ -14,4 +14,6 @@ public class ConfigCommandForm {
     public JTextField inputRemotePort;
     public JTextField inputRemoteAddress;
     public JTextField inputRemoteCommand;
+    private JTextField textField1;
+
 }

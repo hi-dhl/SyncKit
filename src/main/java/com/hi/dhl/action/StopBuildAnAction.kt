@@ -32,6 +32,6 @@ class StopBuildAnAction: AbstractAnAction() {
 
     override fun update(e: AnActionEvent) {
         super.update(e)
-        e.presentation.isEnabled = DataManager.isBuildProject()
+//        e.presentation.isEnabled = DataManager.isBuildProject()
     }
 }

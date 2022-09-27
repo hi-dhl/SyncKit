@@ -22,11 +22,11 @@ class BuildProjectAnAction : AbstractAnAction() {
         LogUtils.logI("click action path = ${projectBasePath}");
 
         val remoteMachineInfo = SyncContentProvide.getInstance(project).readSyncServiceConfig()
-        if (remoteMachineInfo.remoteBuildCommand != null) {
-            extraCommand += remoteMachineInfo.remoteBuildCommand.toString()
-        }else{
-            extraCommand += "assembleDebug"
+        if (remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()) {
+
         }
+
+        extraCommand += remoteMachineInfo.remoteBuildCommand.toString()
 
         val commands = StringBuilder()
         CommandManager.compileAndroid(commands, extraCommand, projectBasePath, remoteMachineInfo)
