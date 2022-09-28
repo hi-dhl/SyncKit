@@ -1,10 +1,8 @@
 package com.hi.dhl.action.base
-import com.hi.dhl.Common
-import com.hi.dhl.R
+import com.hi.dhl.common.Common
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.CommandManager
-import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
@@ -17,7 +15,11 @@ import org.jetbrains.kotlin.konan.file.File
  *     desc  :
  * </pre>
  */
-abstract class AbstractExecShellAction : AbstractAnAction() {
+abstract class AbstractExecShellAction : AbstractAnAction {
+
+    constructor() : super()
+
+    constructor(text: String) : super(text)
 
     fun execShelLScript(project: Project, shellScript: String) {
         try {

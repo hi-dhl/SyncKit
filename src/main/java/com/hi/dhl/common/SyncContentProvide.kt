@@ -1,6 +1,5 @@
 package com.hi.dhl.common
 
-import com.hi.dhl.Common
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.toJson
 import com.hi.dhl.utils.FileUtils

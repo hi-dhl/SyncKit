@@ -16,7 +16,7 @@ rm -rf ${BASR_DIR}/commandlinetools-linux-8512546_latest*
 yes | ./build/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" | ./build/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3" | ./build/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-31" || ./build/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;31.0.0"
 yes | ./build/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 
-echo "export ANDROID_HOME=${BASR_DIR}/build/android-sdk/" >> /etc/profile
-echo "export PATH=$PATH:$ANDROID_HOME/platform-tools" >> /etc/profile
-source /etc/profile
+echo "export ANDROID_HOME=${BASR_DIR}/build/android-sdk/" >> ${BASR_DIR}/.zshrc
+echo "export PATH=$PATH:$ANDROID_HOME/platform-tools" >> ${BASR_DIR}/.zshrc
+source ${BASR_DIR}/.zshrc
 

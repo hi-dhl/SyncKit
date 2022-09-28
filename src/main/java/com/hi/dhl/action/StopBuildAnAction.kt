@@ -6,7 +6,7 @@ import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
-
+import com.hi.dhl.common.R
 /**
  * <pre>
  *     author: dhl
@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.konan.file.File
  *     desc  :
  * </pre>
  */
-class StopBuildAnAction : AbstractAnAction() {
+class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
     val extraCommand = "./gradlew --stop"
     override fun action(project: Project) {
         val commands = StringBuilder()

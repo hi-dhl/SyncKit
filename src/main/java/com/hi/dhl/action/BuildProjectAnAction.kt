@@ -2,6 +2,7 @@ package com.hi.dhl.action
 
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.DataManager
+import com.hi.dhl.common.R
 import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.project.Project
 
@@ -12,7 +13,7 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class BuildProjectAnAction : AbstractAnAction() {
+class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
     var extraCommand = "./gradlew "
 
     override fun action(project: Project) {

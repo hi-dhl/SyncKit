@@ -15,7 +15,9 @@ import javax.swing.JComponent
 class ConfigCommandDialog(
     val project: Project
 ) : DialogWrapper(project, false) {
-    val command = ConfigCommandForm()
+
+    val pluginConfigForm = PluginConfigForm()
+
     val remoteMachineInfo by lazy(LazyThreadSafetyMode.NONE) {
         SyncContentProvide.getInstance(project).readSyncServiceConfig()
     }
@@ -27,10 +29,10 @@ class ConfigCommandDialog(
 
     override fun doOKAction() {
         super.doOKAction()
-        val remoteBuildCommand = command.inputRemoteCommand.text
-        val remoteMachineAddress = command.inputRemoteAddress.text
-        val remotePort = command.inputRemotePort.text
-        val remoteUser = command.inputRemoteUser.text
+        val remoteBuildCommand = pluginConfigForm.tfRemoteCommand.text
+        val remoteMachineAddress = pluginConfigForm.tfRemoteAddress.text
+        val remotePort = pluginConfigForm.tfRemotePort.text
+        val remoteUser = pluginConfigForm.tfRemoteUser.text
 
         remoteMachineInfo.remoteAddress = remoteMachineAddress
         remoteMachineInfo.remotePort = remotePort
@@ -44,11 +46,11 @@ class ConfigCommandDialog(
     }
 
     override fun createCenterPanel(): JComponent? {
-        command.inputRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
-        command.inputRemoteAddress.text = remoteMachineInfo.remoteAddress
-        command.inputRemotePort.text = remoteMachineInfo.remotePort
-        command.inputRemoteUser.text = remoteMachineInfo.remoteUser
-        return command.panel
+        pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
+        pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
+        pluginConfigForm.tfRemotePort.text = remoteMachineInfo.remotePort
+        pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
+        return pluginConfigForm.rootPanel
     }
 
 }

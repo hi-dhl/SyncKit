@@ -4,7 +4,7 @@ import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-
+import com.hi.dhl.common.R
 /**
  * <pre>
  *     author: dhl
@@ -12,7 +12,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
  *     desc  :
  * </pre>
  */
-class InitializationAnAction : AnAction() {
+class InitializationAnAction : AnAction(R.String.ui.actionInitialization) {
 
     override fun actionPerformed(e: AnActionEvent) {
         try {

@@ -5,7 +5,7 @@ import com.hi.dhl.common.DataManager
 import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
-
+import com.hi.dhl.common.R
 /**
  * <pre>
  *     author: dhl
@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.konan.file.File
  *     desc  :
  * </pre>
  */
-class SyncToServiceAnAction : AbstractAnAction() {
+class SyncToServiceAnAction : AbstractAnAction(R.String.ui.actionSyncToService) {
 
     override fun action(project: Project) {
         val commands = StringBuilder()

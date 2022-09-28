@@ -1,6 +1,6 @@
 package com.hi.dhl.console
 
-import com.hi.dhl.Common
+import com.hi.dhl.common.Common
 import com.hi.dhl.utils.MessagesUtils
 import com.hi.dhl.utils.StringUtils
 

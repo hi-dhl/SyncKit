@@ -1,7 +1,7 @@
 package com.hi.dhl.console
 
-import com.hi.dhl.Common
-import com.hi.dhl.R
+import com.hi.dhl.common.Common
+import com.hi.dhl.common.R
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.FileUtils
 import org.jetbrains.kotlin.konan.file.File
@@ -32,7 +32,7 @@ object CommandManager {
         // 将结果拉回到本地
         syncRemoteToLocal(build, remoteProjectPath, remoteMachineInfo)
         // 执行本地安装命令
-        val shellPath = FileUtils.getShellScriptPath(projectBasePath,R.ShellScript.installApk)
+        val shellPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
         if (FileUtils.isExists(shellPath)) {
             build.append(" && ")
             execLocalCommand(
@@ -76,7 +76,7 @@ object CommandManager {
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}  ' source /etc/profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}  ' source ~/.zshrc;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,

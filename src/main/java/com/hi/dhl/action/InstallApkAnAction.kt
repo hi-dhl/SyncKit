@@ -1,12 +1,11 @@
 package com.hi.dhl.action
 
-import com.hi.dhl.R
+import com.hi.dhl.common.R
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
-
 /**
  * <pre>
  *     author: dhl
@@ -14,7 +13,7 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class InstallApkAnAction : AbstractAnAction() {
+class InstallApkAnAction : AbstractAnAction(R.String.ui.actionInstallApk) {
 
     override fun action(project: Project) {
         val commands = StringBuilder()

@@ -71,10 +71,6 @@
             <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
                     text="Clean Project In Service"
                     icon="/icons/kit.png"/>
-
-            <action id="SyncKit.ConfigCommandAnAction" class="com.hi.dhl.action.config.ConfigCommandAnAction"
-                    text="Config Command" icon="/icons/kit.png"/>
-
             <separator/>
 
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
@@ -102,7 +98,7 @@
             <separator/>
 
             <action id="SyncKit.PluginConfigAnAction" class="com.hi.dhl.action.config.PluginConfigAnAction"
-                    text="插件配置" icon="/icons/kit.png">
+                    text="plug config" icon="/icons/kit.png">
             </action>
 
             <add-to-group group-id="ToolbarRunGroup" relative-to-action="RunnerActions" anchor="before" />

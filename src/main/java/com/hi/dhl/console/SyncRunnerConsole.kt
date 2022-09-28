@@ -1,7 +1,6 @@
 package com.hi.dhl.console
 
-import com.hi.dhl.Common
-import com.hi.dhl.R
+import com.hi.dhl.common.R
 import com.hi.dhl.action.BuildProcessListener
 import com.hi.dhl.utils.LogUtils
 import com.intellij.execution.Executor
@@ -15,7 +14,6 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
-import org.jetbrains.kotlin.konan.file.File
 
 /**
  * <pre>

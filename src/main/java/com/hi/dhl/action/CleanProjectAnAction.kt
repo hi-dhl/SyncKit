@@ -2,6 +2,7 @@ package com.hi.dhl.action
 
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.DataManager
+import com.hi.dhl.common.R
 import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
@@ -13,7 +14,7 @@ import org.jetbrains.kotlin.konan.file.File
  *     desc  :
  * </pre>
  */
-class CleanProjectAnAction : AbstractAnAction() {
+class CleanProjectAnAction : AbstractAnAction(R.String.ui.actionCleanProject) {
     val extraCommand = "./gradlew clean"
     override fun action(project: Project) {
         val commands = StringBuilder()

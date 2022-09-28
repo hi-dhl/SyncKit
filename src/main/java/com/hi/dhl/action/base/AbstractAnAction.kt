@@ -1,6 +1,6 @@
 package com.hi.dhl.action.base
 
-import com.hi.dhl.R
+import com.hi.dhl.common.R
 import com.hi.dhl.action.BuildProcessListener
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.common.SyncContentProvide
@@ -20,7 +20,12 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-abstract class AbstractAnAction : AnAction() {
+abstract class AbstractAnAction : AnAction {
+
+    constructor() : super()
+
+    constructor(text: String) : super(text)
+
     lateinit var remoteMachineInfo: RemoteMachineInfo
     lateinit var projectBasePath: String
     override fun actionPerformed(e: AnActionEvent) {

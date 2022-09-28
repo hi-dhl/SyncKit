@@ -1,6 +1,6 @@
 package com.hi.dhl.action
 
-import com.hi.dhl.R
+import com.hi.dhl.common.R
 import com.hi.dhl.action.base.AbstractExecShellAction
 import com.intellij.openapi.project.Project
 
@@ -11,7 +11,7 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class InstallAndroidSdkAnAction : AbstractExecShellAction() {
+class InstallAndroidSdkAnAction : AbstractExecShellAction(R.String.ui.actionAndroidSDK) {
 
     override fun action(project: Project) {
         execShelLScript(project, R.ShellScript.installAndroidSdk)

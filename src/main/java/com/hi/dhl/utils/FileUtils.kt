@@ -1,6 +1,6 @@
 package com.hi.dhl.utils
 
-import com.hi.dhl.Common
+import com.hi.dhl.common.Common
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.fromJson
 import java.io.File

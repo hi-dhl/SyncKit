@@ -1,8 +1,7 @@
 package com.hi.dhl.action
 
-import com.hi.dhl.R
+import com.hi.dhl.common.R
 import com.hi.dhl.action.base.AbstractExecShellAction
-import com.hi.dhl.common.SyncContentProvide
 import com.intellij.openapi.project.Project
 
 /**
@@ -12,7 +11,7 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class InstallJDK11AnAction : AbstractExecShellAction() {
+class InstallJDK11AnAction : AbstractExecShellAction(R.String.ui.actionInstallJDK11) {
 
     override fun action(project: Project) {
         execShelLScript(project, R.ShellScript.installJDK11)
