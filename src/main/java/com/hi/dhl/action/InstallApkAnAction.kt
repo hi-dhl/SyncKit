@@ -3,7 +3,6 @@ package com.hi.dhl.action
 import com.hi.dhl.R
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.console.CommandManager
-import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
@@ -18,9 +17,6 @@ import com.intellij.openapi.project.Project
 class InstallApkAnAction : AbstractAnAction() {
 
     override fun action(project: Project) {
-        val projectBasePath = project.basePath ?: "./"
-        LogUtils.logI("click action path = ${projectBasePath}");
-
         val commands = StringBuilder()
         val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
         if (FileUtils.isExists(shellInstallApkPath)) {
@@ -30,7 +26,14 @@ class InstallApkAnAction : AbstractAnAction() {
             )
             execSyncRunnerConsole(project, projectBasePath, commands.toString())
         } else {
-            LogUtils.logE("file is not exists ${FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)}")
+            LogUtils.logE(
+                "file is not exists ${
+                    FileUtils.getShellScriptPath(
+                        projectBasePath,
+                        R.ShellScript.installApk
+                    )
+                }"
+            )
         }
     }
 

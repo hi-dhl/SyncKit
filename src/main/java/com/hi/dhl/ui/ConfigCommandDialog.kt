@@ -30,11 +30,12 @@ class ConfigCommandDialog(
         val remoteBuildCommand = command.inputRemoteCommand.text
         val remoteMachineAddress = command.inputRemoteAddress.text
         val remotePort = command.inputRemotePort.text
+        val remoteUser = command.inputRemoteUser.text
 
         remoteMachineInfo.remoteAddress = remoteMachineAddress
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
-
+        remoteMachineInfo.remoteUser = remoteUser
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
     }
 
@@ -46,6 +47,7 @@ class ConfigCommandDialog(
         command.inputRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
         command.inputRemoteAddress.text = remoteMachineInfo.remoteAddress
         command.inputRemotePort.text = remoteMachineInfo.remotePort
+        command.inputRemoteUser.text = remoteMachineInfo.remoteUser
         return command.panel
     }
 

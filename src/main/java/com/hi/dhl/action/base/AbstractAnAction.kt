@@ -3,9 +3,12 @@ package com.hi.dhl.action.base
 import com.hi.dhl.R
 import com.hi.dhl.action.BuildProcessListener
 import com.hi.dhl.common.DataManager
+import com.hi.dhl.common.SyncContentProvide
+import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.MessagesUtils
+import com.hi.dhl.utils.StringUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
@@ -18,13 +21,20 @@ import com.intellij.openapi.project.Project
  * </pre>
  */
 abstract class AbstractAnAction : AnAction() {
+    lateinit var remoteMachineInfo: RemoteMachineInfo
+    lateinit var projectBasePath: String
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
-                val projectBasePath = project.basePath ?: "./"
+                remoteMachineInfo = SyncContentProvide.getInstance(project).readSyncServiceConfig()
+                if (remoteMachineInfo.checkOrNull()) {
+                    return
+                }
+                projectBasePath = project.basePath ?: "./"
                 if (!DataManager.isInit(projectBasePath)) {
                     MessagesUtils.showMessageWarnDialog(
-                        "Not initialized, please click the Sync Init", "Sync Kit"
+                        StringUtils.getMessage("sync.init.warring.title"),
+                        StringUtils.getMessage("sync.init.warring.content")
                     )
                     return
                 }
@@ -38,10 +48,12 @@ abstract class AbstractAnAction : AnAction() {
 
     abstract fun action(project: Project)
 
-    fun execSyncRunnerConsole(project: Project,
-                              projectBasePath: String,
-                              commands: String,
-                              buildProcessListener: BuildProcessListener? = null) {
+    fun execSyncRunnerConsole(
+        project: Project,
+        projectBasePath: String,
+        commands: String,
+        buildProcessListener: BuildProcessListener? = null
+    ) {
         SyncRunnerConsole(
             project = project,
             consoleTitle = R.String.projectTitle,
