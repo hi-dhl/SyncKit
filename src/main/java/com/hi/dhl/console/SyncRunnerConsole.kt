@@ -1,7 +1,7 @@
 package com.hi.dhl.console
 
 import com.hi.dhl.common.R
-import com.hi.dhl.action.BuildProcessListener
+import com.hi.dhl.action.listener.BuildProcessListener
 import com.hi.dhl.utils.LogUtils
 import com.intellij.execution.Executor
 import com.intellij.execution.configurations.GeneralCommandLine

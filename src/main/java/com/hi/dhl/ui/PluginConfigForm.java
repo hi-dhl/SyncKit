@@ -1,6 +1,8 @@
 package com.hi.dhl.ui;
 
+import com.hi.dhl.action.listener.JTextFieldHintListener;
 import com.hi.dhl.common.R;
+import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,20 +29,29 @@ public class PluginConfigForm {
     JLabel labelRemoteCommand;
     JLabel labelLaunchActivity;
     JTextField tfSDK;
-    JLabel labSDK;
-    private JTextField tfNdk;
-    private JTextArea textArea1;
+    JLabel lableSDK;
+    JTextField tfNdk;
+    JLabel lableNDK;
+    JTextArea fileFilters;
+    JLabel fileFilterTip;
 
     PluginConfigForm() {
-        rootPanel.setPreferredSize(new Dimension(450, -1));
+        rootPanel.setPreferredSize(new Dimension(460, -1));
         labelRemoteUser.setText(R.String.ui.labelRemoteUser);
         labelRemotePort.setText(R.String.ui.labelRemotePort);
         labelRemoteAddress.setText(R.String.ui.labelRemoteAddress);
         labelRemoteCommand.setText(R.String.ui.labelRemoteCommand);
+
         labelLaunchActivity.setText(R.String.ui.labelLaunchActivity);
-        tfLaunchActivity.setToolTipText(R.String.ui.tfLaunchActivity);
-        labSDK.setText(R.String.ui.labelSDK);
-        tfSDK.setToolTipText(R.String.ui.tfSDK);
+        tfLaunchActivity.addFocusListener(new JTextFieldHintListener(tfLaunchActivity, R.String.ui.tfLaunchActivity));
+
+        lableSDK.setText(R.String.ui.labelSDK);
+        tfSDK.addFocusListener(new JTextFieldHintListener(tfSDK, R.String.ui.tfSDK));
+
+        lableNDK.setText(R.String.ui.labelNDK);
+        tfNdk.addFocusListener(new JTextFieldHintListener(tfNdk, R.String.ui.tfNDK));
+
+        fileFilterTip.setForeground(JBColor.GRAY);
     }
 
 }

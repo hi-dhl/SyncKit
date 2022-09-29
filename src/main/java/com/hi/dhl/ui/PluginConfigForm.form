@@ -122,7 +122,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="1d280" class="javax.swing.JLabel" binding="labSDK">
+          <component id="1d280" class="javax.swing.JLabel" binding="lableSDK">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -140,7 +140,7 @@
               <toolTipText value=""/>
             </properties>
           </component>
-          <component id="c143a" class="javax.swing.JLabel">
+          <component id="c143a" class="javax.swing.JLabel" binding="lableNDK">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -190,12 +190,12 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="94cd2" class="javax.swing.JLabel">
+              <component id="94cd2" class="javax.swing.JLabel" binding="fileFilterTip">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="下列文件名或者文件扩展名将不会同步，按行分割，一个行一个"/>
+                  <text value="下列文件名或者文件扩展名将不会同步，一个行一个"/>
                 </properties>
               </component>
               <scrollpane id="482d4">
@@ -207,7 +207,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="513ed" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                  <component id="513ed" class="javax.swing.JTextArea" binding="fileFilters" default-binding="true">
                     <constraints/>
                     <properties/>
                   </component>

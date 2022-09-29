@@ -34,6 +34,10 @@ object R {
             val labelSDK = getMessage("sync.ui.android.lable.sdk")
             @JvmField
             val tfSDK = getMessage("sync.ui.android.textfield.sdk")
+            @JvmField
+            val labelNDK = getMessage("sync.ui.android.lable.ndk")
+            @JvmField
+            val tfNDK = getMessage("sync.ui.android.textfield.ndk")
 
             val actionPlugin = getMessage("sync.action.plugin")
             val actionBuildProject = getMessage("sync.action.build.project")

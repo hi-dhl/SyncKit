@@ -1,7 +1,7 @@
 package com.hi.dhl.action.base
 
 import com.hi.dhl.common.R
-import com.hi.dhl.action.BuildProcessListener
+import com.hi.dhl.action.listener.BuildProcessListener
 import com.hi.dhl.common.DataManager
 import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.RemoteMachineInfo
