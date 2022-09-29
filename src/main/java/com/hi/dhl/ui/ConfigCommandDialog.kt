@@ -1,5 +1,6 @@
 package com.hi.dhl.ui
 
+import com.hi.dhl.common.R
 import com.hi.dhl.common.SyncContentProvide
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
@@ -39,9 +40,18 @@ class ConfigCommandDialog(
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
-        remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
-        remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
-        remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
+        if(!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)){
+            remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
+        }
+
+        if (!pluginConfigForm.tfSDK.text.equals(R.String.ui.tfSDK)) {
+            remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
+        }
+
+        if (!pluginConfigForm.tfNdk.text.equals(R.String.ui.tfNDK)) {
+            remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
+        }
+
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
     }
 
@@ -71,12 +81,12 @@ class ConfigCommandDialog(
             pluginConfigForm.tfLaunchActivity.foreground = Color.BLACK
         }
 
-        if(!remoteMachineInfo.sdkDir.isNullOrEmpty()){
+        if (!remoteMachineInfo.sdkDir.isNullOrEmpty()) {
             pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
             pluginConfigForm.tfSDK.foreground = Color.BLACK
         }
 
-        if(!remoteMachineInfo.ndkDir.isNullOrEmpty()){
+        if (!remoteMachineInfo.ndkDir.isNullOrEmpty()) {
             pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
             pluginConfigForm.tfNdk.foreground = Color.BLACK
         }

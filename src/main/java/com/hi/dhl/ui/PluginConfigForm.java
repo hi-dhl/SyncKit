@@ -2,6 +2,8 @@ package com.hi.dhl.ui;
 
 import com.hi.dhl.action.listener.JTextFieldHintListener;
 import com.hi.dhl.common.R;
+import com.hi.dhl.common.SyncContentProvide;
+import com.hi.dhl.console.RemoteMachineInfo;
 import com.intellij.ui.JBColor;
 
 import javax.swing.*;

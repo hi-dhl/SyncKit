@@ -94,7 +94,13 @@ object CommandManager {
         syncLocalFileToRemote(build, filePath, remoteMachineWorkPath, remoteMachineInfo)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
-        execRemoteCommand(build, remoteMachineWorkPath, "chmod 777 ${fileName} && bash ${fileName}", remoteMachineInfo)
+        var execShellScript = ""
+        if (fileName.contains("apk") && !remoteMachineInfo.launchActivity.isNullOrEmpty()) {
+            execShellScript = "chmod 777 ${fileName} && bash ${fileName} ${remoteMachineInfo.launchActivity} "
+        } else {
+            execShellScript = "chmod 777 ${fileName} && bash ${fileName} "
+        }
+        execRemoteCommand(build, remoteMachineWorkPath, execShellScript, remoteMachineInfo)
     }
 
     private fun syncRemoteToLocal(build: StringBuilder,
