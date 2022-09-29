@@ -50,7 +50,15 @@ object CommandManager {
         build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}' --archive --delete ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
-        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
+        var sdkdir: String = ""
+        if(!remoteMachineInfo.sdkDir.isNullOrEmpty()){
+            sdkdir = ";echo sdk.dir=${remoteMachineInfo.sdkDir} >> ${remoteMachineWorkPath + File.separator + Common.localProperties}"
+        }
+        var ndkDir: String = ""
+        if(!remoteMachineInfo.ndkDir.isNullOrEmpty()){
+            ndkDir = ";echo ndk.dir=${remoteMachineInfo.ndkDir} >> ${remoteMachineWorkPath + File.separator + Common.localProperties}"
+        }
+        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath}${sdkdir}${ndkDir} && rsync' ")
         val ignoreFile =
             File(DataManager.projectBasePath() + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
         if (ignoreFile.exists) {

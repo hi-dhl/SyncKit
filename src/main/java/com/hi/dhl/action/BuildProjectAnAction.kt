@@ -14,9 +14,10 @@ import com.intellij.openapi.project.Project
  * </pre>
  */
 class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
-    var extraCommand = "./gradlew "
+
 
     override fun action(project: Project) {
+        var extraCommand = "./gradlew "
         extraCommand += remoteMachineInfo.remoteBuildCommand.toString()
         val commands = StringBuilder()
         CommandManager.compileAndroid(commands, extraCommand, projectBasePath, remoteMachineInfo)

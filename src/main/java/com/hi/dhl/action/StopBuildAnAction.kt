@@ -15,8 +15,9 @@ import com.hi.dhl.common.R
  * </pre>
  */
 class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
-    val extraCommand = "./gradlew --stop"
+
     override fun action(project: Project) {
+        val extraCommand = "./gradlew --stop"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName

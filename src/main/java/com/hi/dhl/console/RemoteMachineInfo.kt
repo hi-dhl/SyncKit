@@ -16,7 +16,10 @@ data class RemoteMachineInfo(
     var remoteAddress: String,
     var remoteUser: String,
     var remoteBuildCommand: String? = null,
-    var remoteRootDir: String = Common.remoteRootDir
+    var remoteRootDir: String = Common.remoteRootDir,
+    var launchActivity: String? = null,
+    var sdkDir: String? = null,
+    var ndkDir: String? = null,
 ) {
     companion object {
         fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {

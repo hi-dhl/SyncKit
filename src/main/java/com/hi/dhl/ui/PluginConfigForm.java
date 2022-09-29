@@ -26,8 +26,8 @@ public class PluginConfigForm {
     JLabel labelRemoteUser;
     JLabel labelRemoteCommand;
     JLabel labelLaunchActivity;
-    private JTextField tfSDK;
-    private JLabel labSDK;
+    JTextField tfSDK;
+    JLabel labSDK;
 
     PluginConfigForm() {
         rootPanel.setPreferredSize(new Dimension(450, -1));

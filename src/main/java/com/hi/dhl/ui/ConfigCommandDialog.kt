@@ -38,6 +38,8 @@ class ConfigCommandDialog(
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
+        remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
+        remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
     }
 
@@ -50,6 +52,8 @@ class ConfigCommandDialog(
         pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
         pluginConfigForm.tfRemotePort.text = remoteMachineInfo.remotePort
         pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
+        pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
+        pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
         return pluginConfigForm.rootPanel
     }
 
