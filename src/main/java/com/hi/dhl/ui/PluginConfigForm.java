@@ -28,6 +28,8 @@ public class PluginConfigForm {
     JLabel labelLaunchActivity;
     JTextField tfSDK;
     JLabel labSDK;
+    private JTextField tfNdk;
+    private JTextArea textArea1;
 
     PluginConfigForm() {
         rootPanel.setPreferredSize(new Dimension(450, -1));

@@ -48,12 +48,30 @@ class ConfigCommandDialog(
     }
 
     override fun createCenterPanel(): JComponent? {
-        pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
-        pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
-        pluginConfigForm.tfRemotePort.text = remoteMachineInfo.remotePort
-        pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
-        pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
-        pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
+        if(!remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()){
+            pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
+        }
+
+        if(!remoteMachineInfo.remoteAddress.isNullOrEmpty()){
+            pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
+        }
+
+        if(!remoteMachineInfo.remotePort.isNullOrEmpty()){
+            pluginConfigForm.tfRemotePort.text = remoteMachineInfo.remotePort
+        }
+
+        if(!remoteMachineInfo.remoteUser.isNullOrEmpty()){
+            pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
+        }
+
+        if(!remoteMachineInfo.launchActivity.isNullOrEmpty()){
+            pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
+        }
+
+        if(!remoteMachineInfo.sdkDir.isNullOrEmpty()){
+            pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
+        }
+
         return pluginConfigForm.rootPanel
     }
 
