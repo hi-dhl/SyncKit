@@ -4,6 +4,7 @@ import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.toJson
 import com.hi.dhl.utils.FileUtils
 import com.intellij.openapi.project.Project
+import java.io.File
 
 /**
  * <pre>
@@ -12,7 +13,7 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-class SyncContentProvide private constructor(val project: Project) {
+class SyncContentProvide constructor(val project: Project) {
     val localProjectPath = project.basePath ?: "./"
     val localSyncConfigFile = FileUtils.getSyncServicePath(localProjectPath, Common.syncDefaultConfigJson)
 
@@ -20,8 +21,28 @@ class SyncContentProvide private constructor(val project: Project) {
         return FileUtils.readServiceConfig(localSyncConfigFile)
     }
 
+    fun initData() {
+        if (!isInit()) {
+            FileUtils.copyToTarget(localProjectPath)
+        }
+    }
+
+    fun isInit(): Boolean {
+        val destDir = File(localProjectPath + File.separator + Common.syncConfigRootDir)
+        if (destDir.exists()) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     fun saveSyncServiceConfig(remoteMachineInfo: RemoteMachineInfo) {
         FileUtils.saveServiceConfig(remoteMachineInfo.toJson(), localSyncConfigFile)
+    }
+
+    fun deleteSyncRootDir() {
+        val file = File(localProjectPath + File.separator + Common.syncConfigRootDir)
+        FileUtils.deleteDirectory(file.toPath())
     }
 
     companion object : SingletonHolder<SyncContentProvide, Project>(::SyncContentProvide)

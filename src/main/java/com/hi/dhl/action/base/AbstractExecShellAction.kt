@@ -23,13 +23,9 @@ abstract class AbstractExecShellAction : AbstractAnAction {
 
     fun execShelLScript(project: Project, shellScript: String) {
         try {
-            val projectBasePath = project.basePath ?: "./"
-            LogUtils.logI("click action project path = ${projectBasePath}")
-
             val remoteMachineInfo = SyncContentProvide.getInstance(project).readSyncServiceConfig()
-
             val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-            val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName + File.separator + Common.syncConfigRootDir
+            val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName + File.separator + Common.syncConfigRootDir
 
             val commands = StringBuilder()
             val localShellScriptPath = FileUtils.getShellScriptPath(projectBasePath, shellScript)

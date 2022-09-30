@@ -20,7 +20,7 @@ class CleanProjectAnAction : AbstractAnAction(R.String.ui.actionCleanProject) {
         val extraCommand = "./gradlew clean"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-        val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
+        val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
         execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }

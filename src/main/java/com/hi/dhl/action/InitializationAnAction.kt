@@ -5,6 +5,8 @@ import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.hi.dhl.common.R
+import com.hi.dhl.common.SyncContentProvide
+
 /**
  * <pre>
  *     author: dhl
@@ -17,8 +19,9 @@ class InitializationAnAction : AnAction(R.String.ui.actionInitialization) {
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
-                DataManager.deleteSyncRootDir(project)
-                DataManager.init(project)
+                val syncContentProvide = SyncContentProvide(project)
+                syncContentProvide.deleteSyncRootDir()
+                syncContentProvide.initData()
             }
         }catch (e: Exception){
             LogUtils.logE("exec action fail ${e}");

@@ -31,19 +31,22 @@ abstract class AbstractAnAction : AnAction {
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
-                remoteMachineInfo = SyncContentProvide.getInstance(project).readSyncServiceConfig()
+                val syncContentProvide = SyncContentProvide(project)
+                remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
                 if (remoteMachineInfo.checkOrNull()) {
                     return
                 }
                 projectBasePath = project.basePath ?: "./"
-                if (!DataManager.isInit(projectBasePath)) {
+                LogUtils.logI("projectBasePath = ${projectBasePath}")
+                if (!syncContentProvide.isInit()) {
                     MessagesUtils.showMessageWarnDialog(
                         StringUtils.getMessage("sync.init.warring.title"),
                         StringUtils.getMessage("sync.init.warring.content")
                     )
                     return
                 }
-                DataManager.init(project)
+//                DataManager.init(project)
+                syncContentProvide.initData()
                 action(project)
             }
         } catch (e: Exception) {

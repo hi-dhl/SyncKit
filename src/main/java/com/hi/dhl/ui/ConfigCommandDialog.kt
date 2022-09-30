@@ -2,6 +2,8 @@ package com.hi.dhl.ui
 
 import com.hi.dhl.common.R
 import com.hi.dhl.common.SyncContentProvide
+import com.hi.dhl.console.RemoteMachineInfo
+import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import java.awt.Color
@@ -15,17 +17,15 @@ import javax.swing.JComponent
  * </pre>
  */
 class ConfigCommandDialog(
-    val project: Project
+    val project: Project,
+    val remoteMachineInfo: RemoteMachineInfo
 ) : DialogWrapper(project, false) {
 
     val pluginConfigForm = PluginConfigForm()
 
-    val remoteMachineInfo by lazy(LazyThreadSafetyMode.NONE) {
-        SyncContentProvide.getInstance(project).readSyncServiceConfig()
-    }
-
     init {
-        setTitle("Configure Project");
+        LogUtils.logI("1 " + remoteMachineInfo.toString())
+        setTitle(R.String.ui.actionPlugin)
         init()
     }
 
@@ -40,7 +40,7 @@ class ConfigCommandDialog(
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
-        if(!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)){
+        if (!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)) {
             remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
         }
 
@@ -60,38 +60,48 @@ class ConfigCommandDialog(
     }
 
     override fun createCenterPanel(): JComponent? {
-        if(!remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()){
+        LogUtils.logI("2 " + remoteMachineInfo.toString())
+        resetData()
+        return pluginConfigForm.rootPanel
+    }
+
+    private fun resetData() {
+        if (!remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()) {
             pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
         }
 
-        if(!remoteMachineInfo.remoteAddress.isNullOrEmpty()){
+        if (!remoteMachineInfo.remoteAddress.isNullOrEmpty()) {
             pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
         }
 
-        if(!remoteMachineInfo.remotePort.isNullOrEmpty()){
+        if (!remoteMachineInfo.remotePort.isNullOrEmpty()) {
             pluginConfigForm.tfRemotePort.text = remoteMachineInfo.remotePort
         }
 
-        if(!remoteMachineInfo.remoteUser.isNullOrEmpty()){
+        if (!remoteMachineInfo.remoteUser.isNullOrEmpty()) {
             pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
         }
-
-        if(!remoteMachineInfo.launchActivity.isNullOrEmpty()){
-            pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
-            pluginConfigForm.tfLaunchActivity.foreground = Color.BLACK
+        LogUtils.logI("3 " + remoteMachineInfo.launchActivity)
+        if (!remoteMachineInfo.launchActivity.isNullOrEmpty()) {
+            if (!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)) {
+                pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
+                pluginConfigForm.tfLaunchActivity.foreground = Color.BLACK
+            }
         }
 
         if (!remoteMachineInfo.sdkDir.isNullOrEmpty()) {
-            pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
-            pluginConfigForm.tfSDK.foreground = Color.BLACK
+            if (!pluginConfigForm.tfSDK.text.equals(R.String.ui.tfSDK)) {
+                pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
+                pluginConfigForm.tfSDK.foreground = Color.BLACK
+            }
         }
 
         if (!remoteMachineInfo.ndkDir.isNullOrEmpty()) {
-            pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
-            pluginConfigForm.tfNdk.foreground = Color.BLACK
+            if (!pluginConfigForm.tfNdk.text.equals(R.String.ui.tfNDK)) {
+                pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
+                pluginConfigForm.tfNdk.foreground = Color.BLACK
+            }
         }
-
-        return pluginConfigForm.rootPanel
     }
 
 }

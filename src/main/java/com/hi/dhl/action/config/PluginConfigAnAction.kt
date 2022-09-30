@@ -1,9 +1,12 @@
 package com.hi.dhl.action.config
 
+import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.R
 import com.hi.dhl.ui.ConfigCommandDialog
+import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.project.Project
 
 /**
  * <pre>
@@ -12,12 +15,12 @@ import com.intellij.openapi.actionSystem.AnActionEvent
  *     desc  :
  * </pre>
  */
-class PluginConfigAnAction : AnAction(R.String.ui.actionPlugin) {
+class PluginConfigAnAction : AbstractAnAction(R.String.ui.actionPlugin) {
 
-    override fun actionPerformed(e: AnActionEvent) {
-        e.project?.let { project ->
-            ConfigCommandDialog(project).show()
-        }
+
+    override fun action(project: Project) {
+        LogUtils.logI(remoteMachineInfo.toString())
+        ConfigCommandDialog(project, remoteMachineInfo).show()
     }
 
 }

@@ -20,7 +20,7 @@ class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
         val extraCommand = "./gradlew --stop"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-        val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
+        val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
         execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }

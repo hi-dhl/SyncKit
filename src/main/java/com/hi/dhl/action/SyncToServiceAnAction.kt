@@ -18,7 +18,7 @@ class SyncToServiceAnAction : AbstractAnAction(R.String.ui.actionSyncToService) 
     override fun action(project: Project) {
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-        val remoteProjectPath = DataManager.getMachineInfo().remoteRootDir + File.separator + projectName
+        val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.syncLocalToRemote(commands, remoteProjectPath, remoteMachineInfo)
         execSyncRunnerConsole(project, projectBasePath, commands.toString())
     }
