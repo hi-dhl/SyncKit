@@ -2,7 +2,6 @@ package com.hi.dhl.action.base
 
 import com.hi.dhl.common.R
 import com.hi.dhl.action.listener.BuildProcessListener
-import com.hi.dhl.common.DataManager
 import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.console.SyncRunnerConsole
@@ -31,13 +30,10 @@ abstract class AbstractAnAction : AnAction {
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
-                val syncContentProvide = SyncContentProvide(project)
-                remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
-                if (remoteMachineInfo.checkOrNull()) {
-                    return
-                }
                 projectBasePath = project.basePath ?: "./"
                 LogUtils.logI("projectBasePath = ${projectBasePath}")
+
+                val syncContentProvide = SyncContentProvide(project)
                 if (!syncContentProvide.isInit()) {
                     MessagesUtils.showMessageWarnDialog(
                         StringUtils.getMessage("sync.init.warring.title"),
@@ -45,7 +41,11 @@ abstract class AbstractAnAction : AnAction {
                     )
                     return
                 }
-//                DataManager.init(project)
+
+                remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
+                if (remoteMachineInfo.checkOrNull()) {
+                    return
+                }
                 syncContentProvide.initData()
                 action(project)
             }

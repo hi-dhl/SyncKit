@@ -1,6 +1,5 @@
 package com.hi.dhl.action
 
-import com.hi.dhl.common.DataManager
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

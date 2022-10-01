@@ -50,12 +50,6 @@ data class RemoteMachineInfo(
                 )
                 true
             }
-            remoteBuildCommand.isNullOrEmpty() -> {
-                MessagesUtils.showMessageWarnDialog(
-                    warringTitle, StringUtils.getMessage("sync.service.empry.command")
-                )
-                true
-            }
             else -> false
         }
     }
