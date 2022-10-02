@@ -15,14 +15,12 @@ import org.jetbrains.kotlin.konan.file.File
  */
 object CommandManager {
 
-//    private var machineInfo: RemoteMachineInfo = DataManager.getMachineInfo()
-
     fun compileAndroid(build: StringBuilder,
                        extraCommand: String,
                        projectBasePath: String,
                        remoteMachineInfo: RemoteMachineInfo): StringBuilder {
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-        val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
+        val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName + File.separator
         // 同步文件到远程
         syncLocalToRemote(build, remoteProjectPath, projectBasePath, remoteMachineInfo)
         build.append(" && ")
@@ -35,10 +33,16 @@ object CommandManager {
         val shellPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
         if (FileUtils.isExists(shellPath)) {
             build.append(" && ")
-            execLocalCommand(
-                build,
-                "chmod 777 ${shellPath} && bash ${shellPath}"
-            )
+
+            var execShellScript = ""
+            if (!remoteMachineInfo.launchActivity.isNullOrEmpty()
+                && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {
+                execShellScript = "chmod 777 ${shellPath} && bash ${shellPath} ${remoteMachineInfo.launchActivity} "
+            } else {
+                execShellScript = "chmod 777 ${shellPath} && bash ${shellPath} "
+            }
+
+            execLocalCommand(build, execShellScript)
         }
         return build
     }
@@ -97,7 +101,7 @@ object CommandManager {
         syncLocalFileToRemote(build, filePath, remoteMachineWorkPath, remoteMachineInfo)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
-        var execShellScript = ""
+        var execShellScript: String
         if (fileName.contains("apk")
             && !remoteMachineInfo.launchActivity.isNullOrEmpty()
             && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {

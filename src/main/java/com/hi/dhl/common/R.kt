@@ -48,6 +48,7 @@ object R {
             val actionInitialization = getMessage("sync.action.init")
             val actionInstallJDK11 = getMessage("sync.action.install.jdk11")
             val actionAndroidSDK = getMessage("sync.action.install.sdk")
+            val actionInstallSSHPub = getMessage("sync.action.install.ssh.pub")
         }
     }
 
@@ -55,21 +56,7 @@ object R {
         val installJDK11 = "install_jdk_11.sh"
         val installAndroidSdk = "install_android_sdk.sh"
         val installApk = "install-apk.sh"
+        val installSSHPub = "install_android_sdk.sh"
     }
 }
 
-object Common {
-    val isDebug = true
-    val projectTitle = "SyncKit"
-    val resourceConfigDir = "config"
-
-    val syncConfigRootDir = ".sync"
-    val syncConfigServiceDir = "service"
-    val syncConfigScriptDir = "script"
-    val syncConfigLocalIgnoreFile = "local_ignore"
-    val syncConfigRemoteIncludeFile = "remote_include"
-    val syncDefaultConfigJson = "config.json"
-    val localProperties = "local.properties"
-
-    val remoteRootDir: String = "~/SyncKit"
-}

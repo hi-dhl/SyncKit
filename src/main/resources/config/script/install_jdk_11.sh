@@ -1,6 +1,4 @@
 #!/bin/bash
-yum install -y unzip wget
-
 BASR_DIR=${HOME}
 cd ${BASR_DIR}
 rm -rf "build/jdk-11"

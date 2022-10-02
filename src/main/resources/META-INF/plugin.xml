@@ -31,7 +31,6 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.android</depends>
-    <depends>com.intellij.modules.androidstudio</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
@@ -71,18 +70,16 @@
             <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
                     text="Clean Project In Service"
                     icon="/icons/kit.png"/>
+
+            <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
+                    text="Sync Local To Service" icon="/icons/kit.png"/>
+
             <separator/>
 
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                         icon="/icons/kit.png"/>
             </group>
-
-            <separator/>
-            <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
-                    text="Sync Local To Service" icon="/icons/kit.png"/>
-
-            <separator/>
 
             <action id="SyncKit.InitializationAnAction" class="com.hi.dhl.action.InitializationAnAction"
                     text="Sync Init"
@@ -93,6 +90,8 @@
                         text="install JDK 11" icon="/icons/kit.png"/>
                 <action id="SyncKit.InstallAndroidSdkAnAction" class="com.hi.dhl.action.InstallAndroidSdkAnAction"
                         text="install Android SDK" icon="/icons/kit.png"/>
+                <action id="SyncKit.SSHAnAction" class="com.hi.dhl.action.SSHAnAction"
+                        text="无密码访问远程设备" icon="/icons/kit.png"/>
             </group>
 
             <separator/>

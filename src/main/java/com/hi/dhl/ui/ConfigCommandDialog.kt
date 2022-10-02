@@ -24,7 +24,6 @@ class ConfigCommandDialog(
     val pluginConfigForm = PluginConfigForm()
 
     init {
-        LogUtils.logI("1 " + remoteMachineInfo.toString())
         setTitle(R.String.ui.actionPlugin)
         init()
     }
@@ -55,12 +54,7 @@ class ConfigCommandDialog(
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
     }
 
-    override fun doCancelAction() {
-        super.doCancelAction()
-    }
-
     override fun createCenterPanel(): JComponent? {
-        LogUtils.logI("2 " + remoteMachineInfo.toString())
         resetData()
         return pluginConfigForm.rootPanel
     }
@@ -81,26 +75,22 @@ class ConfigCommandDialog(
         if (!remoteMachineInfo.remoteUser.isNullOrEmpty()) {
             pluginConfigForm.tfRemoteUser.text = remoteMachineInfo.remoteUser
         }
-        LogUtils.logI("3 " + remoteMachineInfo.launchActivity)
-        if (!remoteMachineInfo.launchActivity.isNullOrEmpty()) {
-            if (!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)) {
-                pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
-                pluginConfigForm.tfLaunchActivity.foreground = Color.BLACK
-            }
+        if (!remoteMachineInfo.launchActivity.isNullOrEmpty()
+            && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {
+            pluginConfigForm.tfLaunchActivity.text = remoteMachineInfo.launchActivity
+            pluginConfigForm.tfLaunchActivity.foreground = Color.BLACK
         }
 
-        if (!remoteMachineInfo.sdkDir.isNullOrEmpty()) {
-            if (!pluginConfigForm.tfSDK.text.equals(R.String.ui.tfSDK)) {
-                pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
-                pluginConfigForm.tfSDK.foreground = Color.BLACK
-            }
+        if (!remoteMachineInfo.sdkDir.isNullOrEmpty()
+            && !remoteMachineInfo.sdkDir.equals(R.String.ui.tfSDK)) {
+            pluginConfigForm.tfSDK.text = remoteMachineInfo.sdkDir
+            pluginConfigForm.tfSDK.foreground = Color.BLACK
         }
 
-        if (!remoteMachineInfo.ndkDir.isNullOrEmpty()) {
-            if (!pluginConfigForm.tfNdk.text.equals(R.String.ui.tfNDK)) {
-                pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
-                pluginConfigForm.tfNdk.foreground = Color.BLACK
-            }
+        if (!remoteMachineInfo.ndkDir.isNullOrEmpty()
+            && !remoteMachineInfo.ndkDir.equals(R.String.ui.tfNDK)) {
+            pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
+            pluginConfigForm.tfNdk.foreground = Color.BLACK
         }
     }
 

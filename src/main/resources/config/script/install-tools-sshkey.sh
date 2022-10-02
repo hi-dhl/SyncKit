@@ -1,6 +1,4 @@
 #!/bin/bash
-yum install -y rsync unzip wget
-
 BASR_DIR=${HOME}
 cd ${BASR_DIR}
 mkdir -p ~/.ssh
