@@ -7,6 +7,8 @@ import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.MessagesUtils
 import com.hi.dhl.utils.StringUtils
+import com.hi.dhl.utils.TimeUtils
+import com.intellij.execution.process.ProcessEvent
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.project.Project
@@ -30,20 +32,39 @@ class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
             )
             return
         }
+
         extraCommand += remoteMachineInfo.remoteBuildCommand.toString()
         val commands = StringBuilder()
         CommandManager.compileAndroid(commands, extraCommand, projectBasePath, remoteMachineInfo)
+        var startTime: Long = 0
         execSyncRunnerConsole(project, projectBasePath, commands.toString(), object : BuildProcessListener {
-            override fun onStart() {
+            override fun onStart(time: Long) {
+                startTime = time
             }
 
-            override fun onStop(exitCode: Int) {
-                when {
-                    exitCode == 0 -> {
+            override fun onStop(processEvent: ProcessEvent, endTime: Long) {
+                val execTime = TimeUtils.formatTime(
+                    startTime = startTime,
+                    endTime = endTime
+                )
+                when(processEvent.exitCode) {
+                    0 -> {
                         LogUtils.log(
-                            "Build succeeded",
+                            "BUILD SUCCESSFUL in ${execTime}",
                             NotificationDisplayType.BALLOON,
-                            NotificationType.IDE_UPDATE,
+                            NotificationType.INFORMATION,
+                            project
+                        )
+                    }
+                    else -> {
+                        var errorTip = "BUILD FAILED in ${execTime}, error code ${processEvent.exitCode}"
+                        if (!processEvent.text.isNullOrEmpty()) {
+                            errorTip += ", ${processEvent.text}"
+                        }
+                        LogUtils.log(
+                            errorTip,
+                            NotificationDisplayType.BALLOON,
+                            NotificationType.WARNING,
                             project
                         )
                     }
@@ -51,5 +72,6 @@ class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
             }
         })
     }
+
 
 }

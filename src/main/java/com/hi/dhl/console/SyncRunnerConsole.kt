@@ -3,6 +3,7 @@ package com.hi.dhl.console
 import com.hi.dhl.common.R
 import com.hi.dhl.action.listener.BuildProcessListener
 import com.hi.dhl.utils.LogUtils
+import com.hi.dhl.utils.TimeUtils
 import com.intellij.execution.Executor
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.configurations.PtyCommandLine
@@ -54,18 +55,18 @@ class SyncRunnerConsole(
     override fun createProcessHandler(process: Process): OSProcessHandler {
         LogUtils.logI("createProcessHandler")
         osProcessHandler = OSProcessHandler(generalCommandLine)
+        var startTime: Long = 0
         osProcessHandler.addProcessListener(object : ProcessListener {
             override fun startNotified(processEvent: ProcessEvent) {
                 val processHandler: ProcessHandler = processEvent.getProcessHandler()
                 when (processEvent.exitCode) {
                     0 -> {
+                        startTime = System.currentTimeMillis()
                         if (buildProcessListener != null) {
-                            buildProcessListener.onStart()
+                            buildProcessListener.onStart(startTime)
                         }
                         processHandler.notifyTextAvailable(R.String.projectVersion, ProcessOutputTypes.SYSTEM)
                         processHandler.notifyTextAvailable(R.String.projectTaskStart, ProcessOutputTypes.SYSTEM)
-//                        consoleView.print(R.String.projectTaskStart, ConsoleViewContentType.USER_INPUT)
-//                        consoleView.print(R.String.projectVersion, ConsoleViewContentType.USER_INPUT)
                     }
                 }
                 LogUtils.logI("startNotified code = ${processEvent.exitCode} text = ${processEvent.text}")
@@ -74,13 +75,20 @@ class SyncRunnerConsole(
             override fun processTerminated(processEvent: ProcessEvent) {
                 val processHandler: ProcessHandler = processEvent.getProcessHandler()
                 processHandler.removeProcessListener(this)
+                val endTime = System.currentTimeMillis()
+                val execTime = TimeUtils.formatTime(
+                    startTime = startTime,
+                    endTime = endTime
+                )
                 when (processEvent.exitCode) {
-                    0 -> processHandler.notifyTextAvailable(R.String.projectTaskDone, ProcessOutputTypes.SYSTEM)
+                    0 -> processHandler.notifyTextAvailable("BUILD SUCCESSFUL in ${execTime}", ProcessOutputTypes.SYSTEM)
+                    else -> {
+                        processHandler.notifyTextAvailable("BUILD FAILED in ${execTime}", ProcessOutputTypes.SYSTEM)
+                    }
                 }
                 if (buildProcessListener != null) {
-                    buildProcessListener.onStop(processEvent.exitCode)
+                    buildProcessListener.onStop(processEvent, endTime)
                 }
-                LogUtils.logI("processTerminated code = ${processEvent.exitCode} text = ${processEvent.text}")
             }
 
             override fun onTextAvailable(processEvent: ProcessEvent, p1: Key<*>) {

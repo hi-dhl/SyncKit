@@ -37,17 +37,13 @@
         <consoleFilterProvider implementation="com.hi.dhl.console.SyncConsoleFilterProvider"/>
 
         <notificationGroup id="SyncKitEventLog"
-                           displayType="NONE"
-                           key="SyncKitEventLog"/>
+                           displayType="NONE"/>
         <notificationGroup id="SyncKitBallon"
-                           displayType="BALLOON"
-                           key="SyncKitBallon"/>
+                           displayType="BALLOON"/>
         <notificationGroup id="SyncKitStickBallon"
-                           displayType="STICKY_BALLOON"
-                           key="SyncKitStickBallon"/>
+                           displayType="STICKY_BALLOON"/>
         <notificationGroup id="SyncKitToolWindow"
-                           displayType="TOOL_WINDOW"
-                           key="SyncKitToolWindow"/>
+                           displayType="TOOL_WINDOW"/>
     </extensions>
 
     <actions>

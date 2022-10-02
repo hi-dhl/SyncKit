@@ -40,17 +40,11 @@ class ConfigCommandDialog(
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
-        if (!pluginConfigForm.tfLaunchActivity.text.equals(R.String.ui.tfLaunchActivity)) {
-            remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
-        }
 
-        if (!pluginConfigForm.tfSDK.text.equals(R.String.ui.tfSDK)) {
-            remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
-        }
-
-        if (!pluginConfigForm.tfNdk.text.equals(R.String.ui.tfNDK)) {
-            remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
-        }
+        LogUtils.logI("text = ${pluginConfigForm.tfLaunchActivity.text}")
+        remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
+        remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
+        remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
 
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
 

@@ -65,13 +65,13 @@ object CommandManager {
             && !remoteMachineInfo.ndkDir.equals(R.String.ui.tfNDK)){
             ndkDir = ";echo ndk.dir=${remoteMachineInfo.ndkDir} >> ${remoteMachineWorkPath + File.separator + Common.localProperties}"
         }
-        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath}${sdkdir}${ndkDir} && rsync' ")
+        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath};rm -rf ${remoteMachineWorkPath + File.separator + Common.localProperties}${sdkdir}${ndkDir} && rsync' ")
         val localIgnoreFile =
             File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
         if (localIgnoreFile.exists) {
             build.append("--exclude-from=${localIgnoreFile}  ")
         }
-        build.append("./ ")
+        build.append("${localProjectBasePath + File.separator} ")
         build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}:${remoteMachineWorkPath} ")
     }
 
@@ -124,8 +124,15 @@ object CommandManager {
         if (remoteIncludeFile.exists) {
             build.append("--include-from=${remoteIncludeFile}  ")
         }
+
+        val remoteIgnoreFile =
+            File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigRemoteIgnoreFile)
+        if (remoteIgnoreFile.exists) {
+            build.append("--exclude-from=${remoteIgnoreFile}  ")
+        }
+        
         build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}:${remoteMachineWorkPath} ")
-        build.append("./ ")
+        build.append("${localProjectBasePath} ")
     }
 
     fun execLocalCommand(build: StringBuilder, extraCommand: String) {

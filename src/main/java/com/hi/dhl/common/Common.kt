@@ -17,6 +17,7 @@ object Common {
     val syncConfigScriptDir = "script"
     val syncConfigLocalIgnoreFile = "local_ignore"
     val syncConfigRemoteIncludeFile = "remote_include"
+    val syncConfigRemoteIgnoreFile = "remote_ignore"
     val syncDefaultConfigJson = "config.json"
     val localProperties = "local.properties"
 

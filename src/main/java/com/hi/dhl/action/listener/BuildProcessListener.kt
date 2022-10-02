@@ -1,5 +1,7 @@
 package com.hi.dhl.action.listener
 
+import com.intellij.execution.process.ProcessEvent
+
 /**
  * <pre>
  *     author: dhl
@@ -8,6 +10,6 @@ package com.hi.dhl.action.listener
  * </pre>
  */
 interface BuildProcessListener {
-    fun onStart()
-    fun onStop(ExitCode: Int)
+    fun onStart(startTime: Long)
+    fun onStop(processEvent: ProcessEvent, endTime: Long)
 }
