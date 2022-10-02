@@ -16,10 +16,7 @@ import java.io.File
 class SyncContentProvide constructor(val project: Project) {
     val localProjectPath = project.basePath ?: "./"
     val localSyncConfigFile = FileUtils.getSyncServicePath(localProjectPath, Common.syncDefaultConfigJson)
-
-    fun readSyncServiceConfig(): RemoteMachineInfo {
-        return FileUtils.readServiceConfig(localSyncConfigFile)
-    }
+    val localIgnoreFile = FileUtils.getSyncConfigPath(localProjectPath, Common.syncConfigLocalIgnoreFile)
 
     fun initData() {
         if (!isInit()) {
@@ -36,8 +33,20 @@ class SyncContentProvide constructor(val project: Project) {
         }
     }
 
+    fun readSyncServiceConfig(): RemoteMachineInfo {
+        return FileUtils.readConfigJson(localSyncConfigFile)
+    }
+
     fun saveSyncServiceConfig(remoteMachineInfo: RemoteMachineInfo) {
-        FileUtils.saveServiceConfig(remoteMachineInfo.toJson(), localSyncConfigFile)
+        FileUtils.saveConfigJson(remoteMachineInfo.toJson(), localSyncConfigFile)
+    }
+
+    fun readSyncLocalIgnore(): String {
+        return FileUtils.readConfigText(localIgnoreFile)
+    }
+
+    fun saveSyncLocalIgnore(text: String) {
+        FileUtils.saveConfigText(text, localIgnoreFile)
     }
 
     fun deleteSyncRootDir() {

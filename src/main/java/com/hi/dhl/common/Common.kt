@@ -21,4 +21,6 @@ object Common {
     val localProperties = "local.properties"
 
     val remoteRootDir: String = "~/SyncKit"
+    val osLine = System.getProperty("line.separator")
+    val flagCustomerRule = "#customerRule"
 }

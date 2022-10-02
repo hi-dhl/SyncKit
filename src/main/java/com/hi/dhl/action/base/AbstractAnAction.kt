@@ -27,9 +27,11 @@ abstract class AbstractAnAction : AnAction {
 
     lateinit var remoteMachineInfo: RemoteMachineInfo
     lateinit var projectBasePath: String
+    lateinit var project: Project
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
+                this.project = project
                 projectBasePath = project.basePath ?: "./"
                 LogUtils.logI("projectBasePath = ${projectBasePath}")
 
@@ -66,7 +68,8 @@ abstract class AbstractAnAction : AnAction {
             project = project,
             consoleTitle = R.String.projectTitle,
             workingDir = projectBasePath,
-            command = commands
+            command = commands,
+            buildProcessListener = buildProcessListener
         ).initAndRun()
     }
 

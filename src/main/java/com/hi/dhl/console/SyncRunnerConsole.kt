@@ -78,7 +78,7 @@ class SyncRunnerConsole(
                     0 -> processHandler.notifyTextAvailable(R.String.projectTaskDone, ProcessOutputTypes.SYSTEM)
                 }
                 if (buildProcessListener != null) {
-                    buildProcessListener.onStop()
+                    buildProcessListener.onStop(processEvent.exitCode)
                 }
                 LogUtils.logI("processTerminated code = ${processEvent.exitCode} text = ${processEvent.text}")
             }

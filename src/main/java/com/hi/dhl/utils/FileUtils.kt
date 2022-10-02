@@ -101,7 +101,7 @@ object FileUtils {
         return file.exists()
     }
 
-    fun readServiceConfig(configFilePath: String): RemoteMachineInfo {
+    fun readConfigJson(configFilePath: String): RemoteMachineInfo {
         val file = File(configFilePath)
         if (!file.exists()) {
             LogUtils.logW("file not exits ${file.absolutePath}")
@@ -111,9 +111,23 @@ object FileUtils {
         return content.fromJson()
     }
 
-    fun saveServiceConfig(json: String, configFilePath: String) {
+    fun saveConfigJson(json: String, configFilePath: String) {
         val file = File(configFilePath)
         file.writeText(json)
+    }
+
+    fun readConfigText(configFilePath: String): String {
+        val file = File(configFilePath)
+        if (!file.exists()) {
+            LogUtils.logW("file not exits ${file.absolutePath}")
+            return ""
+        }
+        return file.readText()
+    }
+
+    fun saveConfigText(text: String, configFilePath: String) {
+        val file = File(configFilePath)
+        file.writeText(text)
     }
 
     fun getSyncConfigPath(basePath: String, fileName: String): String {

@@ -5,6 +5,7 @@ import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.project.Project
 
 
 /**
@@ -37,7 +38,8 @@ object LogUtils {
     fun log(
         content: String,
         displayType: NotificationDisplayType? = NotificationDisplayType.NONE,
-        type: NotificationType = NotificationType.WARNING
+        type: NotificationType = NotificationType.WARNING,
+        project: Project? = null
     ) {
         when (displayType) {
             // 无弹框，不展示, 输入日志到 event log
@@ -52,11 +54,15 @@ object LogUtils {
 
             }
             // 弹出通知，一直在屏幕上显示，需要主动关闭
+            NotificationDisplayType.TOOL_WINDOW -> {
+                NotificationGroupManager.getInstance()
+                    .getNotificationGroup("SyncKitToolWindow")
+            }
             else -> {
                 NotificationGroupManager.getInstance()
                     .getNotificationGroup("SyncKitStickBallon")
             }
-        }?.createNotification(content, type)?.notify(null);
+        }?.createNotification(content, type)?.notify(project)
 
         Logger.getInstance(Common.projectTitle).warn(content)
     }

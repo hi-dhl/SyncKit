@@ -9,5 +9,5 @@ package com.hi.dhl.action.listener
  */
 interface BuildProcessListener {
     fun onStart()
-    fun onStop()
+    fun onStop(ExitCode: Int)
 }

@@ -7,6 +7,8 @@ import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.MessagesUtils
 import com.hi.dhl.utils.StringUtils
+import com.intellij.notification.NotificationDisplayType
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.project.Project
 
 /**
@@ -35,7 +37,17 @@ class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
             override fun onStart() {
             }
 
-            override fun onStop() {
+            override fun onStop(exitCode: Int) {
+                when {
+                    exitCode == 0 -> {
+                        LogUtils.log(
+                            "Build succeeded",
+                            NotificationDisplayType.BALLOON,
+                            NotificationType.IDE_UPDATE,
+                            project
+                        )
+                    }
+                }
             }
         })
     }

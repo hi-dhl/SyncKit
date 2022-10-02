@@ -45,6 +45,9 @@
         <notificationGroup id="SyncKitStickBallon"
                            displayType="STICKY_BALLOON"
                            key="SyncKitStickBallon"/>
+        <notificationGroup id="SyncKitToolWindow"
+                           displayType="TOOL_WINDOW"
+                           key="SyncKitToolWindow"/>
     </extensions>
 
     <actions>
@@ -80,6 +83,8 @@
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                         icon="/icons/kit.png"/>
             </group>
+
+            <separator/>
 
             <action id="SyncKit.InitializationAnAction" class="com.hi.dhl.action.InitializationAnAction"
                     text="Sync Init"

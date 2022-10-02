@@ -1,5 +1,6 @@
 package com.hi.dhl.ui
 
+import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
 import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.RemoteMachineInfo
@@ -22,7 +23,7 @@ class ConfigCommandDialog(
 ) : DialogWrapper(project, false) {
 
     val pluginConfigForm = PluginConfigForm()
-
+    var defaultIgnoreRule = ""
     init {
         setTitle(R.String.ui.actionPlugin)
         init()
@@ -52,6 +53,9 @@ class ConfigCommandDialog(
         }
 
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
+
+        val fileFilters = pluginConfigForm.fileFilters.text
+        SyncContentProvide.getInstance(project).saveSyncLocalIgnore(defaultIgnoreRule + Common.osLine + fileFilters)
     }
 
     override fun createCenterPanel(): JComponent? {
@@ -60,6 +64,7 @@ class ConfigCommandDialog(
     }
 
     private fun resetData() {
+
         if (!remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()) {
             pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
         }
@@ -91,6 +96,20 @@ class ConfigCommandDialog(
             && !remoteMachineInfo.ndkDir.equals(R.String.ui.tfNDK)) {
             pluginConfigForm.tfNdk.text = remoteMachineInfo.ndkDir
             pluginConfigForm.tfNdk.foreground = Color.BLACK
+        }
+
+        val localIgnoreFile = SyncContentProvide.getInstance(project).readSyncLocalIgnore()
+        val index = localIgnoreFile.indexOf(Common.flagCustomerRule)
+        var customerIgnoreRule = ""
+        if (index <= 0) {
+            defaultIgnoreRule = localIgnoreFile + Common.osLine + Common.flagCustomerRule
+        } else {
+            defaultIgnoreRule = localIgnoreFile.substring(0, index + Common.flagCustomerRule.length)
+            customerIgnoreRule = localIgnoreFile.substring(index + Common.flagCustomerRule.length).trim()
+        }
+
+        if (!customerIgnoreRule.isNullOrEmpty()) {
+            pluginConfigForm.fileFilters.text = customerIgnoreRule
         }
     }
 
