@@ -41,10 +41,10 @@ class ConfigCommandDialog(
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
 
-        LogUtils.logI("text = ${pluginConfigForm.tfLaunchActivity.text}")
         remoteMachineInfo.launchActivity = pluginConfigForm.tfLaunchActivity.text
         remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
         remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
+        remoteMachineInfo.remoteRootDir = Common.flagRmoetUserWrok + pluginConfigForm.tfRemoteWorkDir.text
 
         SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
 
@@ -105,6 +105,9 @@ class ConfigCommandDialog(
         if (!customerIgnoreRule.isNullOrEmpty()) {
             pluginConfigForm.fileFilters.text = customerIgnoreRule
         }
+
+        pluginConfigForm.tfRemoteWorkDir.text =
+            remoteMachineInfo.remoteRootDir.substring(Common.flagRmoetUserWrok.length)
     }
 
 }

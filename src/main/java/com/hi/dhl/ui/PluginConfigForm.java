@@ -34,6 +34,9 @@ public class PluginConfigForm {
     JLabel lableNDK;
     JTextArea fileFilters;
     JLabel fileFilterTip;
+    JTextField tfRemoteWorkDir;
+    JLabel lableRemoteWorkDir;
+    JLabel lableRemoteWorkDirTip;
 
     PluginConfigForm() {
         rootPanel.setPreferredSize(new Dimension(460, -1));
@@ -52,6 +55,9 @@ public class PluginConfigForm {
         tfNdk.addFocusListener(new JTextFieldHintListener(tfNdk, R.String.ui.tfNDK));
 
         fileFilterTip.setForeground(JBColor.GRAY);
+        lableRemoteWorkDirTip.setForeground(Color.GRAY);
+
+        lableRemoteWorkDir.setText(R.String.ui.lableRemoteWorkDir);
     }
 
 }

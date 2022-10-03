@@ -21,7 +21,8 @@ object Common {
     val syncDefaultConfigJson = "config.json"
     val localProperties = "local.properties"
 
-    val remoteRootDir: String = "~/SyncKit"
+    val flagRmoetUserWrok = "~/"
+    val remoteRootDir: String = "~/code"
     val osLine = System.getProperty("line.separator")
     val flagCustomerRule = "#customerRule"
 }

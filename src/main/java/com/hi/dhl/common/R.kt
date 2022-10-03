@@ -39,6 +39,9 @@ object R {
             @JvmField
             val tfNDK = getMessage("sync.ui.android.textfield.ndk")
 
+            @JvmField
+            val lableRemoteWorkDir = getMessage("sync.ui.lable.remote.workDir")
+
             val actionPlugin = getMessage("sync.action.plugin")
             val actionBuildProject = getMessage("sync.action.build.project")
             val actionStopBuildProject = getMessage("sync.action.stop.build.project")

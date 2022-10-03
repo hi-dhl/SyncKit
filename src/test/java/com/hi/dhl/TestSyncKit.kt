@@ -1,5 +1,6 @@
 package test
 
+import com.hi.dhl.common.Common
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.toJson
 import java.io.File
@@ -29,7 +30,7 @@ import java.nio.file.StandardCopyOption
 //    }
 //}
 fun main() {
-//    val remoteMachineProjectDir = "~/SyncKit"
+//    val remoteMachineProjectDir = Common.remoteRootDir
 //    val workingDir = "./"
 //    val stringBuilder = StringBuilder()
 //    stringBuilder.append("rsync --archive --delete")

@@ -31,6 +31,7 @@ abstract class AbstractAnAction : AnAction {
     override fun actionPerformed(e: AnActionEvent) {
         try {
             e.project?.let { project ->
+                beforeAction(project)
                 this.project = project
                 projectBasePath = project.basePath ?: "./"
                 LogUtils.logI("projectBasePath = ${projectBasePath}")
@@ -57,6 +58,9 @@ abstract class AbstractAnAction : AnAction {
     }
 
     abstract fun action(project: Project)
+    open fun beforeAction(project: Project){
+
+    }
 
     fun execSyncRunnerConsole(
         project: Project,

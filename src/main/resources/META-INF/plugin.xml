@@ -97,7 +97,7 @@
 
             <separator/>
 
-            <action id="SyncKit.PluginConfigAnAction" class="com.hi.dhl.action.config.PluginConfigAnAction"
+            <action id="SyncKit.PluginConfigAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
                     text="plug config" icon="/icons/kit.png">
             </action>
 

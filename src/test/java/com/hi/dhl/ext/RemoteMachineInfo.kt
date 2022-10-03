@@ -1,5 +1,7 @@
 package com.hi.dhl.ext
 
+import com.hi.dhl.common.Common
+
 /**
  * <pre>
  *     author: dhl
@@ -11,5 +13,5 @@ data class RemoteMachineInfo(
     val port: String,
     val address: String,
     val user: String,
-    val rootDir: String = "~/SyncKit"
+    val rootDir: String = Common.remoteRootDir
 )
