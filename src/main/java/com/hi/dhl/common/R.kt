@@ -51,15 +51,17 @@ object R {
             val actionInitialization = getMessage("sync.action.init")
             val actionInstallJDK11 = getMessage("sync.action.install.jdk11")
             val actionAndroidSDK = getMessage("sync.action.install.sdk")
+            val actionAndroidNDK = getMessage("sync.action.install.ndk")
             val actionInstallSSHPub = getMessage("sync.action.install.ssh.pub")
         }
     }
 
     object ShellScript {
         val installJDK11 = "install_jdk_11.sh"
-        val installAndroidSdk = "install_android_sdk.sh"
+        val installAndroidSDK = "install_android_sdk.sh"
         val installApk = "install-apk.sh"
-        val installSSHPub = "install_android_sdk.sh"
+        val installSSHPub = "install-tools-sshkey.sh"
+        val installAndroidNDK = "install_android_ndk.sh"
     }
 }
 

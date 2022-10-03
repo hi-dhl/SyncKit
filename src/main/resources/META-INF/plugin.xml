@@ -91,13 +91,15 @@
                         text="install JDK 11" icon="/icons/kit.png"/>
                 <action id="SyncKit.InstallAndroidSdkAnAction" class="com.hi.dhl.action.InstallAndroidSdkAnAction"
                         text="install Android SDK" icon="/icons/kit.png"/>
+                <action id="SyncKit.InstallAndroidNDKAnAction" class="com.hi.dhl.action.InstallAndroidNDKAnAction"
+                        text="install Android NDK" icon="/icons/kit.png"/>
                 <action id="SyncKit.SSHAnAction" class="com.hi.dhl.action.SSHAnAction"
                         text="无密码访问远程设备" icon="/icons/kit.png"/>
             </group>
 
             <separator/>
 
-            <action id="SyncKit.PluginConfigAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
+            <action id="SyncKit.PluginConfigurationAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
                     text="plug config" icon="/icons/kit.png">
             </action>
 
