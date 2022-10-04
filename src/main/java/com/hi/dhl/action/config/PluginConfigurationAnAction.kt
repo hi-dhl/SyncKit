@@ -16,17 +16,16 @@ import com.intellij.openapi.project.Project
  */
 class PluginConfigurationAnAction : AbstractAnAction(R.String.ui.actionPlugin) {
 
-    override fun beforeAction(project: Project) {
-        super.beforeAction(project)
-        val syncContentProvide = SyncContentProvide(project)
+    override fun beforeActionPerformed(project: Project) {
+        super.beforeActionPerformed(project)
         if (!syncContentProvide.isInit()) {
             syncContentProvide.initData()
         }
     }
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         LogUtils.logI(remoteMachineInfo.toString())
-        ConfigCommandDialog(project, remoteMachineInfo).show()
+        ConfigCommandDialog(project, remoteMachineInfo, syncContentProvide).show()
     }
 
 }

@@ -1,14 +1,12 @@
 package com.hi.dhl.action.base
 
-import com.hi.dhl.common.R
 import com.hi.dhl.action.listener.BuildProcessListener
-import com.hi.dhl.common.SyncContentProvide
+import com.hi.dhl.common.R
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.MessagesUtils
 import com.hi.dhl.utils.StringUtils
-import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 
@@ -19,47 +17,41 @@ import com.intellij.openapi.project.Project
  *     desc  :
  * </pre>
  */
-abstract class AbstractAnAction : AnAction {
+abstract class AbstractAnAction : BaseAnAction {
 
     constructor() : super()
 
     constructor(text: String) : super(text)
 
     lateinit var remoteMachineInfo: RemoteMachineInfo
-    lateinit var projectBasePath: String
-    lateinit var project: Project
+
     override fun actionPerformed(e: AnActionEvent) {
+        super.actionPerformed(e)
         try {
-            e.project?.let { project ->
-                beforeAction(project)
-                this.project = project
-                projectBasePath = project.basePath ?: "./"
-                LogUtils.logI("projectBasePath = ${projectBasePath}")
+            beforeActionPerformed(project)
 
-                val syncContentProvide = SyncContentProvide(project)
-                if (!syncContentProvide.isInit()) {
-                    MessagesUtils.showMessageWarnDialog(
-                        StringUtils.getMessage("sync.init.warring.title"),
-                        StringUtils.getMessage("sync.init.warring.content")
-                    )
-                    return
-                }
-
-                remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
-                if (remoteMachineInfo.checkOrNull()) {
-                    return
-                }
-                syncContentProvide.initData()
-                action(project)
+            if (!syncContentProvide.isInit()) {
+                MessagesUtils.showMessageWarnDialog(
+                    StringUtils.getMessage("sync.init.warring.title"),
+                    StringUtils.getMessage("sync.init.warring.content")
+                )
+                return
             }
+
+            remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
+            if (remoteMachineInfo.checkOrNull()) {
+                return
+            }
+            syncContentProvide.initData()
+            afterActionPerformed(project)
         } catch (e: Exception) {
             LogUtils.logE("exec action fail ${e}");
         }
     }
 
-    abstract fun action(project: Project)
-    open fun beforeAction(project: Project){
+    abstract fun afterActionPerformed(project: Project)
 
+    open fun beforeActionPerformed(project: Project) {
     }
 
     fun execSyncRunnerConsole(
@@ -68,13 +60,14 @@ abstract class AbstractAnAction : AnAction {
         commands: String,
         buildProcessListener: BuildProcessListener? = null
     ) {
-        SyncRunnerConsole(
+        val syncRunnerConsole = SyncRunnerConsole(
             project = project,
             consoleTitle = R.String.projectTitle,
             workingDir = projectBasePath,
             command = commands,
             buildProcessListener = buildProcessListener
-        ).initAndRun()
+        )
+        syncRunnerConsole.initAndRun()
     }
 
 }

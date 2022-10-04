@@ -13,7 +13,7 @@ import com.intellij.openapi.project.Project
  */
 class InstallAndroidSdkAnAction : AbstractExecShellAction(R.String.ui.actionAndroidSDK) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         execShelLScript(project, R.ShellScript.installAndroidSDK)
     }
 

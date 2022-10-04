@@ -4,7 +4,6 @@ import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
 import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.RemoteMachineInfo
-import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import java.awt.Color
@@ -19,7 +18,8 @@ import javax.swing.JComponent
  */
 class ConfigCommandDialog(
     val project: Project,
-    val remoteMachineInfo: RemoteMachineInfo
+    val remoteMachineInfo: RemoteMachineInfo,
+    val syncContentProvide: SyncContentProvide
 ) : DialogWrapper(project, false) {
 
     val pluginConfigForm = PluginConfigForm()
@@ -46,10 +46,10 @@ class ConfigCommandDialog(
         remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
         remoteMachineInfo.remoteRootDir = Common.flagRmoetUserWrok + pluginConfigForm.tfRemoteWorkDir.text
 
-        SyncContentProvide.getInstance(project).saveSyncServiceConfig(remoteMachineInfo)
+        syncContentProvide.saveSyncServiceConfig(remoteMachineInfo)
 
         val fileFilters = pluginConfigForm.fileFilters.text
-        SyncContentProvide.getInstance(project).saveSyncLocalIgnore(defaultIgnoreRule + Common.osLine + fileFilters)
+        syncContentProvide.saveSyncLocalIgnore(defaultIgnoreRule + Common.osLine + fileFilters)
     }
 
     override fun createCenterPanel(): JComponent? {
@@ -92,7 +92,7 @@ class ConfigCommandDialog(
             pluginConfigForm.tfNdk.foreground = Color.BLACK
         }
 
-        val localIgnoreFile = SyncContentProvide.getInstance(project).readSyncLocalIgnore()
+        val localIgnoreFile = syncContentProvide.readSyncLocalIgnore()
         val index = localIgnoreFile.indexOf(Common.flagCustomerRule)
         var customerIgnoreRule = ""
         if (index <= 0) {

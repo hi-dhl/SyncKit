@@ -1,10 +1,9 @@
 package com.hi.dhl.action
 
-import com.hi.dhl.utils.LogUtils
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
+import com.hi.dhl.action.base.BaseAnAction
 import com.hi.dhl.common.R
-import com.hi.dhl.common.SyncContentProvide
+import com.hi.dhl.utils.LogUtils
+import com.intellij.openapi.actionSystem.AnActionEvent
 
 /**
  * <pre>
@@ -13,19 +12,16 @@ import com.hi.dhl.common.SyncContentProvide
  *     desc  :
  * </pre>
  */
-class InitializationAnAction : AnAction(R.String.ui.actionInitialization) {
+class InitializationAnAction : BaseAnAction(R.String.ui.actionInitialization) {
 
     override fun actionPerformed(e: AnActionEvent) {
+        super.actionPerformed(e)
         try {
-            e.project?.let { project ->
-                val syncContentProvide = SyncContentProvide(project)
-                syncContentProvide.deleteSyncRootDir()
-                syncContentProvide.initData()
-            }
-        }catch (e: Exception){
+            syncContentProvide.deleteSyncRootDir()
+            syncContentProvide.initData()
+        } catch (e: Exception) {
             LogUtils.logE("exec action fail ${e}");
         }
-
     }
 
 }

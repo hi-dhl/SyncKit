@@ -14,7 +14,7 @@ import com.hi.dhl.common.R
  */
 class SyncToServiceAnAction : AbstractAnAction(R.String.ui.actionSyncToService) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName

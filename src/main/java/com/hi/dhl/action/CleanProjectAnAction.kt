@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.konan.file.File
  */
 class CleanProjectAnAction : AbstractAnAction(R.String.ui.actionCleanProject) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         val extraCommand = "./gradlew clean"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)

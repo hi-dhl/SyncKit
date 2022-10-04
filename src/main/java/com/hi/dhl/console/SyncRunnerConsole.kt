@@ -33,7 +33,6 @@ class SyncRunnerConsole(
 
     private lateinit var generalCommandLine: GeneralCommandLine
     private lateinit var process: Process
-    private lateinit var osProcessHandler: OSProcessHandler
     private lateinit var consoleView: ConsoleView
 
     override fun createConsoleView(): ConsoleView {
@@ -54,7 +53,7 @@ class SyncRunnerConsole(
 
     override fun createProcessHandler(process: Process): OSProcessHandler {
         LogUtils.logI("createProcessHandler")
-        osProcessHandler = OSProcessHandler(generalCommandLine)
+        val osProcessHandler = OSProcessHandler(generalCommandLine)
         var startTime: Long = 0
         osProcessHandler.addProcessListener(object : ProcessListener {
             override fun startNotified(processEvent: ProcessEvent) {

@@ -91,7 +91,7 @@ object CommandManager {
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}  ' source ~/.bashrc;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}  ' set +e source ~/.bashrc;source ~/.bash_profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,

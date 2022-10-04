@@ -15,7 +15,7 @@ import com.intellij.openapi.project.Project
  */
 class InstallApkAnAction : AbstractAnAction(R.String.ui.actionInstallApk) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         val commands = StringBuilder()
         val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
         if (FileUtils.isExists(shellInstallApkPath)) {

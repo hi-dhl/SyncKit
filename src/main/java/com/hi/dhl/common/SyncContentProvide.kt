@@ -54,7 +54,19 @@ class SyncContentProvide constructor(val project: Project) {
         FileUtils.deleteDirectory(file.toPath())
     }
 
-    companion object : SingletonHolder<SyncContentProvide, Project>(::SyncContentProvide)
+//    companion object : SingletonHolder<SyncContentProvide, Project>(::SyncContentProvide)
+
+    companion object {
+        val contentProvides = HashMap<Project, SyncContentProvide>()
+        fun getInstance(project: Project): SyncContentProvide {
+            var syncContentProvide = contentProvides.get(project)
+            if (syncContentProvide == null) {
+                syncContentProvide = SyncContentProvide(project)
+                contentProvides.put(project, syncContentProvide)
+            }
+            return syncContentProvide
+        }
+    }
 }
 
 

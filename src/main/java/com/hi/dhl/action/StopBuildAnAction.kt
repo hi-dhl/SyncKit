@@ -15,7 +15,7 @@ import com.hi.dhl.common.R
  */
 class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         val extraCommand = "./gradlew -stop"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)

@@ -13,7 +13,7 @@ import com.intellij.openapi.project.Project
  */
 class SSHAnAction : AbstractExecShellAction(R.String.ui.actionInstallSSHPub) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         execShelLScript(project, R.ShellScript.installSSHPub)
     }
 

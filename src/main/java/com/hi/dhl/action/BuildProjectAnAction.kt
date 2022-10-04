@@ -23,7 +23,7 @@ import com.intellij.openapi.project.Project
 class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
 
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         var extraCommand = "./gradlew "
         if (remoteMachineInfo.remoteBuildCommand.isNullOrEmpty()) {
             val warringTitle = StringUtils.getMessage("sync.init.warring.title")

@@ -13,7 +13,7 @@ import com.intellij.openapi.project.Project
  */
 class InstallJDK11AnAction : AbstractExecShellAction(R.String.ui.actionInstallJDK11) {
 
-    override fun action(project: Project) {
+    override fun afterActionPerformed(project: Project) {
         execShelLScript(project, R.ShellScript.installJDK11)
     }
 
