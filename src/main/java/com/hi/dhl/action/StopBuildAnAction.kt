@@ -20,7 +20,7 @@ import org.jetbrains.kotlin.konan.file.File
 class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
 
     override fun afterActionPerformed(project: Project) {
-        val extraCommand = "./gradlew -stop"
+        val extraCommand = "./gradlew --stop"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName

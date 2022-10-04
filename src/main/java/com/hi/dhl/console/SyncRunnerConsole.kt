@@ -1,5 +1,6 @@
 package com.hi.dhl.console
 
+import com.hi.dhl.action.StopSingleDumbAwareAction
 import com.hi.dhl.action.listener.BuildProcessListener
 import com.hi.dhl.common.R
 import com.hi.dhl.utils.LogUtils
@@ -14,6 +15,7 @@ import com.intellij.execution.ui.RunContentDescriptor
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.util.Key
 
 /**
@@ -80,7 +82,10 @@ class SyncRunnerConsole(
                     endTime = endTime
                 )
                 when (processEvent.exitCode) {
-                    0 -> processHandler.notifyTextAvailable("BUILD SUCCESSFUL in ${execTime}", ProcessOutputTypes.SYSTEM)
+                    0 -> processHandler.notifyTextAvailable(
+                        "BUILD SUCCESSFUL in ${execTime}",
+                        ProcessOutputTypes.SYSTEM
+                    )
                     else -> {
                         processHandler.notifyTextAvailable("BUILD FAILED in ${execTime}", ProcessOutputTypes.SYSTEM)
                     }
@@ -98,14 +103,16 @@ class SyncRunnerConsole(
     }
 
     override fun fillToolBarActions(
-        toolbarActions: DefaultActionGroup?,
+        toolbarActions: DefaultActionGroup,
         defaultExecutor: Executor?,
         contentDescriptor: RunContentDescriptor?
-    ): MutableList<AnAction> {
+    ): List<AnAction> {
         LogUtils.logI("fillToolBarActions")
-        val actionList: MutableList<AnAction> = ArrayList()
-        return actionList;
+        val actionList = mutableListOf<AnAction>()
+//        val icon = IconLoader.getIcon("/icons/kit.png", javaClass)
+//        actionList.add(StopSingleDumbAwareAction(processHandler, "stop", icon))
+//        toolbarActions.addAll(actionList)
+        return actionList
     }
-
 
 }
