@@ -20,6 +20,7 @@ data class RemoteMachineInfo(
     var launchActivity: String? = null,
     var sdkDir: String? = null,
     var ndkDir: String? = null,
+    var sshPublicKey: String? = null
 ) {
     companion object {
         fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {

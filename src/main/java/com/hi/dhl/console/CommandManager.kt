@@ -98,7 +98,8 @@ object CommandManager {
                              filePath: String,
                              remoteMachineWorkPath: String,
                              remoteMachineInfo: RemoteMachineInfo) {
-        syncLocalFileToRemote(build, filePath, remoteMachineWorkPath, remoteMachineInfo)
+        val remoteScriptPath = remoteMachineWorkPath + File.separator + Common.syncConfigScriptDir
+        syncLocalFileToRemote(build, filePath, remoteScriptPath, remoteMachineInfo)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
         var execShellScript: String
@@ -106,10 +107,12 @@ object CommandManager {
             && !remoteMachineInfo.launchActivity.isNullOrEmpty()
             && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {
             execShellScript = "chmod 777 ${fileName} && bash ${fileName} ${remoteMachineInfo.launchActivity} "
-        } else {
+        } else if(filePath.contains(R.ShellScript.installSSHPub) && !remoteMachineInfo.sshPublicKey.isNullOrEmpty()){
+            execShellScript = "chmod 777 ${fileName} && bash ${fileName} ${remoteMachineInfo.sshPublicKey} "
+        }else {
             execShellScript = "chmod 777 ${fileName} && bash ${fileName} "
         }
-        execRemoteCommand(build, remoteMachineWorkPath, execShellScript, remoteMachineInfo)
+        execRemoteCommand(build, remoteScriptPath, execShellScript, remoteMachineInfo)
     }
 
     private fun syncRemoteToLocal(build: StringBuilder,
