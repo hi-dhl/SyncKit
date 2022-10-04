@@ -1,11 +1,15 @@
 package com.hi.dhl.action
 
 import com.hi.dhl.action.base.AbstractAnAction
+import com.hi.dhl.action.listener.BuildProcessListener
+import com.hi.dhl.common.R
+import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.CommandManager
+import com.intellij.execution.process.ProcessEvent
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.konan.file.File
-import com.hi.dhl.common.R
+
 /**
  * <pre>
  *     author: dhl
@@ -21,7 +25,18 @@ class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
-        execSyncRunnerConsole(project, projectBasePath, commands.toString())
+        execSyncRunnerConsole(project, projectBasePath, commands.toString(), object : BuildProcessListener {
+            override fun onStart(startTime: Long) {
+
+            }
+
+            override fun onStop(processEvent: ProcessEvent, endTime: Long) {
+                SyncContentProvide.getInstance(project).getRunnerConsole().forEach {
+                    it.processHandler.destroyProcess()
+                }
+            }
+
+        })
     }
 
     override fun update(e: AnActionEvent) {

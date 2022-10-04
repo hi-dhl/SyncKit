@@ -1,6 +1,7 @@
 package com.hi.dhl.common
 
 import com.hi.dhl.console.RemoteMachineInfo
+import com.hi.dhl.console.SyncRunnerConsole
 import com.hi.dhl.ktkit.common.toJson
 import com.hi.dhl.utils.FileUtils
 import com.intellij.openapi.project.Project
@@ -17,6 +18,7 @@ class SyncContentProvide constructor(val project: Project) {
     val localProjectPath = project.basePath ?: "./"
     val localSyncConfigFile = FileUtils.getSyncServicePath(localProjectPath, Common.syncDefaultConfigJson)
     val localIgnoreFile = FileUtils.getSyncConfigPath(localProjectPath, Common.syncConfigLocalIgnoreFile)
+    val runnerConsoles = mutableListOf<SyncRunnerConsole>()
 
     fun initData() {
         if (!isInit()) {
@@ -55,6 +57,12 @@ class SyncContentProvide constructor(val project: Project) {
     }
 
 //    companion object : SingletonHolder<SyncContentProvide, Project>(::SyncContentProvide)
+
+    fun addRunnerConsole(syncRunnerConsole: SyncRunnerConsole) {
+        runnerConsoles.add(syncRunnerConsole)
+    }
+
+    fun getRunnerConsole(): List<SyncRunnerConsole> = runnerConsoles
 
     companion object {
         val contentProvides = HashMap<Project, SyncContentProvide>()

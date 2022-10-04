@@ -1,7 +1,7 @@
 package com.hi.dhl.console
 
-import com.hi.dhl.common.R
 import com.hi.dhl.action.listener.BuildProcessListener
+import com.hi.dhl.common.R
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.TimeUtils
 import com.intellij.execution.Executor
@@ -85,6 +85,7 @@ class SyncRunnerConsole(
                         processHandler.notifyTextAvailable("BUILD FAILED in ${execTime}", ProcessOutputTypes.SYSTEM)
                     }
                 }
+
                 if (buildProcessListener != null) {
                     buildProcessListener.onStop(processEvent, endTime)
                 }

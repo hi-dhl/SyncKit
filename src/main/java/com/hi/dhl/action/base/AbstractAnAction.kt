@@ -68,6 +68,7 @@ abstract class AbstractAnAction : BaseAnAction {
             buildProcessListener = buildProcessListener
         )
         syncRunnerConsole.initAndRun()
+        syncContentProvide.addRunnerConsole(syncRunnerConsole)
     }
 
 }
