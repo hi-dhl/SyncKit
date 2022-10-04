@@ -60,7 +60,7 @@ object R {
         val installJDK11 = "install_jdk_11.sh"
         val installAndroidSDK = "install_android_sdk.sh"
         val installApk = "install-apk.sh"
-        val installSSHPub = "install-tools-sshkey.sh"
+        val installSSHPub = "install-ssh-publickey.sh"
         val installAndroidNDK = "install_android_ndk.sh"
     }
 }
