@@ -57,50 +57,67 @@
             <action id="SyncKit.BuildProjectAnAction" class="com.hi.dhl.action.BuildProjectAnAction"
                     text="Build Project In Service"
                     icon="/icons/kit.png">
-                <keyboard-shortcut first-keystroke="control option 1" keymap="$default"/>
+                <keyboard-shortcut first-keystroke="control alt 1" keymap="$default"/>
             </action>
 
             <action id="SyncKit.StopBuildAnAction" class="com.hi.dhl.action.StopBuildAnAction"
                     text="Stop Build In Service"
                     icon="/icons/kit.png">
-                <keyboard-shortcut first-keystroke="control option 2" keymap="$default"/>
+                <keyboard-shortcut first-keystroke="control alt 2" keymap="$default"/>
             </action>
 
             <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
                     text="Clean Project In Service"
-                    icon="/icons/kit.png"/>
+                    icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control alt 3" keymap="$default"/>
+            </action>
 
             <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
-                    text="Sync Local To Service" icon="/icons/kit.png"/>
+                    text="Sync Local To Service" icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control alt 4" keymap="$default"/>
+            </action>
 
             <separator/>
 
             <group id="SyncKitAdbGroup" icon="/icons/kit.png" text="ADB" popup="true">
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
-                        icon="/icons/kit.png"/>
+                        icon="/icons/kit.png">
+                    <keyboard-shortcut first-keystroke="control alt 5" keymap="$default"/>
+                </action>
             </group>
 
             <separator/>
 
             <action id="SyncKit.InitializationAnAction" class="com.hi.dhl.action.InitializationAnAction"
                     text="Sync Init"
-                    icon="/icons/kit.png"/>
+                    icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control alt 6" keymap="$default"/>
+            </action>
 
-            <group id="SyncKitServiceGroup" icon="/icons/kit.png" text="Service" popup="true">
+            <group id="SyncKitServiceGroup" icon="/icons/kit.png" text="服务器配置" popup="true">
                 <action id="SyncKit.InstallJDK11AnAction" class="com.hi.dhl.action.InstallJDK11AnAction"
-                        text="install JDK 11" icon="/icons/kit.png"/>
+                        text="install JDK 11" icon="/icons/kit.png">
+                    <keyboard-shortcut first-keystroke="control alt 7" keymap="$default"/>
+                </action>
                 <action id="SyncKit.InstallAndroidSdkAnAction" class="com.hi.dhl.action.InstallAndroidSdkAnAction"
-                        text="install Android SDK" icon="/icons/kit.png"/>
+                        text="install Android SDK" icon="/icons/kit.png">
+                    <keyboard-shortcut first-keystroke="control alt 8" keymap="$default"/>
+                </action>
                 <action id="SyncKit.InstallAndroidNDKAnAction" class="com.hi.dhl.action.InstallAndroidNDKAnAction"
-                        text="install Android NDK" icon="/icons/kit.png"/>
+                        text="install Android NDK" icon="/icons/kit.png">
+                    <keyboard-shortcut first-keystroke="control alt 9" keymap="$default"/>
+                </action>
                 <action id="SyncKit.SSHAnAction" class="com.hi.dhl.action.SSHAnAction"
-                        text="无密码访问远程设备" icon="/icons/kit.png"/>
+                        text="授权无密码访问远程设备" icon="/icons/kit.png">
+                    <keyboard-shortcut first-keystroke="control shift 1" keymap="$default"/>
+                </action>
             </group>
 
             <separator/>
 
             <action id="SyncKit.PluginConfigurationAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
                     text="plug config" icon="/icons/kit.png">
+                <keyboard-shortcut first-keystroke="control shift 2" keymap="$default"/>
             </action>
 
             <add-to-group group-id="ToolbarRunGroup" relative-to-action="RunnerActions" anchor="before" />
