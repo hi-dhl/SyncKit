@@ -22,7 +22,7 @@ object R {
             @JvmField
             val labelRemotePort = getMessage("sync.ui.lable.remote.port")
             @JvmField
-            val labelRemoteAddress = getMessage("sync.ui.lable.remote.address")
+            val labelRemoteHost = getMessage("sync.ui.lable.remote.host")
             @JvmField
             val labelRemoteCommand = getMessage("sync.ui.lable.remote.command")
             @JvmField

@@ -1,6 +1,5 @@
 package test
 
-import com.hi.dhl.common.Common
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.toJson
 import java.io.File
@@ -62,7 +61,7 @@ fun main() {
 
     val linx1 = RemoteMachineInfo(
         remotePort = "22",
-        remoteAddress = "192.168.0.100",
+        remoteHost = "192.168.0.100",
         remoteUser = "root"
     )
     println(linx1.toJson())

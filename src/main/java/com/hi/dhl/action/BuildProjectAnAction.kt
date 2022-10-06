@@ -36,7 +36,8 @@ class BuildProjectAnAction : AbstractAnAction(R.String.ui.actionBuildProject) {
         val commands = StringBuilder()
         CommandManager.compileAndroid(commands, extraCommand, projectBasePath, remoteMachineInfo)
         var startTime: Long = 0
-        execSyncRunnerConsole(project, projectBasePath, commands.toString(), object : BuildProcessListener {
+        val consoleTitle = "${R.String.projectTitle} [ ${remoteMachineInfo.remoteBuildCommand} ]"
+        execSyncRunnerConsole(project, projectBasePath, commands.toString(), consoleTitle, object : BuildProcessListener {
             override fun onStart(time: Long) {
                 startTime = time
             }

@@ -21,7 +21,8 @@ class CleanProjectAnAction : AbstractAnAction(R.String.ui.actionCleanProject) {
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
-        execSyncRunnerConsole(project, projectBasePath, commands.toString())
+        val consoleTitle = "${R.String.projectTitle} [ clean ] "
+        execSyncRunnerConsole(project, projectBasePath, commands.toString(), consoleTitle)
     }
 
 }

@@ -32,11 +32,11 @@ class ConfigCommandDialog(
     override fun doOKAction() {
         super.doOKAction()
         val remoteBuildCommand = pluginConfigForm.tfRemoteCommand.text
-        val remoteMachineAddress = pluginConfigForm.tfRemoteAddress.text
+        val remoteMachineHost = pluginConfigForm.tfRemoteHost.text
         val remotePort = pluginConfigForm.tfRemotePort.text
         val remoteUser = pluginConfigForm.tfRemoteUser.text
 
-        remoteMachineInfo.remoteAddress = remoteMachineAddress
+        remoteMachineInfo.remoteHost = remoteMachineHost
         remoteMachineInfo.remotePort = remotePort
         remoteMachineInfo.remoteBuildCommand = remoteBuildCommand
         remoteMachineInfo.remoteUser = remoteUser
@@ -63,8 +63,8 @@ class ConfigCommandDialog(
             pluginConfigForm.tfRemoteCommand.text = remoteMachineInfo.remoteBuildCommand
         }
 
-        if (!remoteMachineInfo.remoteAddress.isNullOrEmpty()) {
-            pluginConfigForm.tfRemoteAddress.text = remoteMachineInfo.remoteAddress
+        if (!remoteMachineInfo.remoteHost.isNullOrEmpty()) {
+            pluginConfigForm.tfRemoteHost.text = remoteMachineInfo.remoteHost
         }
 
         if (!remoteMachineInfo.remotePort.isNullOrEmpty()) {

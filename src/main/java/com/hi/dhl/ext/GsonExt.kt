@@ -44,7 +44,7 @@ inline fun Any.toJson(): String = GsonBuilder().create().typedToJson(this)
  * PeopleModel("dhl").toJson(true)
  * ```
  *
- * output: {"address":null,"name":"dhl"}
+ * output: {"host":"192.168.0.100","name":"dhl"}
  */
 @kotlin.internal.InlineOnly
 inline fun Any.toJson(serializeNulls: Boolean): String =

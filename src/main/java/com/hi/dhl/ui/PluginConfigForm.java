@@ -19,11 +19,11 @@ public class PluginConfigForm {
     JPanel androidPanel;
     JPanel rootPanel;
     JTextField tfLaunchActivity;
-    JTextField tfRemoteAddress;
+    JTextField tfRemoteHost;
     JTextField tfRemotePort;
     JTextField tfRemoteUser;
     JTextField tfRemoteCommand;
-    JLabel labelRemoteAddress;
+    JLabel labelRemoteHost;
     JLabel labelRemotePort;
     JLabel labelRemoteUser;
     JLabel labelRemoteCommand;
@@ -42,7 +42,7 @@ public class PluginConfigForm {
         rootPanel.setPreferredSize(new Dimension(460, -1));
         labelRemoteUser.setText(R.String.ui.labelRemoteUser);
         labelRemotePort.setText(R.String.ui.labelRemotePort);
-        labelRemoteAddress.setText(R.String.ui.labelRemoteAddress);
+        labelRemoteHost.setText(R.String.ui.labelRemoteHost);
         labelRemoteCommand.setText(R.String.ui.labelRemoteCommand);
 
         labelLaunchActivity.setText(R.String.ui.labelLaunchActivity);

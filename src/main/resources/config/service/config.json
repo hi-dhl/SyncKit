@@ -1,1 +1,1 @@
-{"remotePort":"22","remoteAddress":"192.168.0.100","remoteUser":"root","remoteBuildCommand":"assembleDebug","remoteRootDir":"~/code"}
+{"remotePort":"22","remoteHost":"192.168.0.100","remoteUser":"root","remoteBuildCommand":"assembleDebug","remoteRootDir":"~/code"}

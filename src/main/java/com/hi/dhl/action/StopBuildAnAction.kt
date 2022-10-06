@@ -25,7 +25,8 @@ class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
         CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
-        execSyncRunnerConsole(project, projectBasePath, commands.toString(), object : BuildProcessListener {
+        val consoleTitle = "${R.String.projectTitle} [ stop ]"
+        execSyncRunnerConsole(project, projectBasePath, commands.toString(), consoleTitle,object : BuildProcessListener {
             override fun onStart(startTime: Long) {
 
             }
@@ -41,6 +42,5 @@ class StopBuildAnAction : AbstractAnAction(R.String.ui.actionStopBuildProject) {
 
     override fun update(e: AnActionEvent) {
         super.update(e)
-//        e.presentation.isEnabled = DataManager.isBuildProject()
     }
 }

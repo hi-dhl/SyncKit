@@ -11,7 +11,7 @@ import com.hi.dhl.common.Common
  */
 data class RemoteMachineInfo(
     val port: String,
-    val address: String,
+    val host: String,
     val user: String,
     val rootDir: String = Common.remoteRootDir
 )

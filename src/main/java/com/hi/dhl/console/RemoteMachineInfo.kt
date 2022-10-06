@@ -13,7 +13,7 @@ import com.hi.dhl.utils.StringUtils
  */
 data class RemoteMachineInfo(
     var remotePort: String,
-    var remoteAddress: String,
+    var remoteHost: String,
     var remoteUser: String,
     var remoteBuildCommand: String? = null,
     var remoteRootDir: String = Common.remoteRootDir,
@@ -25,7 +25,7 @@ data class RemoteMachineInfo(
     companion object {
         fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {
             return RemoteMachineInfo(
-                remotePort = "", remoteAddress = "", remoteUser = ""
+                remotePort = "", remoteHost = "", remoteUser = ""
             )
         }
     }
@@ -39,9 +39,9 @@ data class RemoteMachineInfo(
                 )
                 true
             }
-            remoteAddress.isNullOrEmpty() -> {
+            remoteHost.isNullOrEmpty() -> {
                 MessagesUtils.showMessageWarnDialog(
-                    warringTitle, StringUtils.getMessage("sync.service.empry.address")
+                    warringTitle, StringUtils.getMessage("sync.service.empry.host")
                 )
                 true
             }

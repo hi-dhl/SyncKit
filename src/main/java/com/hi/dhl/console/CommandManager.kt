@@ -3,7 +3,6 @@ package com.hi.dhl.console
 import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
 import com.hi.dhl.utils.FileUtils
-import com.hi.dhl.utils.LogUtils
 import org.jetbrains.kotlin.konan.file.File
 
 /**
@@ -72,7 +71,7 @@ object CommandManager {
             build.append("--exclude-from=${localIgnoreFile}  ")
         }
         build.append("${localProjectBasePath + File.separator} ")
-        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}:${remoteMachineWorkPath} ")
+        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}:${remoteMachineWorkPath} ")
     }
 
     fun syncLocalFileToRemote(build: StringBuilder,
@@ -83,7 +82,7 @@ object CommandManager {
         build.append("--progress ")
         build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
         build.append("${filePath} ")
-        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}:${remoteMachineWorkPath} ")
+        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}:${remoteMachineWorkPath} ")
     }
 
     fun execRemoteCommand(build: StringBuilder,
@@ -91,7 +90,7 @@ object CommandManager {
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}  ' source ~/.bashrc;source ~/.bash_profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' source ~/.bashrc;source ~/.bash_profile;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,
@@ -134,7 +133,7 @@ object CommandManager {
             build.append("--exclude-from=${remoteIgnoreFile}  ")
         }
         
-        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteAddress}:${remoteMachineWorkPath} ")
+        build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}:${remoteMachineWorkPath} ")
         build.append("${localProjectBasePath} ")
     }
 
