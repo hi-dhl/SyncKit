@@ -60,9 +60,11 @@ abstract class AbstractAnAction : BaseAnAction {
         commands: String,
         buildProcessListener: BuildProcessListener? = null
     ) {
+
+        val title = "${R.String.projectTitle}(${remoteMachineInfo.remoteBuildCommand})"
         val syncRunnerConsole = SyncRunnerConsole(
             project = project,
-            consoleTitle = R.String.projectTitle,
+            consoleTitle = title,
             workingDir = projectBasePath,
             command = commands,
             buildProcessListener = buildProcessListener

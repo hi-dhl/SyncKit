@@ -10,4 +10,3 @@ if [ -z "${SSH_PUBLIC_KEY}" ]; then
 fi
 echo ${SSH_PUBLIC_KEY}
 echo ${SSH_PUBLIC_KEY} >> ~/.ssh/authorized_keys
-chmod 777 ~/.ssh/authorized_keys

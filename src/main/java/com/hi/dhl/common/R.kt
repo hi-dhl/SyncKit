@@ -53,6 +53,9 @@ object R {
             val actionAndroidSDK = getMessage("sync.action.install.sdk")
             val actionAndroidNDK = getMessage("sync.action.install.ndk")
             val actionInstallSSHPub = getMessage("sync.action.install.ssh.pub")
+
+            val confirmDialogTitle = getMessage("sync.ui.config.dialog.title")
+            val confirmDialogTip = getMessage("sync.ui.config.dialog.tip")
         }
     }
 
