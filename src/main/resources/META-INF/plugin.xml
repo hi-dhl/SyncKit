@@ -51,30 +51,30 @@
         <group id="SyncKitGroup" icon="/icons/btn_sync_compile.png" popup="true">
             <action id="SyncKit.BuildProjectAnAction" class="com.hi.dhl.action.BuildProjectAnAction"
                     text="Build Project In Service"
-                    icon="/icons/btn_run.png">
+                    icon="/icons/btn_run.svg">
                 <keyboard-shortcut first-keystroke="alt shift 1" keymap="$default"/>
             </action>
 
             <action id="SyncKit.StopBuildAnAction" class="com.hi.dhl.action.StopBuildAnAction"
                     text="Stop Build In Service"
-                    icon="/icons/btn_stop.png">
+                    icon="/icons/btn_stop.svg">
                 <keyboard-shortcut first-keystroke="alt shift 2" keymap="$default"/>
             </action>
 
             <action id="SyncKit.CleanProjectAnAction" class="com.hi.dhl.action.CleanProjectAnAction"
                     text="Clean Project In Service"
-                    icon="/icons/btn_clean.png">
+                    icon="/icons/btn_clean.svg">
                 <keyboard-shortcut first-keystroke="alt shift 3" keymap="$default"/>
             </action>
 
             <action id="SyncKit.SyncToServiceAnAction" class="com.hi.dhl.action.SyncToServiceAnAction"
-                    text="Sync Local To Service" icon="/icons/btn_sync.png">
+                    text="Sync Local To Service" icon="/icons/btn_sync.svg">
                 <keyboard-shortcut first-keystroke="alt shift 4" keymap="$default"/>
             </action>
 
             <separator/>
 
-            <group id="SyncKitAdbGroup" icon="/icons/btn_adb.png" text="ADB" popup="true">
+            <group id="SyncKitAdbGroup" icon="/icons/btn_adb.svg" text="ADB" popup="true">
                 <action id="SyncKit.InstallApkAnAction" class="com.hi.dhl.action.InstallApkAnAction" text="install apk"
                          >
                 </action>
@@ -84,10 +84,10 @@
 
             <action id="SyncKit.InitializationAnAction" class="com.hi.dhl.action.InitializationAnAction"
                     text="Sync Init"
-                    icon="/icons/btn_init.png">
+                    icon="/icons/btn_init.svg">
             </action>
 
-            <group id="SyncKitServiceGroup" icon="/icons/btn_service_configure.png" text="服务器工具安装" popup="true">
+            <group id="SyncKitServiceGroup" icon="/icons/btn_service_configure.svg" text="服务器工具安装" popup="true">
                 <action id="SyncKit.InstallJDK11AnAction" class="com.hi.dhl.action.InstallJDK11AnAction"
                         text="install JDK 11" >
                 </action>
@@ -105,7 +105,7 @@
             <separator/>
 
             <action id="SyncKit.PluginConfigurationAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
-                    text="plug config" icon="/icons/btn_set.png">
+                    text="plug config" icon="/icons/btn_set.svg">
                 <keyboard-shortcut first-keystroke="alt shift 5" keymap="$default"/>
             </action>
 
