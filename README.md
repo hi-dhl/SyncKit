@@ -4,9 +4,8 @@
 <p align="center">
 <a href="https://github.com/hi-dhl"><img src="https://img.shields.io/badge/GitHub-HiDhl-4BC51D.svg?style=flat"></a>  
 
-<img src="https://img.shields.io/badge/language-kotlin-orange.svg"/> 
-
-<img src="https://img.shields.io/badge/version-1.0.1-lightgrey.svg"/>
+<img src="https://img.shields.io/badge/version-1.4-orange.svg"/>
+<img src="https://img.shields.io/badge/language-kotlin-lightgrey.svg"/> 
 </p>
 
 `SyncKit` 是基于 `Intellij idea` 开发的插件，适用于 `AndroidStudio` 以及 `jetbrains` 旗下的所有 `idea` 软件，主要将本地的项目同步到远程设备，在**远程设备**上进行编译，然后将编译的结果拉回本地。
@@ -32,6 +31,7 @@
 
 * 支持数据同步到远程设备
 * 支持增量同步，本地文件有修改或者新增才会同步到远程设备
+* 文件过滤功能，过滤掉不需要同步的文件
 * 远程编译功能
 * 对于 Android 应用，一键完成远程编译、自动安装、打开目标 Activity
 * 一键安装常用工具，部署开发环境
@@ -52,7 +52,7 @@ TODO:
 
 ### 如何安装工具
 
-点击[链接](https://github.com/hi-dhl/SyncKit/releases)，前往Github 下载最新版本`SyncKit-version.zip`，文件 `SyncKit-version.zip` 不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。安装成功之后，将会在工具栏上出现下面的图标。
+点击[链接](https://github.com/hi-dhl/SyncKit/releases)，前往 Github 下载最新版本`SyncKit-version.zip`，文件 `SyncKit-version.zip` 不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。安装成功之后，将会在工具栏上出现下面的图标。
 
 ![](https://img.hi-dhl.com/16650664173995.jpg)
 
