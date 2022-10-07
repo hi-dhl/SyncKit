@@ -15,7 +15,7 @@ object R {
         val projectTitle = "SyncKit"
         val projectTaskDone = "\nsync done\n"
         val projectTaskStart = "\n sync start ...... \n\n"
-        val projectVersion = "\n SyncKit v1.2 \n"
+        val projectVersion = "\n SyncKit v1.3 \n"
         object ui{
             @JvmField
             val labelRemoteUser = getMessage("sync.ui.lable.remote.user")
