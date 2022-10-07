@@ -15,7 +15,7 @@
     ]]></description>
 
     <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
-    <idea-version since-build="182.0"/>
+    <idea-version since-build="192.0"/>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
