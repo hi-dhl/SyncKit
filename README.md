@@ -184,7 +184,7 @@ Execution failed for task ':app:parseDebugLocalResources'.
          > /root/build/android-sdk/platforms/android-32/android.jar
 ```
 
-这可能是因为，第一次下载 `android-32` 可能因为网络问题被中断，导致文件 `/root/build/android-sdk/platforms/android-32/android.jar` 不存在，我们可以手动删除 `android-32` 文件夹，然后重新执行远程编译，会重新下载 `android-32`，如果下载速度比较慢，可以在当前项目中，添加 `alyun maven` 仓库， 其他版本的 SDK 处理的方案都是一样的。
+这可能是因为，第一次下载 `android-32` 可能因为网络问题被中断，导致文件 `/root/build/android-sdk/platforms/android-32/android.jar` 不存在，我们可以手动删除 `android-32` 文件夹，然后重新执行远程编译，会重新下载 `android-32`，如果下载速度比较慢，可以在当前项目中，添加 `alyun maven` 仓库， 其它版本的 SDK 处理的方案都是一样的。
 
 
 **问题三：** 
@@ -195,6 +195,12 @@ Execution failed for task ':app:parseDebugLocalResources'.
 yum install -y rsync unzip wget
 ```
 
+### 联系我
+
+* 个人微信：hi-dhl
+* 公众号：ByteCode，专注分享有趣硬核原创内容，Kotlin、Jetpack、性能优化、系统源码、算法及数据结构、动画、大厂面经
+
+<img src='http://cdn.51git.cn/2020-10-20-151047.png' width = 350px/>
 
 ### License
 
