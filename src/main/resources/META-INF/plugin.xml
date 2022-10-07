@@ -14,27 +14,6 @@
         </ul>
     ]]></description>
 
-<!--    <change-notes><![CDATA[-->
-<!--        <html>-->
-<!--            <b>Version 1.0</b>-->
-<!--            <ul>-->
-<!--                <li>Sync local file to remote machine</li>-->
-<!--                <li>Remote compile/build android or java on the remote machine</li>-->
-<!--                <li>Install apk</li>-->
-<!--                <li>Install the JDK or Android SDK or NDK on the remote machine</li>-->
-<!--            </ul>-->
-<!--             <b>Version 1.1</b>-->
-<!--            <ul>-->
-<!--                <li>reinit function</li>-->
-<!--                <li>stop compile in remote machine</li>-->
-<!--                <li>clean project in remote machine</li>-->
-<!--                <li>configuration plugin</li>-->
-<!--                <li>customer ignore rule</li>-->
-<!--                <li>install apk after open activity</li>-->
-<!--            </ul>-->
-<!--         </html>-->
-<!--    ]]></change-notes>-->
-
     <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
     <idea-version since-build="182.0"/>
 

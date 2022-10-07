@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '1.1'
+version '1.2'
 
 repositories {
     mavenLocal()
@@ -37,8 +37,29 @@ intellij {
 }
 patchPluginXml {
     changeNotes = """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+        <html>
+            <b>Version 1.0</b>
+            <ul>
+                <li>Sync local file to remote machine</li>
+                <li>Remote compile/build android or java on the remote machine</li>
+                <li>Install apk</li>
+                <li>Install the JDK or Android SDK or NDK on the remote machine</li>
+            </ul>
+            <b>Version 1.1</b>
+            <ul>
+                <li>reinit function</li>
+                <li>stop compile in remote machine</li>
+                <li>clean project in remote machine</li>
+                <li>configuration plugin</li>
+                <li>customer ignore rule</li>
+                <li>install apk after open activity</li>
+            </ul>
+            <b>Version 1.2</b>
+            <ul>
+                <li>兼容低版本的idea开发工具</li>
+            </ul>
+        </html>
+      """
 }
 
 test {
@@ -46,6 +67,6 @@ test {
 }
 
 //publishPlugin {
-//    channels = 'Stable'
+//    channels = "Stable"
 //    token = INTELLIJ_TOKEN
 //}

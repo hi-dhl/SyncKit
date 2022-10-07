@@ -52,7 +52,7 @@ TODO:
 
 ### 如何安装工具
 
-点击[链接](https://github.com/hi-dhl/SyncKit/releases/download/v1.1/SyncKit-1.1.zip)，下载 `SyncKit.zip`，不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。安装成功之后，将会在工具栏上出现下面的图标。
+点击[链接](https://github.com/hi-dhl/SyncKit/releases)，前往Github 下载最新版本`SyncKit-version.zip`，文件 `SyncKit-version.zip` 不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。安装成功之后，将会在工具栏上出现下面的图标。
 
 ![](https://img.hi-dhl.com/16650664173995.jpg)
 
