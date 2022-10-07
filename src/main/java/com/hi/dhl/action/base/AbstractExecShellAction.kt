@@ -5,7 +5,7 @@ import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.project.Project
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 /**
  * <pre>

@@ -96,6 +96,10 @@ class SyncRunnerConsole(
                 }
             }
 
+            override fun processWillTerminate(event: ProcessEvent, willBeDestroyed: Boolean) {
+
+            }
+
             override fun onTextAvailable(processEvent: ProcessEvent, p1: Key<*>) {
             }
         })

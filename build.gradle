@@ -29,6 +29,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version = '2021.1'
+//    version = '2018.2'
 //    localPath = '/Applications/Android Studio.app/Contents'
     pluginName = "SyncKit"
     updateSinceUntilBuild = false
@@ -43,3 +44,8 @@ patchPluginXml {
 test {
     useJUnitPlatform()
 }
+
+//publishPlugin {
+//    channels = 'Stable'
+//    token = INTELLIJ_TOKEN
+//}

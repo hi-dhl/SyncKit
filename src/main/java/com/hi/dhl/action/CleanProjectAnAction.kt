@@ -4,7 +4,7 @@ import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.common.R
 import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.project.Project
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 /**
  * <pre>

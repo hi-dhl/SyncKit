@@ -8,7 +8,7 @@ import com.hi.dhl.console.CommandManager
 import com.intellij.execution.process.ProcessEvent
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 /**
  * <pre>

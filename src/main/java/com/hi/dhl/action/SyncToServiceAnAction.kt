@@ -3,7 +3,7 @@ package com.hi.dhl.action
 import com.hi.dhl.action.base.AbstractAnAction
 import com.hi.dhl.console.CommandManager
 import com.intellij.openapi.project.Project
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 import com.hi.dhl.common.R
 /**
  * <pre>

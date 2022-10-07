@@ -3,7 +3,7 @@ package com.hi.dhl.console
 import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
 import com.hi.dhl.utils.FileUtils
-import org.jetbrains.kotlin.konan.file.File
+import java.io.File
 
 /**
  * <pre>
@@ -67,7 +67,7 @@ object CommandManager {
         build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath};rm -rf ${remoteMachineWorkPath + File.separator + Common.localProperties}${sdkdir}${ndkDir} && rsync' ")
         val localIgnoreFile =
             File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
-        if (localIgnoreFile.exists) {
+        if (localIgnoreFile.exists()) {
             build.append("--exclude-from=${localIgnoreFile}  ")
         }
         build.append("${localProjectBasePath + File.separator} ")
@@ -123,13 +123,13 @@ object CommandManager {
         build.append("--progress ")
         val remoteIncludeFile =
             File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigRemoteIncludeFile)
-        if (remoteIncludeFile.exists) {
+        if (remoteIncludeFile.exists()) {
             build.append("--include-from=${remoteIncludeFile}  ")
         }
 
         val remoteIgnoreFile =
             File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigRemoteIgnoreFile)
-        if (remoteIgnoreFile.exists) {
+        if (remoteIgnoreFile.exists()) {
             build.append("--exclude-from=${remoteIgnoreFile}  ")
         }
         
