@@ -1,30 +1,42 @@
 <idea-plugin>
     <id>com.hi.dhl.SyncKit</id>
     <name>SyncKit</name>
-    <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
-    <idea-version since-build="163"/>
-    <vendor email="hihuilong@gmail.com" url="https://www.hi-dhl.com">hi-dhl</vendor>
+    <vendor email="hihuilong@gmail.com" url="https://github.com/hi-dhl/SyncKit">hi-dhl</vendor>
 
     <description><![CDATA[
         The plugin use in AndroidStudio or IntelliJ IDEA.<br>
         <b>The main features:</b><br>
         <ul>
             <li>Sync local file to remote machine</li>
-            <li>Remote compile/build android or java on the remote machine</li>
-            <li>Install apk</li>
+            <li>Remote compile/build project on the remote machine</li>
+            <li>Install apk And open Activity</li>
             <li>Install the JDK or Android SDK or NDK on the remote machine</li>
         </ul>
     ]]></description>
 
     <change-notes><![CDATA[
-        <b>Version 1.0.0</b>
-        <ul>
-            <li>Sync local file to remote machine</li>
-            <li>Remote compile/build android or java on the remote machine</li>
-            <li>Install apk</li>
-            <li>Install the JDK or Android SDK or NDK on the remote machine</li>
-        </ul>
+        <html>
+            <b>Version 1.0</b>
+            <ul>
+                <li>Sync local file to remote machine</li>
+                <li>Remote compile/build android or java on the remote machine</li>
+                <li>Install apk</li>
+                <li>Install the JDK or Android SDK or NDK on the remote machine</li>
+            </ul>
+             <b>Version 1.1</b>
+            <ul>
+                <li>reinit function</li>
+                <li>stop compile in remote machine</li>
+                <li>clean project in remote machine</li>
+                <li>configuration plugin</li>
+                <li>customer ignore rule</li>
+                <li>install apk after open activity</li>
+            </ul>
+         </html>
     ]]></change-notes>
+
+    <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions -->
+    <idea-version since-build="163"/>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->

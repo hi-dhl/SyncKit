@@ -41,3 +41,4 @@ local.properties
 .externalNativeBuild
 *.DS_Store
 .MWebMetaData/
+#customerRule
