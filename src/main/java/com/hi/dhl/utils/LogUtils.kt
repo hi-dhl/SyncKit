@@ -47,27 +47,30 @@ object LogUtils {
                 // 2020.03 推荐使用新的 API
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitEventLog")
-
                 // 2021.3 移除掉这个 API
-                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.NONE, true)
+//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.NONE, true)
+
+                NotificationGroup.logOnlyGroup("SyncKitEventLog")
             }
             // 弹出通知 10s 后小时
             NotificationDisplayType.BALLOON -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitBallon")
-                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.BALLOON, true)
-
+//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.BALLOON, true)
+                NotificationGroup.balloonGroup("SyncKitBallon")
             }
             // 弹出通知，一直在屏幕上显示，需要主动关闭
             NotificationDisplayType.TOOL_WINDOW -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitToolWindow")
-                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.TOOL_WINDOW, true)
+//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.TOOL_WINDOW, true)
+                NotificationGroup.toolWindowGroup("SyncKitToolWindow", "")
             }
             else -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitStickBallon")
-                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.STICKY_BALLOON, true)
+//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.STICKY_BALLOON, true)
+                NotificationGroup.balloonGroup("SyncKitBallon")
             }
         }.createNotification(content, type).notify(project)
 
