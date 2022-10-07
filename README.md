@@ -11,7 +11,7 @@
 
 `SyncKit` 是基于 `Intellij idea` 开发的插件，适用于 `AndroidStudio` 以及 `jetbrains` 旗下的所有 `idea` 软件，主要将本地的项目同步到远程设备，在**远程设备**上进行编译，然后将编译的结果拉回本地。
 
-> 如果有帮助欢迎在仓库 hi-dhl/SyncKit 右上角点个 star，如果你在使用过程中有任何问题，或者有其它的需求，欢迎给我提 issue。
+> 如果有帮助欢迎在仓库 [hi-dhl/SyncKit](https://github.com/hi-dhl/SyncKit) 右上角点个 star，如果你在使用过程中有任何问题，或者有其它的需求，欢迎给我提 issue。
 
 **远程设备**可以是 Nas、另外一台备用电脑、云端（阿里云、腾讯云、华为云等等）、 Docker 虚拟出来的容器等等。
 
@@ -25,7 +25,7 @@
 
 ![](https://img.hi-dhl.com/1663344313991362.jpg)
 
-在开发这个工具之前，我尝试在 github 上寻找类似的项目来解决现有的问题，我只找到了项目 `mainframer` ，但是这个项目作者已经好几年没有在维护这个项目了，使用起来比较麻烦，`idea` 配置也比较麻烦。并不能完全解决我遇到的问题，因此云同步编译工具 `SyncKit` 就诞生了。
+在开发这个工具之前，我尝试在 github 上寻找类似的项目来解决现有的问题，我只找到了项目 `mainframer` ，但是这个项目作者已经好几年没有在维护这个项目了，使用起来比较麻烦，`idea` 配置也比较麻烦。并不能完全解决我遇到的问题，因此云同步编译工具 [SyncKit](https://github.com/hi-dhl/SyncKit) 就诞生了。
 
 
 `SyncKit` 支持以下功能：
@@ -52,12 +52,7 @@ TODO:
 
 ### 如何安装工具
 
-最新版本 V1.0.1
-
-* 方法一：`idea 开发工具 -> Preferences -> Plugins` 搜索 SyncKit，安装重启即可
-* 方法二：点击链接，下载 `SyncKit.zip`，不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可
-
-安装成功之后，将会在工具栏上出现下面的图标。
+点击[链接](https://github.com/hi-dhl/SyncKit/releases/download/v1.1/SyncKit-1.1.zip)，下载 `SyncKit.zip`，不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。安装成功之后，将会在工具栏上出现下面的图标。
 
 ![](https://img.hi-dhl.com/16650664173995.jpg)
 
