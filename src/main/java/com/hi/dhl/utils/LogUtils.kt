@@ -6,6 +6,7 @@ import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
 
 
 /**
@@ -47,30 +48,57 @@ object LogUtils {
                 // 2020.03 推荐使用新的 API
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitEventLog")
-                // 2021.3 移除掉这个 API
-//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.NONE, true)
 
-                NotificationGroup.logOnlyGroup("SyncKitEventLog")
+                // 2021.3 将被移除
+                NotificationGroup(
+                    "SyncKitEventLog",
+                    NotificationDisplayType.NONE,
+                    true,
+                    null,
+                    Messages.getInformationIcon()
+                )
+
             }
             // 弹出通知 10s 后小时
             NotificationDisplayType.BALLOON -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitBallon")
-//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.BALLOON, true)
-                NotificationGroup.balloonGroup("SyncKitBallon")
+
+                NotificationGroup(
+                    "SyncKitBallon",
+                    NotificationDisplayType.BALLOON,
+                    true,
+                    null,
+                    Messages.getInformationIcon()
+                )
+
             }
             // 弹出通知，一直在屏幕上显示，需要主动关闭
             NotificationDisplayType.TOOL_WINDOW -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitToolWindow")
-//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.TOOL_WINDOW, true)
-                NotificationGroup.toolWindowGroup("SyncKitToolWindow", "")
+
+                NotificationGroup(
+                    "SyncKitToolWindow",
+                    NotificationDisplayType.TOOL_WINDOW,
+                    true,
+                    null,
+                    Messages.getInformationIcon()
+                )
+
             }
             else -> {
 //                NotificationGroupManager.getInstance()
 //                    .getNotificationGroup("SyncKitStickBallon")
-//                NotificationGroup("com.hi-dhl.sync", NotificationDisplayType.STICKY_BALLOON, true)
-                NotificationGroup.balloonGroup("SyncKitBallon")
+
+                NotificationGroup(
+                    "SyncKitStickBallon",
+                    NotificationDisplayType.STICKY_BALLOON,
+                    true,
+                    null,
+                    Messages.getInformationIcon()
+                )
+
             }
         }.createNotification(content, type).notify(project)
 
