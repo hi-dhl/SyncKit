@@ -4,7 +4,7 @@
 <p align="center">
 <a href="https://github.com/hi-dhl"><img src="https://img.shields.io/badge/GitHub-HiDhl-4BC51D.svg?style=flat"></a>  
 
-<img src="https://img.shields.io/badge/version-1.5-orange.svg"/>
+<img src="https://img.shields.io/badge/version-1.6-orange.svg"/>
 <img src="https://img.shields.io/badge/language-kotlin-lightgrey.svg"/> 
 </p>
 
@@ -52,8 +52,10 @@ TODO:
 
 ### 如何安装工具
 
-* 方法一：`idea 开发工具 -> Preferences -> Plugins` 搜索 SyncKit，安装重启即可
-* 方法二：点击[链接](https://github.com/hi-dhl/SyncKit/releases)，前往 Github 下载最新版本`SyncKit-version.zip`，文件 `SyncKit-version.zip` 不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。
+* 方法一：点击下发[链接](https://github.com/hi-dhl/SyncKit/releases)，下载最新版本`SyncKit-version.zip`，文件 `SyncKit-version.zip` 不需要解压，拖拽到 idea 开发工具中，将会自动安装，点击重启即可。
+  * [下载地址一：https://github.com/hi-dhl/SyncKit/releases](https://github.com/hi-dhl/SyncKit/releases)（实时更新）
+  * [下载地址二：https://plugins.jetbrains.com/plugin/19948-synckit/versions](https://plugins.jetbrains.com/plugin/19948-synckit/versions)（需要官方审核，更新比较慢）
+* 方法二：`idea 开发工具 -> Preferences -> Plugins` 搜索 SyncKit，安装重启即可
 
 安装成功之后，将会在工具栏上出现下面的图标。
 

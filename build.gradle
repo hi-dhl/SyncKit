@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '1.5'
+version '1.6'
 
 repositories {
     mavenLocal()
@@ -65,6 +65,10 @@ patchPluginXml {
             <b>Version 1.5</b>
             <ul>
                 <li>修复命令不存在导致的编译中断的问题</li>
+            </ul>
+            <b>Version 1.6</b>
+            <ul>
+                <li>修复安装 APK 路径匹配问题</li>
             </ul>
         </html>
       """
