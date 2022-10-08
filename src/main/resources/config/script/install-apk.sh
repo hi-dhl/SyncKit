@@ -1,6 +1,6 @@
 #!/bin/sh
 launchActivtiy=$1
-find . | fgrep ".apk" | while read fname; do
+find . -name "*.apk" | while read fname; do
   echo $fname
   adb install -r $fname
   if [ "$launchActivtiy" ]; then
