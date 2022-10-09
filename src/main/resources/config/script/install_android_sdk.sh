@@ -34,7 +34,7 @@ echo "sdk.dir=${HOME_PATH}/${BUILD_PATH}/${ANDROID_SDK}"
 echo "" >> ${BASH_FILE}
 echo "export ANDROID_HOME=${HOME_PATH}/${BUILD_PATH}/${ANDROID_SDK}" >> ${BASH_FILE}
 echo "export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools" >> ${BASH_FILE}
-source ${BASH_FILE}
+source ${BASH_FILE} > /dev/null 2>&1
 
 rm -rf "${BUILD_PATH}/${ANDROID_SDK_TEMP}"
 rm -rf ${HOME_PATH}/${DOWNLOAD_FILE_NAME}*

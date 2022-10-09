@@ -27,6 +27,6 @@ echo "" >> ${BASH_FILE}
 echo "export JAVA_HOME=${HOME_PATH}/${BUILD_PATH}/${JDK_11}" >> ${BASH_FILE}
 echo "export CLASSPATH=.:${HOME_PATH}/${BUILD_PATH}/${JDK_11}/lib" >> ${BASH_FILE}
 echo "export PATH=${JAVA_HOME}/bin:$PATH" >> ${BASH_FILE}
-source ${BASH_FILE}
+source ${BASH_FILE} > /dev/null 2>&1
 
 rm -rf ${HOME_PATH}/${DOWNLOAD_FILE_NAME}.tar.gz*

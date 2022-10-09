@@ -26,5 +26,5 @@ echo "ndk.dir=${HOME_PATH}/${BUILD_PATH}/${ANDROID_NDK}"
 echo "" >> ${BASH_FILE}
 echo "export ANDROID_NDK=${HOME_PATH}/${BUILD_PATH}/${ANDROID_NDK}" >> ${BASH_FILE}
 echo "export PATH=$PATH:$ANDROID_NDK" >> ${BASH_FILE}
-source ${BASH_FILE}
+source ${BASH_FILE} > /dev/null 2>&1
 rm -rf ${HOME_PATH}/${ANDROID_NDK}-linux*
