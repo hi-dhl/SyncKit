@@ -46,6 +46,7 @@ TODO:
 * [ ] 支持 Win
 * [ ] 支持数据双向同步
 * [ ] 支持多台远程设备间切换
+* [ ] 支持 AAB 打包
 
 
 
@@ -96,7 +97,7 @@ ssh-keygen -t rsa -C "test@qq.com"
 * 进入远程设备，执行下面命令，将上一步获取到的 `SSH public key`，追加到 `authorized_keys` 文件中
 
 ```
-echo ${SSH_PUBLIC_KEY} >> ~/.ssh/authorized_keys
+mkdir -p ~/.ssh && echo ${SSH_PUBLIC_KEY} >> ~/.ssh/authorized_keys
 ```
 
 

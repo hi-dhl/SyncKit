@@ -1,6 +1,5 @@
 package com.hi.dhl.action.base
 import com.hi.dhl.common.Common
-import com.hi.dhl.common.SyncContentProvide
 import com.hi.dhl.console.CommandManager
 import com.hi.dhl.utils.FileUtils
 import com.hi.dhl.utils.LogUtils

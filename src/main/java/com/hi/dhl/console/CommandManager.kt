@@ -51,7 +51,7 @@ object CommandManager {
                           localProjectBasePath: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        /bin/bash -c "rsync -e 'ssh -p 22' --archive --delete  --progress --rsync-path='mkdir -p ~/rsync/demo && rsync'  ./ root@ip:~/rsync/demo"
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}' --archive --delete ")
+        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no' --archive --delete ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
         var sdkdir: String = ""
@@ -78,7 +78,7 @@ object CommandManager {
                               filePath: String,
                               remoteMachineWorkPath: String,
                               remoteMachineInfo: RemoteMachineInfo) {
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}' --archive --delete ")
+        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive --delete ")
         build.append("--progress ")
         build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
         build.append("${filePath} ")
@@ -90,7 +90,7 @@ object CommandManager {
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${remoteMachineInfo.remotePort} ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,
@@ -118,7 +118,7 @@ object CommandManager {
                                   remoteMachineWorkPath: String,
                                   localProjectBasePath: String,
                                   remoteMachineInfo: RemoteMachineInfo) {
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}' --archive ")
+        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
         val remoteIncludeFile =
