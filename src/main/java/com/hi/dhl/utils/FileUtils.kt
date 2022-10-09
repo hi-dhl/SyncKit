@@ -86,7 +86,7 @@ object FileUtils {
                     !entry.isDirectory() -> {
                         LogUtils.logI("copyDestDir name = ${name}")
                         val endName = name.substring(name.lastIndexOf("/") + 1)
-                        if (!name.startsWith("com")) {
+                        if (!name.startsWith("com") || !name.startsWith("icons")) {
                             copyFile(
                                 classLoader.getResourceAsStream(name), File(destDir, endName)
                             )

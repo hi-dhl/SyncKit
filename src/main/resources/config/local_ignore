@@ -14,7 +14,6 @@ pids
 *.pid.lock
 .nyc_output
 .grunt
-bower_components
 .lock-wscript
 node_modules/
 jspm_packages/
@@ -27,7 +26,6 @@ typings/
 .vscode
 *.apk
 *.ap_
-*.class
 bin/
 gen/
 out/
