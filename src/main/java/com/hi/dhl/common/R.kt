@@ -60,10 +60,15 @@ object R {
     }
 
     object ShellScript {
+        @JvmField
         val installJDK11 = "install_jdk_11.sh"
+        @JvmField
         val installAndroidSDK = "install_android_sdk.sh"
+        @JvmField
         val installApk = "install-apk.sh"
+        @JvmField
         val installSSHPub = "install-ssh-publickey.sh"
+        @JvmField
         val installAndroidNDK = "install_android_ndk.sh"
     }
 }

@@ -45,8 +45,22 @@ object FileUtils {
     }
 
     private fun copyDestDir(destDir: File) {
-        val classLoader = javaClass.getClassLoader()
-        val url: URL = classLoader.getResource(Common.resourceConfigDir)
+        val classLoader : ClassLoader? = FileUtils::class.java.getClassLoader()
+        if (classLoader != null) {
+            useKotlinCopyJarResource(classLoader, destDir)
+        } else {
+            LogUtils.logE("use kotlin getClassLoader is null")
+            JavaJarUtils.copy(destDir)
+        }
+    }
+
+    @JvmStatic
+    fun useKotlinCopyJarResource(classLoader: ClassLoader, destDir: File) {
+        val url: URL? = classLoader.getResource(Common.resourceConfigDir)
+        if (url == null) {
+            LogUtils.logE("use kotlin classLoader.getResource is null")
+            return
+        }
         val jarPath: String = url.toString().substring(0, url.toString().indexOf("!/") + 2)
 
         val jarURL = URL(jarPath)
@@ -58,6 +72,11 @@ object FileUtils {
             val entry: JarEntry = jarEntrys.nextElement()
             val name: String = entry.getName()
             if (name.contains(Common.resourceConfigDir)) {
+
+                if (name.contains("icons") || name.contains("com")) {
+                    continue
+                }
+
                 when {
                     name.contains(Common.syncConfigServiceDir) -> {
                         if (entry.isDirectory) {
@@ -84,13 +103,11 @@ object FileUtils {
                         }
                     }
                     !entry.isDirectory() -> {
-                        LogUtils.logI("copyDestDir name = ${name}")
                         val endName = name.substring(name.lastIndexOf("/") + 1)
-                        if (!name.startsWith("com") || !name.startsWith("icons")) {
-                            copyFile(
-                                classLoader.getResourceAsStream(name), File(destDir, endName)
-                            )
-                        }
+                        LogUtils.logI("copyDestDir name = ${name}")
+                        copyFile(
+                            classLoader.getResourceAsStream(name), File(destDir, endName)
+                        )
                     }
                 }
 
