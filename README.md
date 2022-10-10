@@ -4,7 +4,7 @@
 <p align="center">
 <a href="https://github.com/hi-dhl"><img src="https://img.shields.io/badge/GitHub-HiDhl-4BC51D.svg?style=flat"></a>  
 
-<img src="https://img.shields.io/badge/version-1.6-orange.svg"/>
+<img src="https://img.shields.io/badge/version-1.7-orange.svg"/>
 <img src="https://img.shields.io/badge/language-kotlin-lightgrey.svg"/> 
 </p>
 
