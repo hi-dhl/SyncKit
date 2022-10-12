@@ -20,7 +20,8 @@ class InstallApkAnAction : AbstractAnAction(R.String.ui.actionInstallApk) {
         val shellInstallApkPath = FileUtils.getShellScriptPath(projectBasePath, R.ShellScript.installApk)
         if (FileUtils.isExists(shellInstallApkPath)) {
             var execShellScript: String
-            if (shellInstallApkPath.contains("apk") && !remoteMachineInfo.launchActivity.isNullOrEmpty()) {
+            if (shellInstallApkPath.contains("apk") && !remoteMachineInfo.launchActivity.isNullOrEmpty()
+                && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {
                 execShellScript = "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath} ${remoteMachineInfo.launchActivity} "
             } else {
                 execShellScript = "chmod 777 ${shellInstallApkPath} && bash ${shellInstallApkPath} "
