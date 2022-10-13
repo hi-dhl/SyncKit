@@ -2,12 +2,18 @@ package com.hi.dhl.utils;
 
 import com.hi.dhl.common.Common;
 import com.hi.dhl.common.R;
+import com.intellij.ide.plugins.cl.PluginClassLoader;
 import com.intellij.notification.NotificationDisplayType;
 
 import java.io.*;
+import java.net.JarURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * <pre>
@@ -41,13 +47,24 @@ public class JavaJarUtils {
     };
 
     public static void copy(File dest) {
-        ClassLoader classLoader = JavaJarUtils.class.getClassLoader();
-        URL url = classLoader.getResource(Common.resourceConfigDir);
-        if (url != null) {
-            FileUtils.useKotlinCopyJarResource(classLoader, dest);
-        } else {
-            LogUtils.logE("use Java classLoader.getResource is null", NotificationDisplayType.NONE);
-            copyFiles(dest);
+        try {
+            ClassLoader classLoader = JavaJarUtils.class.getClassLoader();
+            URL url = classLoader.getResource(Common.resourceConfigDir);
+            if (url == null) {
+                URL pathUrl = JavaJarUtils.class.getResource("./");
+                if (pathUrl != null) {
+                    String pathStr = pathUrl.toString();
+                    pathStr = pathStr.substring(0, pathStr.indexOf("com/hi")) + Common.resourceConfigDir;
+                    url = URI.create(pathStr).toURL();
+                }
+            }
+
+            if (url == null) {
+                LogUtils.logE("get jar URL is null", NotificationDisplayType.NONE);
+            }
+            copyJarResource(url, dest);
+        } catch (Exception e) {
+            LogUtils.logE("read fail " + e, NotificationDisplayType.NONE);
         }
     }
 
@@ -120,4 +137,58 @@ public class JavaJarUtils {
         }
     }
 
+    private static void copyJarResource(URL url, File dest) throws IOException {
+        String jarPath = url.toString().substring(0, url.toString().indexOf("!/") + 2);
+        URL jarURL = new URL(jarPath);
+        JarURLConnection jarCon = (JarURLConnection) jarURL.openConnection();
+        JarFile jarFile = jarCon.getJarFile();
+        Enumeration<JarEntry> jarEntrys = jarFile.entries();
+        LogUtils.logE("hasMoreElements = " + jarEntrys.hasMoreElements(), NotificationDisplayType.NONE);
+        while (jarEntrys.hasMoreElements()) {
+            JarEntry entry = jarEntrys.nextElement();
+            String name = entry.getName();
+            LogUtils.logE("name = " + name, NotificationDisplayType.NONE);
+            if (name.contains(Common.resourceConfigDir) && !name.contains("icons") && !name.contains("com")) {
+                if (name.contains(Common.syncConfigServiceDir)) {
+                    if (entry.isDirectory()) {
+                        new File(dest, Common.syncConfigServiceDir).mkdirs();
+                    } else {
+                        LogUtils.logI("copyDestDir name = ${name}", NotificationDisplayType.NONE);
+                        String endName = name.substring(name.lastIndexOf("/") + 1);
+                        write(read(name), new File(dest, Common.syncConfigServiceDir), endName);
+                    }
+                } else if (name.contains(Common.syncConfigScriptDir)) {
+                    if (entry.isDirectory()) {
+                        new File(dest, Common.syncConfigScriptDir).mkdirs();
+                    } else {
+                        LogUtils.logI("copyDestDir name = ${name}", NotificationDisplayType.NONE);
+                        String endName2 = name.substring(name.lastIndexOf("/") + 1);
+                        write(read(name), new File(dest, Common.syncConfigScriptDir), endName2);
+                    }
+                } else if (!entry.isDirectory()) {
+                    String endName3 = name.substring(name.lastIndexOf("/") + 1);
+                    LogUtils.logI("copyDestDir name = ${name}", NotificationDisplayType.NONE);
+                    write(read(name), dest, endName3);
+                }
+            }
+        }
+    }
+
+
+    public static void main(String... args){
+        try {
+            URL url = URI.create("jar:file:/C:/Users/dhl/AppData/Roaming/Google/AndroidStudio2020.3/plugins/SyncKit/lib/SyncKit-1.7.jar!/" + Common.resourceConfigDir).toURL();
+            System.out.println(url);
+
+            String pathStr = "jar:file:/C:/Users/dhl/AppData/Roaming/Google/AndroidStudio2020.3/plugins/SyncKit/lib/SyncKit-1.7.jar!/com/hi/dhl/utils/";
+            pathStr = pathStr.substring(0,pathStr.indexOf("com/hi")) + Common.resourceConfigDir;
+            System.out.println("1 path toURL = " + pathStr);
+
+            URL path = URI.create(pathStr).toURL();
+            System.out.println("1 path toURL = " + path);
+        }catch (Exception e){
+
+        }
+
+    }
 }

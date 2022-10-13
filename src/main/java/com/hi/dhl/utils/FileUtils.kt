@@ -3,10 +3,14 @@ package com.hi.dhl.utils
 import com.hi.dhl.common.Common
 import com.hi.dhl.console.RemoteMachineInfo
 import com.hi.dhl.ktkit.common.fromJson
+import com.hi.dhl.utils.LogUtils.logE
+import com.hi.dhl.utils.LogUtils.logI
+import com.intellij.notification.NotificationDisplayType
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.net.JarURLConnection
+import java.net.URI
 import java.net.URL
 import java.nio.file.*
 import java.nio.file.attribute.BasicFileAttributes
@@ -45,22 +49,35 @@ object FileUtils {
     }
 
     private fun copyDestDir(destDir: File) {
-        val classLoader : ClassLoader? = FileUtils::class.java.getClassLoader()
-        if (classLoader != null) {
-            useKotlinCopyJarResource(classLoader, destDir)
-        } else {
-            LogUtils.logE("use kotlin getClassLoader is null")
-            JavaJarUtils.copy(destDir)
+        val classLoader: ClassLoader? = FileUtils::class.java.getClassLoader()
+        if (classLoader == null) {
+            logE("get cur classLoader is null")
+            return
         }
+
+        var url: URL? = classLoader.getResource(Common.resourceConfigDir)
+        if (url == null) {
+            val codeUrl = JavaJarUtils::class.java.getResource("./")
+            logI("codeUrl = $codeUrl")
+            if (codeUrl != null) {
+                val codePath = codeUrl.toString()
+                val configPath = codePath.substring(0, codePath.indexOf("com")) + Common.resourceConfigDir
+                logI("configPath = $configPath")
+                url = URI.create(configPath).toURL()
+                logI("configPath toURL = $url")
+            }
+        }
+
+        if (url == null) {
+            logE("get jar URL is null")
+            return
+        }
+
+        useKotlinCopyJarResource(url, classLoader, destDir)
     }
 
     @JvmStatic
-    fun useKotlinCopyJarResource(classLoader: ClassLoader, destDir: File) {
-        val url: URL? = classLoader.getResource(Common.resourceConfigDir)
-        if (url == null) {
-            LogUtils.logE("use kotlin classLoader.getResource is null")
-            return
-        }
+    fun useKotlinCopyJarResource(url: URL, classLoader: ClassLoader, destDir: File) {
         val jarPath: String = url.toString().substring(0, url.toString().indexOf("!/") + 2)
 
         val jarURL = URL(jarPath)
