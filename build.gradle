@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '1.7'
+version '1.8'
 
 repositories {
     mavenLocal()
@@ -74,6 +74,11 @@ patchPluginXml {
             <ul>
                 <li>首次连接远程设备绕过 yes/no 提示</li>
                 <li>修复classLoader.getResource为空的问题</li>
+            </ul>
+            <b>Version 1.8</b>
+            <ul>
+                <li>解决在Win AndroidStudio 2022版本上读取jar包资源失败的问题</li>
+                <li>修改安装 APK 时不打开默认的Activity</li>
             </ul>
         </html>
       """
