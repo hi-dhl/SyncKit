@@ -1,8 +1,8 @@
 package com.hi.dhl.console
 
-import com.hi.dhl.action.StopSingleDumbAwareAction
 import com.hi.dhl.action.listener.BuildProcessListener
 import com.hi.dhl.common.R
+import com.hi.dhl.utils.ExecutableUtils
 import com.hi.dhl.utils.LogUtils
 import com.hi.dhl.utils.TimeUtils
 import com.intellij.execution.Executor
@@ -15,7 +15,6 @@ import com.intellij.execution.ui.RunContentDescriptor
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.util.Key
 
 /**
@@ -47,7 +46,7 @@ class SyncRunnerConsole(
         LogUtils.logI("createProcess")
         generalCommandLine = PtyCommandLine()
         return generalCommandLine.withWorkDirectory(workingDir).apply {
-            exePath = "/bin/bash"
+            exePath = ExecutableUtils.findExecutable()
             addParameter("-c")
             addParameter(command)
         }.createProcess().also { process = it }
