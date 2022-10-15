@@ -45,7 +45,7 @@ class ConfigCommandDialog(
         remoteMachineInfo.sdkDir = pluginConfigForm.tfSDK.text
         remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
         remoteMachineInfo.remoteRootDir = Common.flagRmoetUserWrok + pluginConfigForm.tfRemoteWorkDir.text
-
+        remoteMachineInfo.setGradlew(pluginConfigForm.cbGradlew.isSelected)
         syncContentProvide.saveSyncServiceConfig(remoteMachineInfo)
 
         val fileFilters = pluginConfigForm.fileFilters.text
@@ -108,6 +108,8 @@ class ConfigCommandDialog(
 
         pluginConfigForm.tfRemoteWorkDir.text =
             remoteMachineInfo.remoteRootDir.substring(Common.flagRmoetUserWrok.length)
+
+        pluginConfigForm.cbGradlew.isSelected = remoteMachineInfo.isSelectGradlew()
     }
 
 }

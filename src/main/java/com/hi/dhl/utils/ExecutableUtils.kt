@@ -27,7 +27,7 @@ object ExecutableUtils {
         val paths = System.getenv("PATH").split(File.pathSeparator)
         for (dirname in paths) {
             File(dirname, endName).apply {
-                if (exists() && isFile() && canRead() && canExecute()) {
+                if (isFile() && canExecute()) {
                     return absolutePath
                 }
             }

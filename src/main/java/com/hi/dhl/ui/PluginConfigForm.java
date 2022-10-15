@@ -37,6 +37,7 @@ public class PluginConfigForm {
     JTextField tfRemoteWorkDir;
     JLabel lableRemoteWorkDir;
     JLabel lableRemoteWorkDirTip;
+    JCheckBox cbGradlew;
 
     PluginConfigForm() {
         rootPanel.setPreferredSize(new Dimension(460, -1));
@@ -58,6 +59,10 @@ public class PluginConfigForm {
         lableRemoteWorkDirTip.setForeground(Color.GRAY);
 
         lableRemoteWorkDir.setText(R.String.ui.lableRemoteWorkDir);
+
+        cbGradlew.setSelected(true);
+        cbGradlew.setText("使用 gradlew");
+
     }
 
 }

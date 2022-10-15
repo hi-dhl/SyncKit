@@ -22,13 +22,7 @@ data class RemoteMachineInfo(
     var ndkDir: String? = null,
     var sshPublicKey: String? = null
 ) {
-    companion object {
-        fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {
-            return RemoteMachineInfo(
-                remotePort = "", remoteHost = "", remoteUser = ""
-            )
-        }
-    }
+    var useGradlew = 0
 
     fun checkOrNull(): Boolean {
         val warringTitle = StringUtils.getMessage("sync.service.empry.title")
@@ -52,6 +46,33 @@ data class RemoteMachineInfo(
                 true
             }
             else -> false
+        }
+    }
+
+    fun isSelectGradlew(): Boolean {
+        return when (useGradlew) {
+            SELECT_GRADLEW -> true
+            NOT_SELECT_GRADLEW -> false
+            else -> true
+        }
+    }
+
+    fun setGradlew(select: Boolean) {
+        if (select) {
+            useGradlew = SELECT_GRADLEW;
+        } else {
+            useGradlew = NOT_SELECT_GRADLEW;
+        }
+    }
+
+    companion object{
+        const val SELECT_GRADLEW = 1
+        const val NOT_SELECT_GRADLEW = 2
+
+        fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {
+            return RemoteMachineInfo(
+                remotePort = "", remoteHost = "", remoteUser = ""
+            )
         }
     }
 }
