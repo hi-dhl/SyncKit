@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '1.9'
+version '2.0'
 
 repositories {
     mavenLocal()
@@ -83,6 +83,12 @@ patchPluginXml {
             <b>Version 1.9</b>
             <ul>
                 <li>修复无法执行打包命令的问题</li>
+            </ul>
+            <b>Version 2.0</b>
+            <ul>
+                <li>支持自定义编译命令</li>
+                <li>支持自定义命令</li>
+                <li>优化了clean脚本</li>
             </ul>
         </html>
       """
