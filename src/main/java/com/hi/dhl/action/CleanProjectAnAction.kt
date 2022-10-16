@@ -16,7 +16,7 @@ import java.io.File
 class CleanProjectAnAction : AbstractAnAction(R.String.ui.actionCleanProject) {
 
     override fun afterActionPerformed(project: Project) {
-        val extraCommand = "./gradlew clean"
+        val extraCommand = "./gradlew --stop; rm -rf ~/.gradle/caches/build-cache-*; rm -rf ~/.gradle/caches/transforms-*; ./gradlew clean"
         val commands = StringBuilder()
         val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
         val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
