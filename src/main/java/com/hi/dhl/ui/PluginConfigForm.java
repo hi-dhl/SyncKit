@@ -22,7 +22,7 @@ public class PluginConfigForm {
     JTextField tfRemoteHost;
     JTextField tfRemotePort;
     JTextField tfRemoteUser;
-    JTextField tfRemoteCommand;
+    JTextField tfRemoteBuildCommand;
     JLabel labelRemoteHost;
     JLabel labelRemotePort;
     JLabel labelRemoteUser;

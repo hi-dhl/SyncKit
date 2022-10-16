@@ -64,6 +64,11 @@
                 <keyboard-shortcut first-keystroke="alt shift 4" keymap="$default"/>
             </action>
 
+            <action id="SyncKit.RemoteCommandAnAction" class="com.hi.dhl.action.RemoteCommandAnAction"
+                    text="执行远程命令" icon="/icons/btn_sync.svg">
+                <keyboard-shortcut first-keystroke="alt shift 4" keymap="$default"/>
+            </action>
+
             <separator/>
 
             <group id="SyncKitAdbGroup" icon="/icons/btn_adb.svg" text="ADB" popup="true">

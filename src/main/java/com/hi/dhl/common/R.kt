@@ -46,6 +46,7 @@ object R {
             val actionBuildProject = getMessage("sync.action.build.project")
             val actionStopBuildProject = getMessage("sync.action.stop.build.project")
             val actionCleanProject = getMessage("sync.action.clean.project")
+            val actionRemoteCommand = getMessage("sync.action.remote.command")
             val actionInstallApk = getMessage("sync.action.install.apk")
             val actionSyncToService = getMessage("sync.action.syncToService")
             val actionInitialization = getMessage("sync.action.init")

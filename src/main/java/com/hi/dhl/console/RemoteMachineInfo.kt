@@ -23,6 +23,8 @@ data class RemoteMachineInfo(
     var sshPublicKey: String? = null
 ) {
     var useGradlew = 0
+    var selectCompileResult = 0
+    var remoteCommand: String? = ""
 
     fun checkOrNull(): Boolean {
         val warringTitle = StringUtils.getMessage("sync.service.empry.title")
@@ -65,9 +67,28 @@ data class RemoteMachineInfo(
         }
     }
 
+    fun isSelectCompileResult(): Boolean {
+        return when (selectCompileResult) {
+            SELECT_COMPILE_RESULT -> true
+            NOT_SELECT_COMPILE_RESULT -> false
+            else -> true
+        }
+    }
+
+    fun setSelectCompileResult(select: Boolean) {
+        if (select) {
+            selectCompileResult = SELECT_GRADLEW;
+        } else {
+            selectCompileResult = NOT_SELECT_GRADLEW;
+        }
+    }
+
     companion object{
         const val SELECT_GRADLEW = 1
         const val NOT_SELECT_GRADLEW = 2
+
+        const val SELECT_COMPILE_RESULT = 1
+        const val NOT_SELECT_COMPILE_RESULT = 2
 
         fun createEmptyRemoteMachineInfo(): RemoteMachineInfo {
             return RemoteMachineInfo(
