@@ -24,7 +24,7 @@ abstract class AbstractExecShellAction : AbstractAnAction {
 
             val remoteMachineInfo = syncContentProvide.readSyncServiceConfig()
             val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
-            val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName + File.separator + Common.syncConfigRootDir
+            val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
 
             val commands = StringBuilder()
             val localShellScriptPath = FileUtils.getShellScriptPath(projectBasePath, shellScript)

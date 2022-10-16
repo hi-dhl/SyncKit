@@ -1,6 +1,7 @@
 package com.hi.dhl.ui;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * <pre>
@@ -12,4 +13,8 @@ import javax.swing.*;
 public class ConfigurationCommandForm {
     JPanel panel;
     JTextField tfRemoteCommand;
+
+    ConfigurationCommandForm(){
+        panel.setPreferredSize(new Dimension(280, -1));
+    }
 }

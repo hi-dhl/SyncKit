@@ -65,8 +65,8 @@
             </action>
 
             <action id="SyncKit.RemoteCommandAnAction" class="com.hi.dhl.action.RemoteCommandAnAction"
-                    text="执行远程命令" icon="/icons/btn_sync.svg">
-                <keyboard-shortcut first-keystroke="alt shift 4" keymap="$default"/>
+                    text="执行远程命令" icon="/icons/btn_command.svg">
+                <keyboard-shortcut first-keystroke="alt shift 6" keymap="$default"/>
             </action>
 
             <separator/>

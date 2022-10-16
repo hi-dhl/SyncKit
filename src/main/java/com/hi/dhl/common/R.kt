@@ -71,6 +71,8 @@ object R {
         val installSSHPub = "install-ssh-publickey.sh"
         @JvmField
         val installAndroidNDK = "install_android_ndk.sh"
+        @JvmField
+        val cleanProject = "clean-project.sh"
     }
 }
 

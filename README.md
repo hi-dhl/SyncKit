@@ -75,7 +75,7 @@ TODO:
 
 * 上一步操作完之后，将会弹出一个对话框，输入对应的 Host（IP 或者域名）、端口号、用户名即可，其它都是可选的
 
-![](https://img.hi-dhl.com/16649635496189.jpg)
+![](https://img.hi-dhl.com/166593067588011.jpg)
 
 * 配置 ssh 无密码访问远程设备（可选）
 
@@ -106,6 +106,26 @@ mkdir -p ~/.ssh && echo ${SSH_PUBLIC_KEY} >> ~/.ssh/authorized_keys
 **点击「远程编译」将会出现如下界面**
 
 ![](https://img.hi-dhl.com/16649650280751.gif)
+
+### 支持自定义命令
+
+#### 执行远程命令
+
+![](https://img.hi-dhl.com/16659296169419.jpg)
+
+点击 **「执行远程命令」** 将会弹出一个输入命令的弹窗，如下所示。
+
+![](https://img.hi-dhl.com/16659297498812.jpg)
+
+输入任意命令，例如 `ls -l`, 展示结果如下所示。
+
+![](https://img.hi-dhl.com/16659310248785.jpg)
+
+#### 执行远程编译命令
+
+![](https://img.hi-dhl.com/166593076828241.jpg)
+
+如果勾选 **「使用 gradlew」** 那么后面的命令可以直接输入 `assembleDebug`，如果不勾选，则可以输入任意的编译命令即可，例如 `./gradlew assembleDebug`。
 
 
 ### 远程设备工具安装（可选）

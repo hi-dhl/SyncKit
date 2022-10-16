@@ -2,6 +2,7 @@ package com.hi.dhl.console
 
 import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
+import com.hi.dhl.utils.ExecutableUtils
 import com.hi.dhl.utils.FileUtils
 import java.io.File
 
@@ -97,21 +98,19 @@ object CommandManager {
                              filePath: String,
                              remoteMachineWorkPath: String,
                              remoteMachineInfo: RemoteMachineInfo) {
-        val remoteScriptPath = remoteMachineWorkPath + File.separator + Common.syncConfigScriptDir
-        syncLocalFileToRemote(build, filePath, remoteScriptPath, remoteMachineInfo)
+        val remoteScriptDirPath = remoteMachineWorkPath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir
+        syncLocalFileToRemote(build, filePath, remoteScriptDirPath, remoteMachineInfo)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
-        var execShellScript: String
-        if (fileName.contains("apk")
-            && !remoteMachineInfo.launchActivity.isNullOrEmpty()
-            && !remoteMachineInfo.launchActivity.equals(R.String.ui.tfLaunchActivity)) {
-            execShellScript = "chmod 777 ${fileName} && bash ${fileName} ${remoteMachineInfo.launchActivity} "
-        } else if(filePath.contains(R.ShellScript.installSSHPub) && !remoteMachineInfo.sshPublicKey.isNullOrEmpty()){
-            execShellScript = "chmod 777 ${fileName} && bash ${fileName} ${remoteMachineInfo.sshPublicKey} "
+        val remoteScriptPath = remoteScriptDirPath + File.separator + fileName
+        val exePath = ExecutableUtils.findExecutable()
+        val execShellScript: String
+        if(filePath.contains(R.ShellScript.installSSHPub) && !remoteMachineInfo.sshPublicKey.isNullOrEmpty()){
+            execShellScript = "chmod 777 ${remoteScriptPath} && ${exePath} ${remoteScriptPath} ${remoteMachineInfo.sshPublicKey} "
         }else {
-            execShellScript = "chmod 777 ${fileName} && bash ${fileName} "
+            execShellScript = "chmod 777 ${remoteScriptPath} && ${exePath} ${remoteScriptPath} "
         }
-        execRemoteCommand(build, remoteScriptPath, execShellScript, remoteMachineInfo)
+        execRemoteCommand(build, remoteMachineWorkPath, execShellScript, remoteMachineInfo)
     }
 
     private fun syncRemoteToLocal(build: StringBuilder,
