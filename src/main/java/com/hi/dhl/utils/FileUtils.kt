@@ -40,8 +40,18 @@ object FileUtils {
         }
     }
 
-    private fun copyFile(src: File, dest: File) {
-        Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
+    fun copyScriptFile(fileName: String, dest: File) {
+        val classLoader: ClassLoader? = FileUtils::class.java.getClassLoader()
+        if (classLoader == null) {
+            logE("get cur classLoader is null")
+            return
+        }
+
+        val srcPath = Common.resourceConfigDir +
+                File.separator + Common.syncConfigScriptDir + File.separator + fileName
+        copyFile(
+            classLoader.getResourceAsStream(srcPath), File(dest, fileName)
+        )
     }
 
     private fun copyFile(src: InputStream, dest: File) {
@@ -176,6 +186,10 @@ object FileUtils {
 
     fun getShellScriptPath(basePath: String, shellName: String): String {
         return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir + File.separator + shellName
+    }
+
+    fun getShellScriptDirPath(basePath: String): String {
+        return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir
     }
 
     fun deleteDirectory(directory: Path) {
