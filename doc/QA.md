@@ -63,11 +63,13 @@ yum install -y rsync unzip wget
 Caused by: java.lang.AssertionError: annotationType(): unrecognized Attribute name MODULE
 ```
 
-编译的时候出现上述错误，是因为你的项目依赖于 JDK 11, 而命令行编译你的项目使用的是 JDK 8，因此出现上面的错误，所以安装一个 JDK 11，并且配置环境好即可解决这个问题。
+编译的时候出现上述错误，是因为当前项目依赖于 JDK 版本 >= 11, 而命令行编译使用的是 JDK 8，因此出现上面的错误，所以需要安装一个 JDK 版本 >= 11，并且配置好环境，即可解决这个问题。
+
+如何配置多个 JDK ，欢迎前往查看文章，[配置多个 JDK](https://www.hi-dhl.com/2021/05/09/jetpack/13-compose)
 
 **问题五：**
 
-如果你的安装多个 NDK 的版本，工具无法识别当前项目依赖的那个 NDK 版本，需要在「插件配置」中输入远程 NDK 和 SDK的路径。
+如果你安装多个 NDK 的版本，工具无法识别当前项目依赖那个 NDK 版本，需要在「插件配置」中输入远程 NDK 和 SDK的路径。
 
 ![](https://img.hi-dhl.com/16650666987696.jpg)
 
