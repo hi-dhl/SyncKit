@@ -65,7 +65,7 @@ object CommandManager {
             && !remoteMachineInfo.ndkDir.equals(R.String.ui.tfNDK)){
             ndkDir = ";echo ndk.dir=${remoteMachineInfo.ndkDir} >> ${remoteMachineWorkPath + File.separator + Common.localProperties}"
         }
-        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath};rm -rf ${remoteMachineWorkPath + File.separator + Common.localProperties}${sdkdir}${ndkDir} && rsync' ")
+        build.append("--rsync-path='export LC_ALL=en_US.UTF-8;export LANG=en_US.UTF-8;mkdir -p ${remoteMachineWorkPath};rm -rf ${remoteMachineWorkPath + File.separator + Common.localProperties}${sdkdir}${ndkDir} && rsync' ")
         val localIgnoreFile =
             File(localProjectBasePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigLocalIgnoreFile)
         if (localIgnoreFile.exists()) {
@@ -81,7 +81,7 @@ object CommandManager {
                               remoteMachineInfo: RemoteMachineInfo) {
         build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive --delete ")
         build.append("--progress ")
-        build.append("--rsync-path='mkdir -p ${remoteMachineWorkPath} && rsync' ")
+        build.append("--rsync-path='export LC_ALL=en_US.UTF-8;export LANG=en_US.UTF-8;mkdir -p ${remoteMachineWorkPath} && rsync' ")
         build.append("${filePath} ")
         build.append(" ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}:${remoteMachineWorkPath} ")
     }
