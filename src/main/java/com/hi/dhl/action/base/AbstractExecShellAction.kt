@@ -30,7 +30,7 @@ abstract class AbstractExecShellAction : AbstractAnAction {
             val localShellScriptPath = FileUtils.getShellScriptPath(projectBasePath, shellScript)
             LogUtils.logI("localShellScriptPath = ${localShellScriptPath}")
             if (FileUtils.isExists(localShellScriptPath)) {
-                CommandManager.execRemoteSellScript(commands, localShellScriptPath, remoteProjectPath, remoteMachineInfo)
+                CommandManager.execRemoteSellScript(commands, localShellScriptPath, remoteProjectPath, remoteMachineInfo, projectBasePath)
                 execSyncRunnerConsole(project, projectBasePath, commands.toString())
             } else {
                 LogUtils.logE("file not exist ${localShellScriptPath}")

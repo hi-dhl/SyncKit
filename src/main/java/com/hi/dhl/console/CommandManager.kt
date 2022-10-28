@@ -4,6 +4,7 @@ import com.hi.dhl.common.Common
 import com.hi.dhl.common.R
 import com.hi.dhl.utils.ExecutableUtils
 import com.hi.dhl.utils.FileUtils
+import com.intellij.openapi.util.SystemInfoRt
 import java.io.File
 
 /**
@@ -52,7 +53,7 @@ object CommandManager {
                           localProjectBasePath: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        /bin/bash -c "rsync -e 'ssh -p 22' --archive --delete  --progress --rsync-path='mkdir -p ~/rsync/demo && rsync'  ./ root@ip:~/rsync/demo"
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no' --archive --delete ")
+        build.append("${execSshpassScriptCommand(localProjectBasePath, remoteMachineInfo)}  rsync -e 'ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no' --archive --delete ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
         var sdkdir: String = ""
@@ -78,8 +79,9 @@ object CommandManager {
     fun syncLocalFileToRemote(build: StringBuilder,
                               filePath: String,
                               remoteMachineWorkPath: String,
-                              remoteMachineInfo: RemoteMachineInfo) {
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive --delete ")
+                              remoteMachineInfo: RemoteMachineInfo,
+                              localProjectBasePath: String) {
+        build.append("${execSshpassScriptCommand(localProjectBasePath, remoteMachineInfo)}  rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive --delete ")
         build.append("--progress ")
         build.append("--rsync-path='export LC_ALL=en_US.UTF-8;export LANG=en_US.UTF-8;mkdir -p ${remoteMachineWorkPath} && rsync' ")
         build.append("${filePath} ")
@@ -91,15 +93,16 @@ object CommandManager {
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e;source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("${makeSshpassCommand(remoteMachineInfo)} ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e;source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,
                              filePath: String,
                              remoteMachineWorkPath: String,
-                             remoteMachineInfo: RemoteMachineInfo) {
+                             remoteMachineInfo: RemoteMachineInfo,
+                             localProjectBasePath: String) {
         val remoteScriptDirPath = remoteMachineWorkPath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir
-        syncLocalFileToRemote(build, filePath, remoteScriptDirPath, remoteMachineInfo)
+        syncLocalFileToRemote(build, filePath, remoteScriptDirPath, remoteMachineInfo, localProjectBasePath)
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
         val remoteScriptPath = remoteScriptDirPath + File.separator + fileName
@@ -117,7 +120,7 @@ object CommandManager {
                                   remoteMachineWorkPath: String,
                                   localProjectBasePath: String,
                                   remoteMachineInfo: RemoteMachineInfo) {
-        build.append("rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive ")
+        build.append("${execSshpassScriptCommand(localProjectBasePath, remoteMachineInfo)} rsync -e 'ssh -p ${remoteMachineInfo.remotePort} -o StrictHostKeyChecking=no' --archive ")
 //        build.append("--partial ") // 保留因故没有传完的文件，下次在续传
         build.append("--progress ")
         val remoteIncludeFile =
@@ -138,6 +141,35 @@ object CommandManager {
 
     fun execLocalCommand(build: StringBuilder, extraCommand: String) {
         build.append(extraCommand)
+    }
+
+    fun execSshpassScriptCommand(
+        localProjectBasePath: String,
+        remoteMachineInfo: RemoteMachineInfo
+    ): String {
+        if (SystemInfoRt.isWindows) {
+            return ""
+        }
+        val shellInstallSshpass = FileUtils.getShellScriptPath(localProjectBasePath, R.ShellScript.installSshpass)
+        val password = remoteMachineInfo.remoteUserPassword
+        if (password.isNullOrEmpty()) {
+            return ""
+        } else {
+            return "set +e;chmod 777 ${shellInstallSshpass} && bash ${shellInstallSshpass} && sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
+        }
+    }
+
+
+    fun makeSshpassCommand(remoteMachineInfo: RemoteMachineInfo): String{
+        if (SystemInfoRt.isWindows) {
+            return ""
+        }
+        val password = remoteMachineInfo.remoteUserPassword
+        if (password.isNullOrEmpty()) {
+            return ""
+        } else {
+            return "sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
+        }
     }
 
 }

@@ -38,6 +38,8 @@ public class PluginConfigForm {
     JLabel lableRemoteWorkDir;
     JLabel lableRemoteWorkDirTip;
     JCheckBox cbGradlew;
+    JTextField tfRemotePassword;
+    JLabel labelRemotePassword;
 
     PluginConfigForm() {
         rootPanel.setPreferredSize(new Dimension(460, -1));
@@ -63,6 +65,8 @@ public class PluginConfigForm {
         cbGradlew.setSelected(true);
         cbGradlew.setText("使用 gradlew");
 
+        labelRemotePassword.setText(R.String.ui.labelRemotePassword);
+        tfRemotePassword.addFocusListener(new JTextFieldHintListener(tfRemotePassword, R.String.ui.tfRemotePassword));
     }
 
 }

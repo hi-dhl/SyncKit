@@ -90,6 +90,11 @@ patchPluginXml {
                 <li>支持自定义命令</li>
                 <li>优化了clean脚本</li>
             </ul>
+            <b>Version 2.1</b>
+            <ul>
+                <li>解决乱码问题</li>
+                <li>支持密码访问远程设备</li>
+            </ul>
         </html>
       """
 }

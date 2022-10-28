@@ -26,6 +26,8 @@ object Common {
     val syncConfigRemoteIgnoreFile = "remote_ignore"
     @JvmField
     val syncDefaultConfigJson = "config.json"
+    @JvmField
+    val syncFiles = "files"
 
     val localProperties = "local.properties"
     val flagRmoetUserWrok = "~/"

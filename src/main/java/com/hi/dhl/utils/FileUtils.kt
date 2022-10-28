@@ -54,6 +54,21 @@ object FileUtils {
         )
     }
 
+
+    fun copyFile(fileName: String, dest: File) {
+        val classLoader: ClassLoader? = FileUtils::class.java.getClassLoader()
+        if (classLoader == null) {
+            logE("get cur classLoader is null")
+            return
+        }
+
+        val srcPath = Common.resourceConfigDir +
+                File.separator + Common.syncFiles + File.separator + fileName
+        copyFile(
+            classLoader.getResourceAsStream(srcPath), File(dest, fileName)
+        )
+    }
+
     private fun copyFile(src: InputStream, dest: File) {
         Files.copy(src, dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
     }
@@ -129,6 +144,18 @@ object FileUtils {
                             )
                         }
                     }
+                    name.contains(Common.syncFiles) -> {
+                        if (entry.isDirectory) {
+                            File(destDir, Common.syncFiles).mkdirs()
+                        } else {
+                            LogUtils.logI("copyDestDir name = ${name}")
+                            val endName = name.substring(name.lastIndexOf("/") + 1)
+                            copyFile(
+                                classLoader.getResourceAsStream(name),
+                                File(File(destDir, Common.syncFiles), endName)
+                            )
+                        }
+                    }
                     !entry.isDirectory() -> {
                         val endName = name.substring(name.lastIndexOf("/") + 1)
                         LogUtils.logI("copyDestDir name = ${name}")
@@ -177,7 +204,11 @@ object FileUtils {
     }
 
     fun getSyncConfigPath(basePath: String, fileName: String): String {
-        return basePath + File.separator + Common.syncConfigRootDir + File.separator + fileName
+        return getSyncConfigDir(basePath) + File.separator + fileName
+    }
+
+    fun getSyncConfigDir(basePath: String): String {
+        return basePath + File.separator + Common.syncConfigRootDir
     }
 
     fun getSyncServicePath(basePath: String, fileName: String): String {
@@ -190,6 +221,14 @@ object FileUtils {
 
     fun getShellScriptDirPath(basePath: String): String {
         return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncConfigScriptDir
+    }
+
+    fun getFilesPath(basePath: String, fileName: String): String {
+        return getFilesDirPath(basePath) + File.separator + fileName
+    }
+
+    fun getFilesDirPath(basePath: String): String {
+        return basePath + File.separator + Common.syncConfigRootDir + File.separator + Common.syncFiles
     }
 
     fun deleteDirectory(directory: Path) {

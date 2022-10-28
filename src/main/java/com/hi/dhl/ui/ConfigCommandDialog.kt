@@ -46,6 +46,7 @@ class ConfigCommandDialog(
         remoteMachineInfo.ndkDir = pluginConfigForm.tfNdk.text
         remoteMachineInfo.remoteRootDir = Common.flagRmoetUserWrok + pluginConfigForm.tfRemoteWorkDir.text
         remoteMachineInfo.setGradlew(pluginConfigForm.cbGradlew.isSelected)
+        remoteMachineInfo.remoteUserPassword = pluginConfigForm.tfRemotePassword.text
         syncContentProvide.saveSyncServiceConfig(remoteMachineInfo)
 
         val fileFilters = pluginConfigForm.fileFilters.text
@@ -110,6 +111,13 @@ class ConfigCommandDialog(
             remoteMachineInfo.remoteRootDir.substring(Common.flagRmoetUserWrok.length)
 
         pluginConfigForm.cbGradlew.isSelected = remoteMachineInfo.isSelectGradlew()
+
+        if (!remoteMachineInfo.remoteUserPassword.isNullOrEmpty()
+            && !remoteMachineInfo.remoteUserPassword.equals(R.String.ui.tfRemotePassword)
+        ) {
+            pluginConfigForm.tfRemotePassword.text = remoteMachineInfo.remoteUserPassword
+            pluginConfigForm.tfRemotePassword.foreground = Color.BLACK
+        }
     }
 
 }

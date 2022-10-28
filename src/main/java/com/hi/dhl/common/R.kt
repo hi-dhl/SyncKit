@@ -1,5 +1,6 @@
 package com.hi.dhl.common
 
+import com.hi.dhl.ext.PluginVersion
 import com.hi.dhl.utils.StringUtils.getMessage
 
 /**
@@ -12,10 +13,11 @@ import com.hi.dhl.utils.StringUtils.getMessage
 
 object R {
     object String {
+        val pluginVersion = PluginVersion.VERSION_2_1
         val projectTitle = "SyncKit"
         val projectTaskDone = "\nsync done\n"
         val projectTaskStart = "\n sync start ...... \n\n"
-        val projectVersion = "\n SyncKit v2.0 \n"
+        val projectVersion = "\n SyncKit v${pluginVersion} \n"
         object ui{
             @JvmField
             val labelRemoteUser = getMessage("sync.ui.lable.remote.user")
@@ -57,6 +59,11 @@ object R {
 
             val confirmDialogTitle = getMessage("sync.ui.config.dialog.title")
             val confirmDialogTip = getMessage("sync.ui.config.dialog.tip")
+
+            @JvmField
+            val labelRemotePassword= getMessage("sync.ui.lable.remote.password")
+            @JvmField
+            val tfRemotePassword = getMessage("sync.ui.android.textfield.password")
         }
     }
 
@@ -73,6 +80,10 @@ object R {
         val installAndroidNDK = "install_android_ndk.sh"
         @JvmField
         val cleanProject = "clean-project.sh"
+        @JvmField
+        val installSshpass = "install-sshpass.sh"
     }
+
+    val sshpassFile = "sshpass-1.08.tar.gz"
 }
 

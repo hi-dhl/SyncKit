@@ -20,11 +20,13 @@ data class RemoteMachineInfo(
     var launchActivity: String? = null,
     var sdkDir: String? = null,
     var ndkDir: String? = null,
-    var sshPublicKey: String? = null
+    var sshPublicKey: String? = null,
+    var remoteUserPassword: String? = null
 ) {
     var useGradlew = 0
     var selectCompileResult = 0
     var remoteCommand: String? = ""
+    var pluginVersion: String? = ""
 
     fun checkOrNull(): Boolean {
         val warringTitle = StringUtils.getMessage("sync.service.empry.title")

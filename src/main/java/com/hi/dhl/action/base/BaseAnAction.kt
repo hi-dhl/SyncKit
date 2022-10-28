@@ -1,6 +1,7 @@
 package com.hi.dhl.action.base
 
 import com.hi.dhl.common.SyncContentProvide
+import com.hi.dhl.ext.upgrad
 import com.hi.dhl.utils.LogUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -28,6 +29,7 @@ abstract class BaseAnAction : AnAction {
             syncContentProvide = SyncContentProvide.getInstance(project)
             this.project = project
             projectBasePath = project.basePath ?: "./"
+            upgrad(projectBasePath)
             LogUtils.logI("projectBasePath = ${projectBasePath}")
         }
     }
