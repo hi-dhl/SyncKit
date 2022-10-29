@@ -92,8 +92,8 @@ patchPluginXml {
             </ul>
             <b>Version 2.1</b>
             <ul>
-                <li>解决乱码问题</li>
                 <li>支持密码访问远程设备</li>
+                <li>解决部分设备乱码问题</li>
             </ul>
         </html>
       """
