@@ -65,8 +65,7 @@ class SyncRunnerConsole(
                         if (buildProcessListener != null) {
                             buildProcessListener.onStart(startTime)
                         }
-                        processHandler.notifyTextAvailable(R.String.projectVersion, ProcessOutputTypes.SYSTEM)
-                        processHandler.notifyTextAvailable(R.String.projectTaskStart, ProcessOutputTypes.SYSTEM)
+                        processHandler.notifyTextAvailable(R.String.projectTaskStartTip, ProcessOutputTypes.SYSTEM)
                     }
                 }
                 LogUtils.logI("startNotified code = ${processEvent.exitCode} text = ${processEvent.text}")

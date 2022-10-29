@@ -16,8 +16,22 @@ object R {
         val pluginVersion = PluginVersion.VERSION_2_1
         val projectTitle = "SyncKit"
         val projectTaskDone = "\nsync done\n"
-        val projectTaskStart = "\n sync start ...... \n\n"
-        val projectVersion = "\n SyncKit v${pluginVersion} \n"
+        val projectTaskStartTip = """
+            
+             .----------------.  .----------------.  .----------------.  .----------------.
+            | .--------------. || .--------------. || .--------------. || .--------------. |
+            | |                                                                          | |  
+            | |                           SyncKit v${pluginVersion}                                   | |
+            | |                                                                          | |
+            | |      如何使用：https://github.com/hi-dhl/SyncKit/blob/main/doc/use.md      | |
+            | |                                                                          | |
+            | |      常见问题：https://github.com/hi-dhl/SyncKit/blob/main/doc/qa.md       | | 
+            | |                                                                          | |
+            | '--------------' || '--------------' || '--------------' || '--------------' |
+             '----------------'  '----------------'  '----------------'  '----------------' 
+             
+             
+         """.trimIndent()
         object ui{
             @JvmField
             val labelRemoteUser = getMessage("sync.ui.lable.remote.user")
