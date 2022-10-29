@@ -62,6 +62,10 @@ object FileUtils {
             return
         }
 
+        if (!dest.exists()) {
+            dest.mkdirs()
+        }
+
         val srcPath = Common.resourceConfigDir +
                 File.separator + Common.syncFiles + File.separator + fileName
         copyFile(

@@ -25,12 +25,15 @@ abstract class BaseAnAction : AnAction {
 
     override fun actionPerformed(e: AnActionEvent) {
         e.project?.let { project ->
-
-            syncContentProvide = SyncContentProvide.getInstance(project)
-            this.project = project
-            projectBasePath = project.basePath ?: "./"
-            upgrad(projectBasePath)
-            LogUtils.logI("projectBasePath = ${projectBasePath}")
+            try {
+                syncContentProvide = SyncContentProvide.getInstance(project)
+                this.project = project
+                projectBasePath = project.basePath ?: "./"
+                upgrad(projectBasePath)
+                LogUtils.logI("projectBasePath = ${projectBasePath}")
+            } catch (e: Exception) {
+                LogUtils.logE("init base action fail ${e}");
+            }
         }
     }
 

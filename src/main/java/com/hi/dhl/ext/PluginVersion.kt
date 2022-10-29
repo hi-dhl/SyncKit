@@ -13,6 +13,7 @@ import java.io.File
  */
 
 object PluginVersion {
+    val VERSION_2_0 = "2.0"
     val VERSION_2_1 = "2.1"
 }
 
@@ -28,14 +29,14 @@ private fun upgradVersionTo_2_1(localProjectBasePath: String) {
         }
 
         var src = FileUtils.getShellScriptPath(localProjectBasePath, R.ShellScript.installSshpass)
-        var dest = FileUtils.getShellScriptDirPath(localProjectBasePath)
         if (!FileUtils.isExists(src)) {
+            val dest = FileUtils.getShellScriptDirPath(localProjectBasePath)
             FileUtils.copyScriptFile(R.ShellScript.installSshpass, File(dest))
         }
 
         src = FileUtils.getFilesPath(localProjectBasePath, R.sshpassFile)
-        dest = FileUtils.getFilesDirPath(localProjectBasePath)
         if (!FileUtils.isExists(src)) {
+            val dest = FileUtils.getFilesDirPath(localProjectBasePath)
             FileUtils.copyFile(R.sshpassFile, File(dest))
         }
     }
