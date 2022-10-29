@@ -28,11 +28,11 @@
     * Win：`alt shift 5`   
     * Mac：`option shift 5`
 
-![](http://img.hi-dhl.com/16670333932446.jpg)
+![](https://img.hi-dhl.com/16670333932446.jpg)
 
 * 在弹出的对话框中，输入对应的 Host（IP 或者域名）、端口号、用户名、登陆密码即可，其它都是可选的
 
-![](http://img.hi-dhl.com/166703183957341.jpg)
+![](https://img.hi-dhl.com/166703183957341.jpg)
 
 上面都设置完之后，就可以开始使用云同步编译工具，本地写代码，远程编译，或者将本地文件同步到远程设备，如下图示。
 
