@@ -15,6 +15,8 @@ import java.io.File
 object PluginVersion {
     val VERSION_2_0 = "2.0"
     val VERSION_2_1 = "2.1"
+    val VERSION_2_2 = "2.2"
+    val CURRENT_VERSION = VERSION_2_2
 }
 
 fun upgrad(localProjectBasePath: String) {

@@ -13,7 +13,7 @@ import com.hi.dhl.utils.StringUtils.getMessage
 
 object R {
     object String {
-        val pluginVersion = PluginVersion.VERSION_2_1
+        val pluginVersion = PluginVersion.CURRENT_VERSION
         val projectTitle = "SyncKit"
         val projectTaskDone = "\nsync done\n"
         val projectTaskStartTip = """
