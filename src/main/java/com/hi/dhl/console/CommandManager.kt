@@ -152,7 +152,8 @@ object CommandManager {
         }
         val shellInstallSshpass = FileUtils.getShellScriptPath(localProjectBasePath, R.ShellScript.installSshpass)
         val password = remoteMachineInfo.remoteUserPassword
-        if (password.isNullOrEmpty()) {
+        if (password.isNullOrEmpty()
+            || password.equals(R.String.ui.tfRemotePassword)) {
             return ""
         } else {
             return "set +e;chmod 777 ${shellInstallSshpass} && bash ${shellInstallSshpass} && sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
@@ -165,7 +166,9 @@ object CommandManager {
             return ""
         }
         val password = remoteMachineInfo.remoteUserPassword
-        if (password.isNullOrEmpty()) {
+        if (password.isNullOrEmpty() ||
+            password.equals(R.String.ui.tfRemotePassword)
+        ) {
             return ""
         } else {
             return "sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
