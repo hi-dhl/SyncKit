@@ -30,7 +30,7 @@ class RemoteCommandAnAction : AbstractAnAction(R.String.ui.actionRemoteCommand) 
             val commands = StringBuilder()
             val projectName = projectBasePath.substring(projectBasePath.lastIndexOf(File.separator) + 1)
             val remoteProjectPath = remoteMachineInfo.remoteRootDir + File.separator + projectName
-            CommandManager.execRemoteCommand(commands, remoteProjectPath, extraCommand, remoteMachineInfo)
+            CommandManager.execRemoteCommand(commands, projectBasePath, remoteProjectPath, extraCommand, remoteMachineInfo)
             val consoleTitle = "${R.String.projectTitle} [ ${extraCommand} ] "
             execSyncRunnerConsole(project, projectBasePath, commands.toString(), consoleTitle)
         }

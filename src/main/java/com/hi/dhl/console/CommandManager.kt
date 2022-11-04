@@ -26,7 +26,7 @@ object CommandManager {
         syncLocalToRemote(build, remoteProjectPath, projectBasePath, remoteMachineInfo)
         build.append(" && ")
         // 执行编译命令
-        execRemoteCommand(build, remoteProjectPath, extraCommand, remoteMachineInfo)
+        execRemoteCommand(build, projectBasePath, remoteProjectPath, extraCommand, remoteMachineInfo)
         build.append(" && ")
         // 将结果拉回到本地
         syncRemoteToLocal(build, remoteProjectPath, projectBasePath, remoteMachineInfo)
@@ -89,11 +89,12 @@ object CommandManager {
     }
 
     fun execRemoteCommand(build: StringBuilder,
+                          localProjectBasePath: String,
                           remoteMachineWorkPath: String,
                           extraCommand: String,
                           remoteMachineInfo: RemoteMachineInfo) {
 //        ssh -p22 root@ip  "cd ~/SyncKit  && "
-        build.append("${makeSshpassCommand(remoteMachineInfo)} ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e;source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
+        build.append("${execSshpassScriptCommand(localProjectBasePath, remoteMachineInfo)} ssh -p ${remoteMachineInfo.remotePort}  -o StrictHostKeyChecking=no ${remoteMachineInfo.remoteUser}@${remoteMachineInfo.remoteHost}  ' set +e;source  ~/.bashrc > /dev/null 2>&1; source ~/.bash_profile > /dev/null 2>&1; source ~/.zshrc > /dev/null 2>&1;cd ${remoteMachineWorkPath}  && ${extraCommand}' ")
     }
 
     fun execRemoteSellScript(build: StringBuilder,
@@ -113,7 +114,7 @@ object CommandManager {
         }else {
             execShellScript = "chmod 777 ${remoteScriptPath} && ${exePath} ${remoteScriptPath} "
         }
-        execRemoteCommand(build, remoteMachineWorkPath, execShellScript, remoteMachineInfo)
+        execRemoteCommand(build, localProjectBasePath, remoteMachineWorkPath, execShellScript, remoteMachineInfo)
     }
 
     private fun syncRemoteToLocal(build: StringBuilder,
