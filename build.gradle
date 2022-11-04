@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '2.2'
+version '2.3'
 
 repositories {
     mavenLocal()
@@ -98,6 +98,10 @@ patchPluginXml {
             <b>Version 2.2</b>
             <ul>
                 <li>解决无密码，编译失败的问题</li>
+            </ul>            
+            <b>Version 2.3</b>
+            <ul>
+                <li>执行命时检查是否安装sshpass</li>
             </ul>
         </html>
       """
