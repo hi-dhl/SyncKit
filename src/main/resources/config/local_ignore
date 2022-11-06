@@ -1,7 +1,4 @@
-.lock
-.git/
 Thumbs.db
-ehthumbs.db
 Desktop.ini
 *.mo
 *.pot
@@ -9,9 +6,9 @@ Desktop.ini
 .idea*/
 .idea/
 pids
-*.pid
 *.seed
-*.pid.lock
+*.pid
+*.lock
 .nyc_output
 .grunt
 .lock-wscript
@@ -35,7 +32,6 @@ local.properties
 *.log
 .navigation/
 *.iml
-.idea/
 .externalNativeBuild
 *.DS_Store
 .MWebMetaData/
