@@ -15,11 +15,20 @@ object ExecutableUtils {
 
     fun findExecutable(): String {
         LogUtils.logI(executablePath)
-        if (!executablePath.isNullOrEmpty()) {
+        if (!executablePath.isEmpty()) {
             return executablePath
         }
-        executablePath = findExecutableOnPath("bash")
-        return if (!executablePath.isNullOrEmpty()) executablePath else "/bin/bash"
+        if (compareVersion(SystemInfoRt.OS_VERSION, "10.15.0") >= 0) {
+            executablePath = findExecutableOnPath("zsh")
+            if (executablePath.isEmpty()) {
+                executablePath = findExecutableOnPath("bash")
+            }
+        } else {
+            executablePath = findExecutableOnPath("bash")
+        }
+        return if (!executablePath.isEmpty()) executablePath
+        else if (compareVersion(SystemInfoRt.OS_VERSION, "10.15.0") >= 0) "/bin/zsh"
+        else "/bin/bash"
     }
 
     fun findExecutableOnPath(name: String): String {
@@ -36,4 +45,30 @@ object ExecutableUtils {
         return ""
     }
 
+    fun compareVersion(version1: String?, version2: String?): Int {
+        if (version1 == null || version2 == null) {
+            return -1
+        }
+        val versions1 = version1.split(".")
+        val versions2 = version2.split(".")
+        var index = 0
+        val minLength = Math.min(versions1.size, versions2.size)
+        var diff = 0
+
+        while (index < minLength
+            && (versions1[index].length - versions2[index].length) == 0
+            && versions1[index].compareTo(versions2[index]) == 0
+        ) {
+            ++index
+        }
+        if(index < minLength){
+            diff = versions1[index].compareTo(versions2[index])
+        }
+        return diff
+    }
+}
+
+fun main() {
+    val result = ExecutableUtils.compareVersion("10.15.7" ,"10.14.7");
+    println(result)
 }

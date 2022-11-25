@@ -157,10 +157,11 @@ object CommandManager {
             || password.equals(R.String.ui.tfRemotePassword)) {
             return ""
         } else {
-            return "set +e;chmod 777 ${shellInstallSshpass} && bash ${shellInstallSshpass} && sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
+            return "set +e;chmod 777 ${shellInstallSshpass} && bash ${shellInstallSshpass}; ${getSshpassPath()}  -p  '${remoteMachineInfo.remoteUserPassword}'  "
         }
     }
 
+    fun getSshpassPath() = "/usr/local/bin/sshpass"
 
     fun makeSshpassCommand(remoteMachineInfo: RemoteMachineInfo): String{
         if (SystemInfoRt.isWindows) {
@@ -172,7 +173,7 @@ object CommandManager {
         ) {
             return ""
         } else {
-            return "sshpass  -p  '${remoteMachineInfo.remoteUserPassword}'  "
+            return "${getSshpassPath()}  -p  '${remoteMachineInfo.remoteUserPassword}'  "
         }
     }
 

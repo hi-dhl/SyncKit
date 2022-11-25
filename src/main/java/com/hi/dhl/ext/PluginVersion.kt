@@ -17,7 +17,8 @@ object PluginVersion {
     val VERSION_2_1 = "2.1"
     val VERSION_2_2 = "2.2"
     val VERSION_2_3 = "2.3"
-    val CURRENT_VERSION = VERSION_2_3
+    val VERSION_2_4 = "2.4"
+    val CURRENT_VERSION = VERSION_2_4
 }
 
 fun upgrad(localProjectBasePath: String) {

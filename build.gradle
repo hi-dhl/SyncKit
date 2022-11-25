@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '2.3'
+version '2.4'
 
 repositories {
     mavenLocal()
@@ -102,6 +102,10 @@ patchPluginXml {
             <b>Version 2.3</b>
             <ul>
                 <li>执行命时检查是否安装sshpass</li>
+            </ul>
+            <b>Version 2.4</b>
+            <ul>
+                <li>兼容MacOS Catalina执行命令不生效的问题</li>
             </ul>
         </html>
       """
