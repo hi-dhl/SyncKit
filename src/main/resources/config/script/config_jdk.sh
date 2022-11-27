@@ -4,9 +4,8 @@ JDK_PATH=$(which java)
 if [[ ${#JDK_PATH} >0 ]]
 then
     echo ${JDK_PATH}
-    cd JDK_PATH
-
-    JDK_HOME_PATH=$(dirname $(dirname "$PWD"))
+    JDK_HOME_PATH=$(dirname $(dirname "$JDK_PATH"))
+    cd  ${JDK_HOME_PATH}
 
     HOME_PATH=${HOME}
     cd ${HOME_PATH}
@@ -25,7 +24,7 @@ then
     echo "export PATH=${JAVA_HOME}/bin:$PATH" >> ${BASH_FILE}
     source ${BASH_FILE} > /dev/null 2>&1
 
-    echo "配置JDK成功"
+    echo "配置JDK环境成功"
 else
     echo "尚未安装 JDK，请使用「同步工具」安装JDK"
 fi
