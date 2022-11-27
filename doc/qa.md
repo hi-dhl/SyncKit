@@ -10,8 +10,20 @@
 
 ### 常见问题
 
-
 **问题一：**
+
+```
+Kotlin could not find the required JDK tools in the Java installation. Make sure Gradle is running on a JDK, not JRE.
+```
+
+在使用工具过程中，如果出现上面的错误，请在远程设备（即服务器），执行下面的命令。
+
+```
+bash <(curl -Ls https://git.byte1024.org/https://raw.githubusercontent.com/hi-dhl/SyncKit/main/src/main/resources/config/script/config_jdk.sh)
+```
+
+
+**问题二：**
 
 ```
 ssh_askpass: exec(/usr/X11R6/bin/ssh-askpass): No such file or directory
@@ -36,7 +48,7 @@ ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts
 ```
 
 
-**问题二：**
+**问题三：**
 
 ```
 Execution failed for task ':app:parseDebugLocalResources'.
@@ -49,7 +61,7 @@ Execution failed for task ':app:parseDebugLocalResources'.
 这可能是因为，第一次下载 `android-32` 可能因为网络问题被中断，导致文件 `/root/build/android-sdk/platforms/android-32/android.jar` 不存在，我们可以手动删除 `android-32` 文件夹，然后重新执行远程编译，会重新下载 `android-32`，如果下载速度比较慢，可以在当前项目中，添加 `alyun maven` 仓库， 其它版本的 SDK 处理的方案都是一样的。
 
 
-**问题三：** 
+**问题四：** 
 
 在使用云同步编译工具（SyncKit）时，提示缺少工具而导致失败，执行下面命令安装对应的工具即可。
 
@@ -57,7 +69,7 @@ Execution failed for task ':app:parseDebugLocalResources'.
 yum install -y rsync unzip wget
 ```
 
-**问题四**
+**问题五**
 
 ```
 Caused by: java.lang.AssertionError: annotationType(): unrecognized Attribute name MODULE
@@ -67,7 +79,7 @@ Caused by: java.lang.AssertionError: annotationType(): unrecognized Attribute na
 
 如何配置多个 JDK ，欢迎前往查看文章，[配置多个 JDK](https://www.hi-dhl.com/2021/05/09/jetpack/13-compose)
 
-**问题五：**
+**问题六：**
 
 如果你安装多个 NDK 的版本，工具无法识别当前项目依赖那个 NDK 版本，需要在「插件配置」中输入远程 NDK 和 SDK的路径。
 
