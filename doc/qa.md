@@ -85,3 +85,24 @@ Caused by: java.lang.AssertionError: annotationType(): unrecognized Attribute na
 
 ![](https://img.hi-dhl.com/16650666987696.jpg)
 
+**问题七：**
+
+```
+command not found: sshpass
+```
+
+使用密码访问的时候，如果出现上面的错误，因为权限问题，自动安装 sshpass 失败了，请尝试使用下面的命令手动安装。
+
+```
+切换到 roo 用户
+sudo su
+
+下载 sshpass 文件
+https://git.byte1024.org/https://github.com/hi-dhl/SyncKit/blob/main/src/main/resources/config/files/sshpass-1.08.tar.gz
+
+解压并安装 sshpass
+tar -zxvf sshpass-1.08.tar.gz
+cd sshpass-1.08
+./configure
+make&&make install
+```
