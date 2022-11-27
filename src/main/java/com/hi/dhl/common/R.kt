@@ -70,6 +70,7 @@ object R {
             val actionAndroidSDK = getMessage("sync.action.install.sdk")
             val actionAndroidNDK = getMessage("sync.action.install.ndk")
             val actionInstallSSHPub = getMessage("sync.action.install.ssh.pub")
+            val actionConfigJDK = getMessage("sync.action.config.jdk")
 
             val confirmDialogTitle = getMessage("sync.ui.config.dialog.title")
             val confirmDialogTip = getMessage("sync.ui.config.dialog.tip")
@@ -96,6 +97,8 @@ object R {
         val cleanProject = "clean-project.sh"
         @JvmField
         val installSshpass = "install-sshpass.sh"
+        @JvmField
+        val configJDK = "config_jdk.sh"
     }
 
     val sshpassFile = "sshpass-1.08.tar.gz"

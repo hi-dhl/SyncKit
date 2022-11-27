@@ -99,6 +99,11 @@
 <!--                </action>-->
             </group>
 
+            <group id="SyncKitServiceEnvGroup" icon="/icons/btn_service_configure.svg" text="服务器环境配置" popup="true">
+                <action id="SyncKit.ConfigJDKAnAction" class="com.hi.dhl.action.ConfigJDKAnAction"
+                        text="配置JDK环境" >
+                </action>
+
             <separator/>
 
             <action id="SyncKit.PluginConfigurationAnAction" class="com.hi.dhl.action.config.PluginConfigurationAnAction"
