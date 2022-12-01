@@ -12,6 +12,7 @@ import java.io.File
  */
 object ExecutableUtils {
     var executablePath: String = ""
+    var executableBashPath: String = ""
 
     fun findExecutable(): String {
         LogUtils.logI(executablePath)
@@ -28,6 +29,15 @@ object ExecutableUtils {
         }
         return if (!executablePath.isEmpty()) executablePath
         else if (compareVersion(SystemInfoRt.OS_VERSION, "10.15.0") >= 0) "/bin/zsh"
+        else "/bin/bash"
+    }
+
+    fun findExecutableInServiceOnPath(): String {
+        if (!executableBashPath.isEmpty()) {
+            return executableBashPath
+        }
+        executableBashPath = findExecutableOnPath("bash")
+        return if (!executableBashPath.isEmpty()) executableBashPath
         else "/bin/bash"
     }
 

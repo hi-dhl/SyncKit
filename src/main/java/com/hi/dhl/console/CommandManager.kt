@@ -107,7 +107,7 @@ object CommandManager {
         build.append(" && ")
         val fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1)
         val remoteScriptPath = remoteScriptDirPath + File.separator + fileName
-        val exePath = ExecutableUtils.findExecutable()
+        val exePath = ExecutableUtils.findExecutableInServiceOnPath()
         val execShellScript: String
         if(filePath.contains(R.ShellScript.installSSHPub) && !remoteMachineInfo.sshPublicKey.isNullOrEmpty()){
             execShellScript = "chmod 777 ${remoteScriptPath} && ${exePath} ${remoteScriptPath} ${remoteMachineInfo.sshPublicKey} "
