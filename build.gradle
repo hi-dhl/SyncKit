@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '2.4'
+version '2.5'
 
 repositories {
     mavenLocal()
@@ -106,6 +106,10 @@ patchPluginXml {
             <b>Version 2.4</b>
             <ul>
                 <li>兼容MacOS Catalina执行命令不生效的问题</li>
+            </ul>
+            <b>Version 2.5</b>
+            <ul>
+                <li>解决执行clean命令报错的问题</li>
             </ul>
         </html>
       """
