@@ -92,6 +92,7 @@ class SyncRunnerConsole(
                 if (buildProcessListener != null) {
                     buildProcessListener.onStop(processEvent, endTime)
                 }
+                process.destroy()
             }
 
             override fun processWillTerminate(event: ProcessEvent, willBeDestroyed: Boolean) {
