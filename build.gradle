@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.hi.dhl'
-version '2.5'
+version '2.6'
 
 repositories {
     mavenLocal()
@@ -110,6 +110,10 @@ patchPluginXml {
             <b>Version 2.5</b>
             <ul>
                 <li>解决执行clean命令报错的问题</li>
+            </ul>
+            <b>Version 2.6</b>
+            <ul>
+                <li>解决开启多个编译之后，进程未关掉的问题</li>
             </ul>
         </html>
       """
